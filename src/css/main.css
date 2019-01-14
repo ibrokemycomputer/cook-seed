@@ -1,0 +1,73 @@
+/* IMPORT
+--------------------------- */
+@import url(/src/css/variables.css);
+@import url(/src/css/header.css);
+@import url(/src/css/nav.css);
+@import url(/src/css/footer.css);
+
+/* @import url(zc-tooltip.css); */
+
+/* SHARED
+--------------------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: var(--color-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+}
+
+a { color:var(--color-secondary); text-decoration:none; }
+a:hover { color:var(--color-alt2); }
+address { font-style:normal; }
+/* p { margin: 20px 0 0; } */
+svg { max-width:100%; }
+
+
+/* WIDGETS
+--------------------------- */
+/* Section Inner Wrapper */
+.inner {
+  margin: 0 auto; 
+  max-width: var(--viewport-max-width); 
+  padding: var(--inner-y-padding) var(--inner-x-padding);
+  width: calc(100% - var(--inner-x-padding) - var(--inner-x-padding));
+}
+.inner > :first-child { margin-top:0; }
+.inner > :last-child { margin-bottom:0; }
+
+
+/* CONTENT
+--------------------------- */
+main { 
+  background: linear-gradient(var(--color-light), #fff);
+  padding-top: var(--header-height);
+}
+
+/* MISC
+--------------------------- */
+[zc-obfuscate], [obfuscate-name] { min-height:27px; }
+.logo { display:inline-flex; }
+
+
+/* MIN
+--------------------------- */
+
+@media screen and (min-width:768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1;
+  }
+}
+
+
+/* MAX
+--------------------------- */

@@ -1,0 +1,157 @@
+<header aria-label="App Header">
+  <div class="inner">
+    <div class="wrap">
+
+      <!-- ZC Logo -->
+      <a href="/" class="logo" aria-label="ZingChart Logo. Click to return to the homepage">
+        <svg><use xlink:href="img/shared-icons.svg#zcLogo"></use></svg>
+      </a>
+      
+      <!-- Primary Nav -->
+      <div zc-nav="primary">
+        <div zc-nav-wrapper="primary">
+          <div zc-nav-content="primary">
+            <nav nav-primary tabindex="0" aria-label="Primary Navigation">
+              <div nav-primary-group="1">
+                <a href="/features">Features</a>
+                <a href="/gallery.html">Gallery</a>
+                <a href="/docs">Docs</a>
+                <a href="/support">Support</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/contact">Contact</a>
+                <a href="/download" nav-button="1 link-download">
+                  <svg width="14" height="14"><use xlink:href="img/shared-icons.svg#arrow-down"></use></svg>
+                  <span>Download</span>
+                </a>
+              </div>
+              <div nav-primary-group="2"></div>
+            </nav>              
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Nav -->
+      <div zc-nav="secondary">
+        <div zc-nav-wrapper="secondary">
+          <div zc-nav-content="secondary">
+            <nav nav-secondary tabindex="0" aria-label="Secondary Navigation">
+              <!-- Search -->
+              <a href="#" nav-button="3 link-search">
+                <svg width="17" height="17"><use xlink:href="img/shared-icons.svg#search"></use></svg>
+                <span>Search</span>
+              </a>
+              <!-- Download -->
+              <a href="#" nav-button="1 link-download">
+                <svg width="14" height="14"><use xlink:href="img/shared-icons.svg#arrow-down"></use></svg>
+                <span>Download</span>
+              </a>
+              <!-- Sign Up -->
+              <a href="#" nav-button="2 link-signup">
+                <svg width="19" height="14"><use xlink:href="img/shared-icons.svg#signup"></use></svg>
+                <span>Sign Up</span>
+              </a>
+              <!-- Login -->
+              <a href="#" nav-button="2 link-login">
+                <svg width="17" height="9"><use xlink:href="img/shared-icons.svg#key"></use></svg>
+                <span>Login</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Nav Trigger (Mobile) -->
+      <span nav-trigger="primary">
+        <span nav-trigger-svg>
+          <svg width="30" height="20" type="menu"><use xlink:href="img/shared-icons.svg#menu"></use></svg>
+          <svg width="20" height="20" type="close"><use xlink:href="img/shared-icons.svg#close"></use></svg>
+        </span>
+      </span>
+
+      <!-- Secondary Nav Trigger (Mobile) -->
+      <span nav-trigger="secondary">
+        <span nav-trigger-svg>
+          <svg width="30" height="20" type="menu"><use xlink:href="img/shared-icons.svg#menu"></use></svg>
+          <svg width="20" height="20" type="close"><use xlink:href="img/shared-icons.svg#close"></use></svg>
+        </span>
+      </span>
+      
+      <!-- Primary Nav Mask (Mobile) -->
+      <div js-ref="nav-mask" nav-mask></div>
+      
+      <script>
+        /**
+         * NAV DROPDOWNS
+         * @description Mobile Nav Trigger and Mask actions
+         */
+        var zcNav = {
+          activeAttr: 'html-nav-active',
+          resizeTO: null,
+          resizeMatch: null,
+          triggerIndex: null,
+          triggerLen: null,
+          $html: document.documentElement,
+          $trigger: null,
+          $triggers: document.querySelectorAll('[nav-trigger]'),
+          $mask: document.querySelector('[js-ref="nav-mask"]')
+        };
+        // Mask click to close
+        zcNav.maskClick = function(e) {
+          zcNav.$html.removeAttribute(zcNav.activeAttr);
+        };
+        // Window resize
+        zcNav.resize = function(e) {
+          // Debounce code
+          clearTimeout(zcNav.resizeTO);
+          zcNav.resizeTO = setTimeout(function() {
+            zcNav.resizeMatch = window.innerWidth > 1023 && zcNav.$html.hasAttribute(zcNav.activeAttr);
+            // Remove attribute only if present
+            if (zcNav.resizeMatch) zcNav.$html.removeAttribute(zcNav.activeAttr);
+          }, 500);
+        };
+        // Mobile trigger button click
+        zcNav.triggerClick = function(target) {
+          var type = target.getAttribute('nav-trigger');
+          if (zcNav.$html.hasAttribute(zcNav.activeAttr)) zcNav.$html.removeAttribute(zcNav.activeAttr);
+          else zcNav.$html.setAttribute(zcNav.activeAttr, type);
+        };
+        // Add init items
+        zcNav.init = function() {
+          // Toggle <body> class to show/hide dropdown in mobile
+          zcNav.triggerLen = zcNav.$triggers.length;
+          for (zcNav.triggerIndex = 0; zcNav.triggerIndex<zcNav.triggerLen; zcNav.triggerIndex++) {
+            zcNav.$trigger = zcNav.$triggers[zcNav.triggerIndex];
+            zcNav.$trigger.addEventListener('click', function(e) { zcNav.triggerClick(zcNav.$trigger) });
+          }
+          // Close nav on mask click
+          zcNav.$mask.addEventListener('click', zcNav.maskClick);
+          // Remove <body> attribute when not in mobile
+          window.addEventListener('resize', zcNav.resize, {passive:true});
+        }
+        // Init
+        zcNav.init();
+      </script>
+
+      <script>
+        /**
+         * SECONDARY NAV
+         * @description Copy secondary nav items (<a>) to designated area in primary nav (for mobile ui)
+         */
+        var zcSecondaryNav = {
+          $items: document.querySelectorAll('[nav-secondary] a'),
+          $target: document.querySelector('[nav-primary-group="2"]'),
+          init: function() {
+            var i, clone, items = zcSecondaryNav.$items;
+            for (i = 0; i<items.length; i++) {
+              clone = items[i].cloneNode(true);
+              zcSecondaryNav.$target.appendChild(clone);
+            }
+          }
+        };
+        // Init
+        zcSecondaryNav.init();
+      </script>
+
+    </div>
+  </div>
+</header>

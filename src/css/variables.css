@@ -1,0 +1,30 @@
+/* VARIABLES
+--------------------------- */
+:root {
+  /* Color */
+  --color-primary: #00384a;
+  --color-primary1: #2e5c6a;
+  --color-secondary: #00bbf1;
+  --color-alt1: #7da82b;
+  --color-alt2: #c30;
+  --color-light: #f4f4f4;
+  /* Easing */
+  --easing-bezier: cubic-bezier(.05,.69,.14,1);
+  /* Font */
+  --font-family: 'Avenir','Nunito Sans',sans-serif;
+  --font-size: 1rem;
+  --font-weight: 400;
+  --line-height: 1.7;
+  /* SVG Icons */
+  --icon-fill_primary: var(--color-primary);
+  --icon-fill_secondary: var(--color-secondary);
+  --icon-fill_alt1: var(--color-alt1);
+  --icon-fill_alt2: var(--color-alt2);
+  /* Shared header offset */
+  --header-scroll-offset: 100px;
+  /* Inner Wrapper */
+  --inner-x-padding: 6%;
+  --inner-y-padding: 50px;
+  /* Viewport */
+  --viewport-max-width: 1600px;
+}
