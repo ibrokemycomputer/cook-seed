@@ -3,8 +3,10 @@
  * @description Replace source content. All plugins that modify file contents should run here
  * instead of in `build.js`. This way we only need to load and write to the file once,
  * instead of in each individual plugin.
- * - Includes - Replace 'include' markers with corresponding code
- * - Inline - Replace external '<link>' and `<script>` tags with `[inline]` as inlined content
+ * - replaceIncludes - Replace 'include' markers with corresponding code
+ * - replaceInline - Replace external '<link>' and `<script>` tags with `[inline]` as inlined content
+ * - replaceSrcPathForDev - Replace `/src` paths in dev since we don't inline in that environment
+ * - setActiveLinks - Match `<a>` against current page url and add active state if they match
  */
 
 // REQUIRE
