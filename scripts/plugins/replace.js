@@ -1,6 +1,6 @@
 /**
  * @file replace.js
- * @description Replace source content. All plugins that modifies file contents should run here
+ * @description Replace source content. All plugins that modify file contents should run here
  * instead of in `build.js`. This way we only need to load and write to the file once,
  * instead of in each individual plugin.
  * - Includes - Replace 'include' markers with corresponding code
