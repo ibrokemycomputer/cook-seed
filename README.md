@@ -29,8 +29,8 @@ but by default it should be 3000: `localhost:3000`
 
 To view your codebase locally, run `npm run dev`.
 
-1. This first runs `/scripts/dev.js`, which starts the liveReload server
-2. It then runs `/scripts/build.js`, which copies the `/src` files to `/dist` and then modifies them per the build plugins
+2. This first runs `/scripts/build.js`, which copies the `/src` files to `/dist` and then modifies them per the build plugins
+1. Then runs `/scripts/dev.js`, which starts the liveReload server
 
 _[Note]:_ By default, files are not minified and link/script elements marked `[inline]` are not inlined (retain external file call). 
 This way, when using dev tools to inspect in `localhost`, you see the correct line numbers, etc.
