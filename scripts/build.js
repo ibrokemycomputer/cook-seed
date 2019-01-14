@@ -54,10 +54,7 @@ async function build() {
       setActiveLinks({$, fileName});
 
       // Replace file source with changes
-      // NOTE: Using `$('body').html()` instead of `$.html()` for non-html files, 
-      // since the latter wraps the source in full dom tree (html,head,body,etc.)
-      const srcType = ext === 'html' ? $.html() : $('body').html();
-      fs.writeFileSync(fileName, srcType);
+      fs.writeFileSync(fileName, utils.getSrc({$, ext}));
     });
   });
 

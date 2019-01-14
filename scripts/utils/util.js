@@ -52,6 +52,20 @@ function getFileParts(path) {
 }
 
 /**
+ * @description Return cheerio object
+ * @param {Object} Opts - Argument object
+ * @property {Object} $ - The traversable cheerio file source
+ * @property {String} ext - The target file extension
+ * @return {Object}
+ * @private
+ */
+function getSrc({$, ext}) {
+  // NOTE: Using `$('body').html()` instead of `$.html()` for non-html files, 
+  // since the latter wraps the source in full dom tree (html,head,body,etc.)
+  return ext === 'html' ? $.html() : $('body').html();
+}
+
+/**
  * @description Recursively grab all paths in a folder structure
  * @param {String} originalPath - The previous path
  * @param {String} path - The new path to explore
@@ -103,5 +117,6 @@ module.exports = {
   convertExternalLinks,
   getFileParts,
   getPaths,
+  getSrc,
   isExtension,
 };
