@@ -25,30 +25,30 @@ async function build() {
   // Show init message
   console.log(`${ chalk.blue('\n[Build]') } ${ chalk.blue.bold('`npm run build`') }`);
 
-  // 1. Create `/dist` if not already made
+  // PLUGIN: Create `/dist` if not already made
   await createDist();
 
-  // 2. Copy `/src` to `/dist`
+  // PLUGIN: Copy `/src` to `/dist`
   await copySrc();
 
-  // 3. Replace source-file content
+  // PLUGIN: Replace source-file content
   await getSrcFiles(async files => {
     // Run tasks on matched files
     await files.forEach(async fileName => {
-      // Store file meta for use in plugins (file source, extension, cheerio dom object, etc.)
+      // Open file and store file info for use in plugins (file source, extension, cheerio dom object, etc.)
       const {$,fileExt,fileSource} = await getSrcConfig({fileName});
       
-      // 1. Replace all `[include]` in file
+      // PLUGIN: Replace all `[include]` in file
       replaceIncludes({$, fileName});
 
-      // 2. Inline all external `<link>` and `<script>` tags with `[inline]`
+      // PLUGIN: Inline all external `<link>` and `<script>` tags with `[inline]`
       replaceInline({$, fileName});
-      // 3. `/src` is needed for `@import url()` calls when inlining source
+      // PLUGIN: `/src` is needed for `@import url()` calls when inlining source
       // Since we don't inline in 'development' mode, we need to remove `/src` paths
       // since `/src` doesn't exist in `/dist`
       replaceSrcPathForDev({$, fileName, fileSource});
 
-      // 4. Find `<a>` tags whose [href] value matches the current page (link active state)
+      // PLUGIN: Find `<a>` tags whose [href] value matches the current page (link active state)
       setActiveLinks({$, fileName});
 
       // Replace file source with changes
@@ -56,7 +56,7 @@ async function build() {
     });
   });
 
-  // 4. Minify Source
+  // PLUGIN: Minify Source
   await minifySrc();
 };
 build();

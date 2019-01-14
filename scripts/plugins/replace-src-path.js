@@ -29,7 +29,7 @@ async function replaceSrcPathForDev({$, fileName, fileSource}) {
     // based on the length of the `src` directory name set in config `config/main.js` file.
     // By default, this is `src`. Therefore, given a css path like `/src/css/ex.css` we
     // want to slice off the leading `/` and then `src`, which is 4 characters total (`srcPath.length+1`)
-    if (matches) matches.forEach(m => fileSource = replacePath({fileName, fileSource, match: m}));
+    if (matches) matches.forEach(match => fileSource = replacePath({fileName, fileSource, match}));
     // Set new, updated source
     // NOTE: Using `$('body').html()` instead of `$.html()` b/c the latter wraps
     // the output in dom-tree wrapper (html,head,body,etc.)
