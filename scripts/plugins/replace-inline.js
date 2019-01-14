@@ -1,6 +1,6 @@
 /**
  * @file replace-inline.js
- * @description Replace external `<style>` and `<script>` calls inline
+ * @description Replace external `<link>` and `<script>` calls inline
  */
 
 // REQUIRE
