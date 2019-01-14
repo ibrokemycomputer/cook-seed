@@ -18,7 +18,7 @@ const {distPath} = require(`${cwd}/config/main.js`);
 // DEFINE
 // -----------------------------
 async function replaceInline({$, fileName}) {
-  // Early Exit: Do not replace files
+  // Early Exit: Do not replace files locally
   if (process.env.NODE_ENV === 'development') return;
 
   // REPLACE INLINE CSS
