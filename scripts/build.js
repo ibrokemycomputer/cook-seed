@@ -11,11 +11,13 @@ const utils = require(`${cwd}/scripts/utils/util.js`);
 const copySrc = require('./plugins/copy-src');
 const createDist = require('./plugins/create-dist');
 const minifySrc = require('./plugins/minify-src');
-const replace = require('./plugins/replace');
 const replaceIncludes = require('./plugins/replace-includes.js');
 const replaceInline = require('./plugins/replace-inline.js');
 const replaceSrcPathForDev = require('./plugins/replace-src-path.js');
 const setActiveLinks = require('./plugins/set-active-links.js');
+
+// GET SOURCE
+const {getSrcConfig,getSrcFiles} = require('./plugins/get-src');
 
 // BUILD
 // -----------------------------
@@ -30,15 +32,11 @@ async function build() {
   await copySrc();
 
   // 3. Replace source-file content
-  await replace(async files => {
+  await getSrcFiles(async files => {
     // Run tasks on matched files
-    await files.forEach(fileName => {
-      // Store filename parts
-      const {ext,name} = utils.getFileParts(fileName);
-      // Get file source
-      const fileSource = fs.readFileSync(fileName, 'utf-8');
-      // Load file content for traversing
-      const $ = cheerio.load(fileSource, utils.cheerioConfig);
+    await files.forEach(async fileName => {
+      // Store file meta for use in plugins (file source, extension, cheerio dom object, etc.)
+      const {$,fileExt,fileSource} = await getSrcConfig({fileName});
       
       // 1. Replace all `[include]` in file
       replaceIncludes({$, fileName});
@@ -54,7 +52,7 @@ async function build() {
       setActiveLinks({$, fileName});
 
       // Replace file source with changes
-      fs.writeFileSync(fileName, utils.getSrc({$, ext}));
+      fs.writeFileSync(fileName, utils.getSrc({$, fileExt}));
     });
   });
 

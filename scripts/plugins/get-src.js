@@ -1,18 +1,14 @@
 /**
- * @file replace.js
- * @description Replace source content. All plugins that modify file contents should run here
- * instead of in `build.js`. This way we only need to load and write to the file once,
- * instead of in each individual plugin.
- * - replaceIncludes - Replace 'include' markers with corresponding code
- * - replaceInline - Replace external '<link>' and `<script>` tags with `[inline]` as inlined content
- * - replaceSrcPathForDev - Replace `/src` paths in dev since we don't inline in that environment
- * - setActiveLinks - Match `<a>` against current page url and add active state if they match
+ * @file get-src.js
+ * @description Get allowed source files for modification
  */
 
 // REQUIRE
 // -----------------------------
 const cwd = process.cwd();
 const chalk = require('chalk');
+const cheerio = require('cheerio');
+const fs = require('fs');
 const utils = require(`${cwd}/scripts/utils/util.js`);
 const Logger = require(`${cwd}/scripts/utils/logger.js`);
 
@@ -20,9 +16,21 @@ const Logger = require(`${cwd}/scripts/utils/logger.js`);
 const {distPath,srcPath} = require(`${cwd}/config/main.js`);
 
 
-// DEFINE
+// HELPER METHODS
 // -----------------------------
-async function replace(cb) {
+
+async function getSrcConfig({fileName}) {
+  // Store filename parts
+  const {ext,name} = utils.getFileParts(fileName);
+  // Get file source
+  const fileSource = fs.readFileSync(fileName, 'utf-8');
+  // Load file content for traversing
+  const $ = cheerio.load(fileSource, utils.cheerioConfig);
+  // Return config items
+  return { $, fileSource, fileExt: ext };
+}
+
+async function getSrcFiles(cb) {
   // Show terminal message: Start
   Logger.header('\nReplace Tasks');
 
@@ -43,4 +51,7 @@ async function replace(cb) {
 
 // EXPORT
 // -----------------------------
-module.exports = replace;
+module.exports = {
+  getSrcConfig,
+  getSrcFiles,
+};

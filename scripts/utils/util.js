@@ -52,17 +52,17 @@ function getFileParts(path) {
 }
 
 /**
- * @description Return cheerio object
+ * @description Return traversable cheerio 'dom' object with updated changes.
  * @param {Object} Opts - Argument object
  * @property {Object} $ - The traversable cheerio file source
- * @property {String} ext - The target file extension
+ * @property {String} fileExt - The target file extension
  * @return {Object}
  * @private
  */
-function getSrc({$, ext}) {
+function getSrc({$, fileExt}) {
   // NOTE: Using `$('body').html()` instead of `$.html()` for non-html files, 
   // since the latter wraps the source in full dom tree (html,head,body,etc.)
-  return ext === 'html' ? $.html() : $('body').html();
+  return fileExt === 'html' ? $.html() : $('body').html();
 }
 
 /**
