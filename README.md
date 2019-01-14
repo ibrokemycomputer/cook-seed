@@ -53,3 +53,6 @@ To just build the `/dist` directory only, run `npm run build`. This just runs th
 ## TODO
 
 * Currently, when making a change, all files are checked/updated. Instead, need to only update `/dist` with delta changes.
+* Can we add the `replace()` internal plugins in a callback so that they are listed/init in `build.js` instead of `plugins/replace.js`. 
+  The challenge here is that in `replace()`, we load and write to the file once for performance instead of needing to do so in each plugin for the same file. 
+  I'm not sure how this would look or work, needs exploring. Currently you add plugins in 2 places: `build.js` and `replace.js`.
