@@ -46,7 +46,7 @@ async function minifySrc() {
   if (process.env.NODE_ENV === 'development') return;
 
   // Show terminal message: Start
-  console.log(chalk.grey.underline(`\nMinify Source Files`));
+  Logger.header(`\nMinify Source File`);
 
   // Files to minify
   const allowedExt = ['css','html','js'];

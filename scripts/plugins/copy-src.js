@@ -18,7 +18,7 @@ const {distPath,srcPath} = require(`${cwd}/config/main.js`);
 // -----------------------------
 async function copySrc() {
   // Show terminal message: Start
-  console.log(chalk.grey.underline('\nCopy /src to /dist'));
+  Logger.header('\nCopy /src to /dist');
 
   // Copy contents of `/src` to `/dist`
   // await exec(`cp -a ${srcPath}/. ${distPath}`);

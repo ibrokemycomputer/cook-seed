@@ -18,7 +18,7 @@ const {distPath} = require(`${cwd}/config/main.js`);
 // -----------------------------
 async function createDist() {
   // Show terminal message: Start
-  console.log(chalk.grey.underline(`\nCreate /${distPath}`));
+  Logger.header(`\nCreate /${distPath}`);
 
   // Remove `/dist` (fails silently if not there as that is the intended result)
   rimraf.sync(distPath);

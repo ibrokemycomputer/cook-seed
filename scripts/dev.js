@@ -4,6 +4,7 @@ const cwd = process.cwd();
 const browserSync = require('browser-sync').create('Dev Server');
 const chalk = require('chalk');
 const packageJSON = require('../package.json');
+const Logger = require(`${cwd}/scripts/utils/logger.js`);
 const { exec } = require('child_process');
 
 // Config
@@ -36,8 +37,7 @@ browserSync.init({
   //watch: true,
 });
 browserSync.emitter.on('init', () => {
-  console.log(`${ chalk.gray('\n---\n') }`);
-  console.log(`${ chalk.blue('[Browsersync]') } ${ chalk.blue.bold('`npm run dev`') }\n`);
+  console.log(`\n${ chalk.blue('[Browsersync]') } ${ chalk.blue.bold('`npm run dev`') }\n`);
 });
 
 // WATCH DEV FILES FOR LIVERELOAD
