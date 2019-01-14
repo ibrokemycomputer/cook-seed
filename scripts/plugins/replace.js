@@ -21,7 +21,6 @@ const utils = require(`${cwd}/scripts/utils/util.js`);
 // Config
 const {distPath,srcPath} = require(`${cwd}/config/main.js`);
 
-
 // Plugins
 const replaceIncludes = require('./replace-includes.js');
 const replaceInline = require('./replace-inline.js');
