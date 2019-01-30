@@ -21,6 +21,13 @@
     <path fill="var(--icon-fill_primary)" d="M0 18L18 0l2 2L2 20z"/>
   </symbol>
 
+  <!-- Close -->
+  <symbol id="close2" viewBox="0 0 14 14">
+    <title>Close 2</title>
+    <path fill="#fff" d="M7 14A7 7 0 1 0 7 0a7 7 0 0 0 0 14z"/>
+    <path fill="var(--icon-fill_primary)" stroke="var(--icon-fill_primary)" stroke-width=".5" d="M9.63 4.9l-.53-.53L7 6.47l-2.1-2.1-.53.53L6.47 7l-2.1 2.1.53.53L7 7.53l2.1 2.1.53-.53L7.53 7l2.1-2.1z"/>
+  </symbol>
+
   <!-- Key -->
   <symbol id="key" viewBox="0 0 17 9">
     <title>Key</title>

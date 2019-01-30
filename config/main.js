@@ -5,6 +5,9 @@ const packageJSON = require('../package.json');
 // EXPORT
 // -----------------------------
 module.exports = {
+  // Convert xxxx.html files to xxxx/index.html
+  // NOTE: If set to `false`, you must add the .html extension in <a href="xxxx.html"> paths
+  convertPageToDirectory: true,
   // The name of the compiled, 'public' directory (`dist`, `public`, etc.)
   distPath: 'dist',
   // Change the default [attribute] for includes and inline link/scripts

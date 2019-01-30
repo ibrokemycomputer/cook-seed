@@ -10,11 +10,15 @@ const utils = require(`${cwd}/scripts/utils/util.js`);
 // -----------------------------
 const copySrc = require('./plugins/copy-src');
 const createDist = require('./plugins/create-dist');
+const createDirFromFile = require('./plugins/create-dir-from-file');
 const minifySrc = require('./plugins/minify-src');
 const replaceIncludes = require('./plugins/replace-includes.js');
 const replaceInline = require('./plugins/replace-inline.js');
 const replaceSrcPathForDev = require('./plugins/replace-src-path.js');
 const setActiveLinks = require('./plugins/set-active-links.js');
+
+// CONFIG
+const {convertPageToDirectory} = require(`${cwd}/config/main.js`);
 
 // GET SOURCE
 const {getSrcConfig,getSrcFiles} = require('./plugins/get-src');
@@ -50,6 +54,9 @@ async function build() {
 
       // PLUGIN: Find `<a>` tags whose [href] value matches the current page (link active state)
       setActiveLinks({$, fileName});
+      
+      // PLUGIN: Create directory from .html file
+      if (convertPageToDirectory) createDirFromFile({$, fileName, exclude: ['dist/index']});
 
       // Replace file source with changes
       fs.writeFileSync(fileName, utils.getSrc({$, fileExt}));
