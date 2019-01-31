@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "dev": "NODE_ENV=development npm run build && node scripts/dev.js",
-    "dev:prod": "npm run build && http-server ./dist -p $npm_package_config_devPort"
+    "dev:prod": "NODE_ENV=production npm run build && http-server ./dist -p $npm_package_config_devPort"
   },
   "browserslist": [
     "> 1%",

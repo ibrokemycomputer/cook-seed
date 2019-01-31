@@ -97,6 +97,24 @@ function getPaths(originalPath, path, ignorePattern, paths = []) {
 }
 
 /**
+ * @description Pass in an 'opt-in' or 'opt-out' array to match current file against by extension type
+ * @param {Object} opts - The argument object
+ * @property {String} fileExt - The extension of the file
+ * @property {Object} [allowType] - The array of extensions to allow
+ * @property {String} [disallowType] - The array of extensions to disallow
+ * @returns {Boolean}
+ * @private
+ */
+function isAllowedType({fileExt,allowType,disallowType}) {
+  fileExt = fileExt.charAt(0) === '.' ? fileExt : `.${fileExt}`;
+  // If file extension NOT in allowed array, return false
+  if (allowType && allowType.indexOf(fileExt) === -1) return false;
+  // If file extension IS in disallowed array, return false
+  if (disallowType && disallowType.indexOf(fileExt) > -1) return false;
+  return true;
+}
+
+/**
  * @description Return pattern match to `.html`
  * @param {String} fileName - The target string
  * @param {Array|String} target - The target extension(s) (html, js, etc.)
@@ -118,5 +136,6 @@ module.exports = {
   getFileParts,
   getPaths,
   getSrc,
+  isAllowedType,
   isExtension,
 };

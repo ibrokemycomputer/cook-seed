@@ -18,7 +18,11 @@ const {srcPath} = require(`${cwd}/config/main.js`);
 
 // DEFINE
 // -----------------------------
-async function replaceIncludes({$, fileName}) {
+async function replaceIncludes({$, fileExt, fileName, allowType, disallowType}) {
+  // Early Exit: File type not allowed
+  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  if (!allowed) return;
+  
   let errorLabel, errorPath, hasInclude, includePath;
   const includeItems = $(`[${utils.attr.include}]`);
   // Loop through each found include call
@@ -53,7 +57,7 @@ async function replaceIncludes({$, fileName}) {
   });
   // Query again for includes. If sub-includes found, run again
   const newSubIncludes = $(`[${utils.attr.include}]`);
-  if (newSubIncludes.length) replaceIncludes({$, fileName});
+  if (newSubIncludes.length) replaceIncludes({$, fileExt, fileName, fileSource, allowType, disallowType});
 }
 
 

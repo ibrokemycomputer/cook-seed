@@ -17,7 +17,11 @@ const {distPath} = require(`${cwd}/config/main.js`);
 
 // DEFINE
 // -----------------------------
-async function setActiveLinks({$, fileName}) {
+async function setActiveLinks({$, fileExt, fileName, allowType, disallowType}) {
+  // Early Exit: File type not allowed
+  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  if (!allowed) return;
+  
   const $links = $('a');
   $links.each((i,link) => setActive({$, fileName, link}));
 }

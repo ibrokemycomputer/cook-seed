@@ -31,7 +31,7 @@ zcObfuscate.createLink = function(target) {
 // Add Links to DOM
 zcObfuscate.init = function() {
   // Create link for each instance in the DOM
-  for (zcObfuscate.index=0; zcObfuscate.index<zcObfuscate.emailLen; zcObfuscate.index++) {
+  for (zcObfuscate.index=0; zcObfuscate.index < zcObfuscate.emailLen; zcObfuscate.index++) {
     zcObfuscate.createLink(zcObfuscate.targets[zcObfuscate.index]);
   }
 }

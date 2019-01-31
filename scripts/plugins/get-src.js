@@ -47,7 +47,7 @@ async function getSrcFiles(cb) {
   Logger.header('\nReplace Tasks');
 
   // Allowed page types
-  const allowedExt = ['css','html'];
+  const allowedExt = ['css','html','js'];
   // Get files in `/dist`
   let files = utils.getPaths(distPath, distPath, null);
   // Get only the allowed files (.css, .html)

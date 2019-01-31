@@ -43,27 +43,39 @@ async function build() {
       const {$,fileExt,fileSource} = await getSrcConfig({fileName});
       
       // PLUGIN: Replace all `[include]` in file
-      replaceIncludes({$, fileName});
+      replaceIncludes({$, fileExt, fileName, allowType: ['.html']});
 
       // PLUGIN: Inline all external `<link>` and `<script>` tags with `[inline]`
-      replaceInline({$, fileName});
+      replaceInline({$, fileExt, fileName, allowType: ['.html']});
       // PLUGIN: `/src` is needed for `@import url()` calls when inlining source
       // Since we don't inline in 'development' mode, we need to remove `/src` paths
       // since `/src` doesn't exist in `/dist`
-      replaceSrcPathForDev({$, fileName, fileSource});
+      replaceSrcPathForDev({$, fileExt, fileName, allowType: ['.css']});
 
       // PLUGIN: Find `<a>` tags whose [href] value matches the current page (link active state)
-      setActiveLinks({$, fileName});
-      
-      // PLUGIN: Create directory from .html file
-      if (convertPageToDirectory) createDirFromFile({$, fileName, exclude: ['dist/index']});
+      setActiveLinks({$, fileExt, fileName, allowType: ['.html']});
 
+      // PLUGIN: Minify Source
+      const minifiedSrc = minifySrc({$, fileExt, fileName});
+
+      // console.log('@@@@minifiedSrc', minifiedSrc)
+      let $$ = $;
+      if (minifiedSrc) $$ = $.load(minifiedSrc, utils.cheerioConfig);
+      // console.log('$$', $$.html())
+
+      // PLUGIN: Create directory from .html file
+      // if (convertPageToDirectory) await createDirFromFile({exclude: ['dist/index']});
+      if (convertPageToDirectory) createDirFromFile({$: $$, fileExt, fileName, allowType: ['.html'], excludePath: ['dist/index']});
+      
       // Replace file source with changes
-      fs.writeFileSync(fileName, utils.getSrc({$, fileExt}));
+      fs.writeFileSync(fileName, utils.getSrc({$: $$, fileExt}));
     });
   });
 
   // PLUGIN: Minify Source
-  await minifySrc();
+  // await minifySrc();
+
+  // PLUGIN: Create directory from .html file
+  // if (convertPageToDirectory) await createDirFromFile({exclude: ['dist/index']});
 };
 build();

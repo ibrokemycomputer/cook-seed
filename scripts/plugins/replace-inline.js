@@ -17,7 +17,11 @@ const {distPath} = require(`${cwd}/config/main.js`);
 
 // DEFINE
 // -----------------------------
-async function replaceInline({$, fileName}) {
+async function replaceInline({$, fileExt, fileName, allowType, disallowType}) {
+  // Early Exit: File type not allowed
+  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  if (!allowed) return;
+
   // Early Exit: Do not replace files locally
   if (process.env.NODE_ENV === 'development') return;
 
@@ -35,7 +39,7 @@ function replaceLink(group, $, fileName) {
   let replacePath, replaceSrc;
   group.each((i,el) => {
     // The 'inner' content of the `<style>` tag
-    replacePath = `${distPath}/${ $(el).attr('href') }`;
+    replacePath = `${distPath}${ $(el).attr('href') }`;
     replaceSrc = fs.readFileSync(replacePath, 'utf-8');
     // Add new `<style>` tag and then delete `<link>`
     $(el).before(`<style ${utils.attr.inline}>${replaceSrc}</style>`);

@@ -49,7 +49,7 @@ watchFiles.forEach(path => {
   // Watch `/src` files for changes
   browserSync.watch(`${srcPath}${path}`).on('change', async (file) => {
     // Run the build process to copy changes to /dist
-    await exec('npm run build', () => {
+    await exec('NODE_ENV=development npm run build', () => {
       // Wait for build process to be done, then...
       // Replace `src/` with `/dist` in the path to reload the `/dist` version
       const fileDist = file.replace(`${srcPath}/`, `${distPath}/`);

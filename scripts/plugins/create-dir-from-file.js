@@ -18,42 +18,28 @@ const {distPath} = require(`${cwd}/config/main.js`);
 
 // DEFINE
 // -----------------------------
-function createDirFromFile({$, fileName, exclude}) {
+async function createDirFromFile({$, fileExt, fileName, allowType, disallowType, excludePath}) {
+  // Early Exit: File type not allowed
+  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  if (!allowed) return;
+
   // Get file extension
   const fileNameSplit = fileName.split('.');
-  const fileExt = fileNameSplit[1];
-
-  // Early Exit: File is not .html
-  if (fileExt !== 'html') return;
+  const filePath = fileNameSplit[0];
 
   // Early Exit: Path includes excluded pattern
   // For example, we don't want to convert the site index file (homepage)
-  const isExcludeMatch = exclude.filter(str => fileNameSplit[0].includes(str));
-  if (exclude && isExcludeMatch.length) return;
-
-  // Using example path of: `/dist/path/to/this/file.html`
-  // ---
-  // Split `/dist/path/to/this/file` on /
-  const filePath = fileNameSplit[0];
-  const pathSplit = filePath.split('/');
-  const pathLen = pathSplit.length;
-  // Store the file's name. We'll create the new directory with this name
-  const newDirName = pathSplit[pathLen-1];
-  // Get path to this location. We'll create the directory here
-  // Example: 
-  //   File path is `/dist/path/to/this/file.html` 
-  //   `pathSplit` is: [ 'dist', 'path', 'to', 'this', 'file' ]
-  //   `newDirPath` then becomes: `/dist/path/to/this` so we can add `file` directory here w/ an `index.html` file
-  const newDirPath = pathSplit.reduce((acc,curr,index) => index !== pathLen-1 ? acc += `/${curr}` : acc, '');
+  const isExcludeMatch = excludePath.filter(str => filePath.includes(str));
+  if (excludePath && isExcludeMatch.length) return;
 
   // Create new directory in `/dist`
   fs.mkdirSync(filePath);
 
   // Create new .html file in newly created directory
   fs.writeFileSync(`${filePath}/index.html`, utils.getSrc({$, fileExt}));
-  
+
   // Show terminal message: Done
-  Logger.success(`${fileName} - Added [directory]: ${ chalk.green(newDirPath + '/' + newDirName + '/index.html' ) }`);
+  Logger.success(`${fileName} - Added [directory]: ${ chalk.green(filePath + '/index.html' ) }`);
 }
 
 // EXPORT

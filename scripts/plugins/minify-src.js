@@ -16,13 +16,15 @@ const utils = require(`${cwd}/scripts/utils/util.js`);
 const Logger = require(`${cwd}/scripts/utils/logger.js`);
 
 // Config
-const {distPath} = require(`${cwd}/config/main.js`);
+const {srcPath,distPath} = require(`${cwd}/config/main.js`);
 
 
 // PLUGIN OPTIONS
 // -----------------------------
 // Minfiy CSS
-const minifyCssConfig = {};
+const minifyCssConfig = {
+  inline: ['none'],
+};
 
 // Minfiy HTML
 const minifyHtmlConfig = {
@@ -41,46 +43,27 @@ const minifyJsConfig = {};
 
 // DEFINE
 // -----------------------------
-async function minifySrc() {
+function minifySrc({$, fileExt, fileName, allowType, disallowType}) {
+  // Early Exit: File type not allowed
+  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  if (!allowed) return;
+
   // Early Exit: Don't minify in development
   if (process.env.NODE_ENV === 'development') return;
 
-  // Show terminal message: Start
-  Logger.header(`\nMinify Source File`);
-
-  // Files to minify
-  const allowedExt = ['css','html','js'];
-  // Get files in `/dist`
-  let files = utils.getPaths(distPath, distPath, null);
-  // Get only the allowed extension files
-  files = files.filter(fileName => utils.isExtension(fileName, allowedExt));
-  // Minify source
-  await files.forEach(fileName => minifySource(fileName));
-
-  // Show terminal message
-  Logger.success(`Files minified`);
-}
-
-
-// MINIFY SOURCE
-// -----------------------------
-/**
- * @description Minify target file content
- * @param {String} fileName - The current file to act upon.
- * @private
- */
-function minifySource(fileName) {
-  const ext = fileName.split('.').pop();
-  const fileSource = fs.readFileSync(fileName, 'utf-8');
-  // HTML
-  let minifiedSrc = fileSource;
-  switch (ext) {
-    case 'css': minifiedSrc = minCss(fileSource); break;
+  const fileSource = utils.getSrc({$, fileExt});
+  let minifiedSrc;
+  switch (fileExt) {
+    case 'css': minifiedSrc = minCss(fileSource,fileName); break;
     case 'html': minifiedSrc = minHtml(fileSource); break;
     case 'js': minifiedSrc = minJs(fileSource); break;
   }
-  // Write new, minified code back to the /dist file
-  fs.writeFileSync(fileName, minifiedSrc);
+
+  // Show terminal message
+  Logger.success(`${fileName} - Minified`);
+
+  // Return minified source
+  return minifiedSrc;
 }
 
 
@@ -103,13 +86,45 @@ function minJs(src) {
   return minifyJs.minify(src, minifyJsConfig).code;
 }
 
-function minCss(src) {
-  return new minifyCss(minifyCssConfig).minify(src).styles;
+function minCss(src,fileName) {
+  // Minify src
+  let minifiedCSS = new minifyCss(minifyCssConfig).minify(src).styles;  
+  // Check for @import and replace them with their source
+  const pattern = /@import\s*url\(([/.)a-z]*);/gim;
+  const matches = minifiedCSS.match(pattern);
+  if (matches) minifiedCSS = replaceImports({matches,src: minifiedCSS});
+  // Return minified source
+  return minifiedCSS;
 }
 
 
 // HELPER METHODS
 // -----------------------------
+
+/**
+ * @description
+ * @param {Object} opts - The argument object
+ * @property {Array} matches - Array of matched `@import url(...)` strings 
+ * @property {Array} src - The source string to replace the matches against
+ * @returns {String}
+ * @private
+ */
+// TODO: The regex could likely be done a little nicer if we could use lookbehinds.
+// Instead for now, the pattern matches: url(/css/variables.css
+// so we just lop off the first four characters
+function replaceImports({matches,src}) {
+  let path, replaceSrc, modifiedSrc = src;
+  matches.forEach((entry,i) => {
+    path = entry.match(/url\(.*(?=\))/gim)[0].slice(4);
+    // Get source to replace
+    replaceSrc = fs.readFileSync(`${srcPath}/${path}`, 'utf-8');
+    // Minimize it
+    replaceSrc = new minifyCss(minifyCssConfig).minify(replaceSrc).styles;
+    // Replace @import with source
+    modifiedSrc = modifiedSrc.replace(entry, replaceSrc);
+  });
+  return modifiedSrc;
+}
 
 /**
  * @description Minify inline `<style>` tags
