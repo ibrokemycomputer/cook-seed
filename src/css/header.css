@@ -3,7 +3,7 @@
 :root {
   --header-height: 60px;
   --header-padding-offset: 100px;
-  --header-transform: translateY(-1 * var(--header-padding-offset));
+  --header-transform: translateY(calc(-1 * var(--header-padding-offset)));
 }
 
 /* Header Element */
@@ -11,7 +11,7 @@ header {
   background: #fff;
   box-shadow: 0 1px 12px rgba(0,0,0,.1);
   left: 0;
-  padding: var(--header-padding) 0 0;
+  padding: 100px var(--header-padding-offset) 0 0;
   position: fixed;
   top: 0;
   transform: var(--header-transform);

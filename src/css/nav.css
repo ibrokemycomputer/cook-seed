@@ -150,6 +150,7 @@
     display: block;
     height: 25px;
     left: -25px;
+    outline: none;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

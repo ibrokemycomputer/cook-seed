@@ -55,8 +55,8 @@ function minifySrc({$, fileExt, fileName, allowType, disallowType}) {
   let minifiedSrc;
   switch (fileExt) {
     case 'css': minifiedSrc = minCss(fileSource,fileName); break;
-    case 'html': minifiedSrc = minHtml(fileSource); break;
-    case 'js': minifiedSrc = minJs(fileSource); break;
+    case 'html': minifiedSrc = minHtml(fileSource, fileName); break;
+    case 'js': minifiedSrc = minJs(fileSource,fileName); break;
   }
 
   // Show terminal message
@@ -69,7 +69,7 @@ function minifySrc({$, fileExt, fileName, allowType, disallowType}) {
 
 // PRIMARY MINIFY METHODS
 // -----------------------------
-function minHtml(src) {
+function minHtml(src,fileName) {
   // MINIFY HTML
   let minSrc = minifyHtml(src, minifyHtmlConfig);
   // Load new, minified html source into Cheerio for traversing
@@ -82,7 +82,7 @@ function minHtml(src) {
   return $.html();
 }
 
-function minJs(src) {
+function minJs(src,fileName) {
   return minifyJs.minify(src, minifyJsConfig).code;
 }
 
@@ -116,8 +116,10 @@ function replaceImports({matches,src}) {
   let path, replaceSrc, modifiedSrc = src;
   matches.forEach((entry,i) => {
     path = entry.match(/url\(.*(?=\))/gim)[0].slice(4);
+    // If path has /src at the start, strip it off
+    path = path.replace(/^\/src/, '');
     // Get source to replace
-    replaceSrc = fs.readFileSync(`${srcPath}/${path}`, 'utf-8');
+    replaceSrc = fs.readFileSync(`${srcPath}${path}`, 'utf-8');
     // Minimize it
     replaceSrc = new minifyCss(minifyCssConfig).minify(replaceSrc).styles;
     // Replace @import with source

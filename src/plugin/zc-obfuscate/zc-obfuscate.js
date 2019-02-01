@@ -6,7 +6,8 @@ zcObfuscate = window.zcObfuscate || {
   targets: document.querySelectorAll('[obfuscate-name]'),
   index: 0,
   domainAttr: 'obfuscate-domain',
-  nameAttr: 'obfuscate-name'
+  nameAttr: 'obfuscate-name',
+  obfuscateAttr: 'zc-obfuscate'
 };
 // Add `length` prop only if matching targets found
 if (zcObfuscate.targets) zcObfuscate.emailLen = zcObfuscate.targets.length;
@@ -22,7 +23,7 @@ zcObfuscate.createLink = function(target) {
   var link = document.createElement('a');
   link.href = 'mailto:' + address;
   link.textContent = address;
-  link.setAttribute('zc-obfuscate','');
+  link.setAttribute(zcObfuscate.obfuscateAttr,'');
   // Add Link to DOM
   target.insertAdjacentElement('beforebegin', link);
   // Remove old placeholder element

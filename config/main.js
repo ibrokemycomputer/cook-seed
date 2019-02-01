@@ -10,6 +10,11 @@ module.exports = {
   convertPageToDirectory: true,
   // The name of the compiled, 'public' directory (`dist`, `public`, etc.)
   distPath: 'dist',
+  // Add regex patterns to exclude files from being modified once copied to the /dist directory
+  // For example, /dist\/vendor will exclude files in /dist/vendor 
+  // Can be single regexes: /dist\/path/ or new RegExp(/dist\path/)
+  // Or regexes in an array: [/dist\/path/, new RegExp(/dist\path/)]
+  //excludePaths: [/dist\/vendors/],
   // Change the default [attribute] for includes and inline link/scripts
   //includeAttr: 'include',
   //inlineAttr: 'inline',
@@ -17,7 +22,8 @@ module.exports = {
   srcPath: 'src',
   // The file to load in `srcPath` if not `index.html`
   startPath: 'index.html',
-  // Live reload dev browser when these files change (`/css`,`/js` and all `.html` by default)
+  // Live reload dev browser when these files change (`/css`,`/plugin` (.css and .js), and all `.html` by default)
+  // Note: Adding paths here will not 'add' to the defaults, but will instead override them
   watch: [
     //'/css/*.css',
   ],

@@ -18,11 +18,14 @@ const attr = {
 // Config for Cheerio
 const cheerioConfig = {
   // Don't convert html entities (won't parse correctly otherwise)
-  decodeEntities: false,
+  // Note: By commenting this out, we have to decode entities in inlined css and js (`entities.decode()`)
+  // decodeEntities: false,
   // Don't wrap fragment `.html` files with `<html>`, `<body>`, etc.
   // xmlMode: true,
   recognizeSelfClosing: true,
 }
+// Add decode option
+const cheerioConfigDecode = Object.assign({}, cheerioConfig, { decodeEntities: false });
 
 
 // PUBLIC METHODS
@@ -82,7 +85,20 @@ function getPaths(originalPath, path, ignorePattern, paths = []) {
       const currentFilePath = `${path}/${file}`;
       // Get the file descriptor
       const fd = fs.lstatSync(currentFilePath);
-      if (!currentFilePath.match(ignorePattern)) {
+      // If path is ignored, either by default or user-entered (`excludePaths` in /config/main.js),
+      // We won't do anything to it once it is copied to /dist
+      // This is handy for `/dist/vendor`, for example, since that is code likely already minified
+      // and outside of the user's control
+      let allowed = true, pattern, match;
+      if (ignorePattern) {
+        ignorePattern.forEach(p => {
+          pattern = new RegExp(p, 'g');
+          match = currentFilePath.match(pattern);
+          if (match && match.length) allowed = false;
+        })
+      }
+      // Include file to use in build process
+      if (allowed) {
         if (fd.isDirectory()) {
           paths = [...paths, ...getPaths(originalPath, currentFilePath, ignorePattern)];
         } else {
@@ -127,15 +143,24 @@ function isExtension(fileName, target) {
   else return target.indexOf(ext) > -1;
 }
 
+function testSrc({fileName,src}) {
+  const test = ['dist/plugin/zc-obfuscate/zc-obfuscate.js','dist/test.html','dist/css/variables.css'];
+  if (test.indexOf(fileName) > -1) {
+    console.log('\n----------------------\n\n', src)
+  }
+}
+
 // EXPORT
 // ----------------------------------
 module.exports = {
   attr,
   cheerioConfig,
+  cheerioConfigDecode,
   convertExternalLinks,
   getFileParts,
   getPaths,
   getSrc,
   isAllowedType,
   isExtension,
+  testSrc,
 };

@@ -80,7 +80,20 @@
 /* FOOTER 2
 --------------------------- */
 .footer-2 { 
+  position: relative;
   background: linear-gradient(90deg, var(--color-primary), var(--color-primary1)); 
+}
+.footer-2:after {
+  content: '';
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary1)); 
+  display: block;
+  pointer-events: none;
+  position: fixed;
+  top: 100%;
+  height: 100px;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 .footer-2 .inner {
   --footer-2-inner-padding-top: 2rem;

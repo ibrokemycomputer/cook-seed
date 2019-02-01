@@ -6,7 +6,13 @@
   <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <link rel="stylesheet" href="/css/main.css" inline>
+  <meta include="/includes/global-head">
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" href="/plugin/zc-demo-scroll/zc-demo-scroll.css" inline>
+  <link rel="stylesheet" href="/plugin/zc-chart-icon/zc-chart-icon.css" inline>
+  <link rel="stylesheet" href="/plugin/zc-integration/zc-integration.css" inline>
+  <!-- Homepage CSS -->
+  <link rel="stylesheet" href="/css/homepage.css" inline>
 </head>
 
 <body>
@@ -18,14 +24,472 @@
   <!-- MAIN CONTENT -->
   <main aria-label="App Content">
       
-    <section>
+    <!-- INTEGRATION -->
+    <section section="integration">
       <div class="inner">
-        
-        <h1>bbbbbb</h1>
+        <h2 class="homepage-h2-gray">Easily Integrate ZingChart With Your Development Stack</h2>
+          
+          <div class="wrappers" callout>
 
-        <p>Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named ZingDad.</p>
-        <p>Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named ZingDad.</p>
-        <p>Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named ZingDad.</p>
+            <div class="wrapper-controls">
+                <input type="radio" name="wrapper" value="js-tab" id="js" checked>
+                <label for="js"><span class="wrapper-icon"></span>JavaScript</label>
+                
+                <input type="radio" name="wrapper" value="angularjs-tab" id="angularjs">
+                <label for="angularjs"><span class="wrapper-icon"></span>AngularJS</label>
+        
+                <input type="radio" name="wrapper" value="react-tab" id="react" >
+                <label for="react"><span class="wrapper-icon"></span>React</label>
+                
+                <input type="radio" name="wrapper" value="php-tab" id="php" >
+                <label for="php"><span class="wrapper-icon"></span>PHP</label>
+                
+                <input type="radio" name="wrapper" value="jquery-tab" id="jquery" >
+                <label for="jquery"><span class="wrapper-icon"></span>jQuery</label>
+                
+                <input type="radio" name="wrapper" value="ember-tab" id="ember" >
+                <label for="ember"><span class="wrapper-icon"></span>Ember</label>
+                
+                <input type="radio" name="wrapper" value="backbone-tab" id="backbone" >
+                <label for="backbone"><span class="wrapper-icon"></span>Backbone</label>
+            </div>
+              
+            <div class="wrapper-content active" id="js-tab">
+              <h3>ZingChart is dependency free and pure JavaScript.</h3>
+              <ol>
+                  <li>
+                      Install via NPM or Bower:<br>
+                      <pre><code class="lang-javascript">npm install zingchart</code></pre>
+                      
+                      <p alt><strong>OR</strong></p>
+                      
+                      Use the <a href="https://cdn.zingchart.com/">ZingChart CDN</a>:<br>
+                      <pre><code class="lang-javascript"><span>&lt;</span>script src="https://cdn.zingchart.com/zingchart.min.js"&gt;&lt;/script&gt;</code></pre>
+                  </li>
+                  
+                  <li>
+                      Include the library in your HTML document:<br>
+                      <!-- <code class="lang-javascript">
+                          // Just before the closing body tag is best<br>
+                          <span>&lt;</span>script src="path/to/zingchart.min.js"&gt;&lt;/script&gt;<br>
+                        <span>&lt;</span>/body&gt;
+                      </code> -->
+                  </li>
+                  
+                  <li>
+                      Create your chart element.
+                      <!-- <pre class="prettyprint">&lt;div id="myChart"&gt;&lt;/div&gt;</pre> -->
+                  </li>
+                  
+                  <li>
+                      Render your chart!
+                      <!-- <pre class="prettyprint">&lt;script&gt;
+                        zingchart.render({
+                          id: 'myChart',
+                          data: {
+                            type: 'line',
+                            series: [{
+                              values: [54,23,34,23,43],
+                            }, {
+                              values: [10,15,16,20,40]
+                            }]
+                          }
+                        });
+                      &lt;/script&gt;</pre> -->
+                  </li>
+              </ol>
+              <p class="no-bottom centered">
+                <a target="_blank" href="https://github.com/zingchart/ZingChart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>&nbsp;&nbsp;
+              </p>
+            </div>
+
+          </div>
+      </div>
+    </section>
+    
+    <script>
+      // $('[data-boilerplate]').click(function () {
+      //   var boilerplate = $(this).data('boilerplate');
+      //   ga('send', 'event', 'Boilerplate', 'click', boilerplate);
+      // });
+  
+      // var tabControls = document.querySelectorAll('.wrapper-controls input');
+      // var toggleTab = function () {
+      //   var previousTab = document.querySelector('.wrapper-content.active');
+      //   if (previousTab) {
+      //     previousTab.classList.remove('active');
+      //     previousTab.style.display = 'none';
+      //   }
+      //   var targetTab = document.getElementById(this.value);
+      //   if (targetTab) {
+      //     targetTab.style.display = 'block';
+      //     // Since the display has changed, we need to let the styles take hold
+      //     // in order for the animation to take effect. We use rAF to wait a
+      //     // frame for the display to change then add the animation class.
+      //     requestAnimationFrame(function () {
+      //       targetTab.classList.add('active')
+      //     });
+      //   } else {
+      //     console.warn('No tab with id', this.value);
+      //   }                         
+      // }
+      // for (var i = 0; i < tabControls.length; i++) {
+      //   tabControls[i].addEventListener('change', toggleTab);
+      // }
+    </script>
+
+      
+    <!-- CHART TYPES -->
+    <section section="chart-types light">
+      <div class="inner">
+        <h2><a href="/gallery">Choose From Dozens of Built-In Chart Types</a></h2>
+        <div zc-row callout>
+          <a href="/gallery/#Bar" class="card">
+            <span zc-chart-icon="bar"></span>
+            <span>Bar/Column</span>
+          </a>
+          <a href="/gallery/#Scatter" class="card">
+            <span zc-chart-icon="scatter"></span>
+            <span>Scatter</span>
+          </a>
+          <a href="/gallery/#Piano" class="card">
+            <span zc-chart-icon="heatmap"></span>
+            <span>Heatmap</span>
+          </a>
+          <a href="/gallery/#Mixed" class="card">
+            <span zc-chart-icon="mixed"></span>
+            <span>Mixed/Combo</span>
+          </a>
+          <a href="/gallery/#Population Pyramid" class="card">
+            <span zc-chart-icon="pop-pyramid"></span>
+            <span>Pop. Pyramid</span>
+          </a>
+          <a href="/gallery/#Line" class="card">
+            <span zc-chart-icon="line"></span>
+            <span>Line</span>
+          </a>
+          <a href="/gallery/#Area" class="card">
+            <span zc-chart-icon="area"></span>
+            <span>Area</span>
+          </a>
+          <a href="/gallery/#Stock" class="card">
+            <span zc-chart-icon="stock"></span>
+            <span>Stock</span>
+          </a>
+          <a href="/gallery/#WordCloud" class="card">
+            <span zc-chart-icon="wordcloud"></span>
+            <span>Wordcloud</span>
+          </a>
+          <a href="/gallery/#Treemap" class="card">
+            <span zc-chart-icon="treemap"></span>
+            <span>Treemap</span>
+          </a>    
+          <a href="/gallery/#Pareto" class="card">
+            <span zc-chart-icon="pareto"></span>
+            <span>Pareto</span>
+          </a>    
+          <a href="/gallery/#Maps" class="card">
+            <span zc-chart-icon="maps"></span>
+            <span>Maps</span>
+          </a>
+          <a href="/gallery/#Calendar" class="card">
+            <span zc-chart-icon="calendar"></span>
+            <span>Calendar</span>
+          </a>
+          <a href="/gallery/#Pie" class="card">
+            <span zc-chart-icon="pie"></span>
+            <span>Pie</span>
+          </a>
+          <a href="/gallery/#Bullet" class="card">
+            <span zc-chart-icon="bullet"></span>
+            <span>Bullet</span>
+          </a>
+          <a href="/gallery/#Venn" class="card">
+            <span zc-chart-icon="venn"></span>
+            <span>Venn</span>
+          </a>       
+          <a href="/gallery/#Pie" class="card">
+            <span zc-chart-icon="ring"></span>
+            <span>Ring/Donut</span>
+          </a>
+          <a href="/gallery/#Funnel" class="card">
+            <span zc-chart-icon="funnel"></span>
+            <span>Funnel</span>
+          </a>
+          <a href="/gallery/#Rankflow" class="card">
+            <span zc-chart-icon="rankflow"></span>
+            <span>Rankflow</span>
+          </a>
+          <a href="/gallery/#Radar" class="card">
+            <span zc-chart-icon="radar"></span>
+            <span>Radar/Polar</span>
+          </a>
+          <a href="/gallery/#Chord" class="card">
+            <span zc-chart-icon="chord"></span>
+            <span>Chord</span>
+          </a>
+          <a href="/gallery/#Gauge" class="card">
+            <span zc-chart-icon="gauge"></span>
+            <span>Gauge</span>
+          </a>
+          <a href="/gallery/#Boxplot" class="card">
+            <span zc-chart-icon="boxplot"></span>
+            <span>Boxplot</span>
+          </a>
+          <a href="/gallery/#Bubble" class="card">
+            <span zc-chart-icon="bubble"></span>
+            <span>Bubble</span>
+          </a>
+          <a href="/gallery/#Waterfall" class="card">
+            <span zc-chart-icon="waterfall"></span>
+            <span>Waterfall</span>
+          </a>
+          <a href="/gallery/#Bubble Pie" class="card">
+            <span zc-chart-icon="bubble-pie"></span>
+            <span>Bubble Pie</span>
+          </a>
+          <a href="/gallery/#Line" class="card">
+            <span zc-chart-icon="stepped"></span>
+            <span>Stepped</span>
+          </a>
+          <a href="/gallery/#Radar" class="card">
+            <span zc-chart-icon="rose"></span>
+            <span>Rose</span>
+          </a>
+          <a href="/gallery/#Bar" class="card">
+            <span zc-chart-icon="stacked"></span>
+            <span>Stacked</span>
+          </a>
+          <a href="/gallery/#Bar" class="card">
+            <span zc-chart-icon="cone"></span>
+            <span>Cone</span>
+          </a>
+          <a href="/gallery/#Bar" class="card">
+            <span zc-chart-icon="horizontal"></span>
+            <span>Horizontal</span>
+          </a>
+          <a href="/gallery/#Bar" class="card">
+            <span zc-chart-icon="100%-stacked"></span>
+            <span>100% Stacked</span>
+          </a>
+          <a href="/gallery/#Line" class="card">
+            <span zc-chart-icon="vertical"></span>
+            <span>Vertical</span>
+          </a>
+          <a href="/gallery/#Bar" class="card">
+            <span zc-chart-icon="3d-bar"></span>
+            <span>3D Bar</span>
+          </a>
+          <a href="/gallery/#Bar" class="card">
+            <span zc-chart-icon="3d-cylinder"></span>
+            <span>3D Cylinder</span>
+          </a>     
+        </div>
+        
+        <div zc-cta>
+          <a href="/gallery" zc-button="1 small"><i class="fa fa-pie-chart"></i> View Our Demos</a>
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- DEMOS -->
+    <section section="demos">
+      <h2 hidden>Demos</h2>
+      <div class="demo-scroll" jsref="demo-scroll">
+        <button class="demo-scroll-left" jsref="demo-scroll-left" tabindex="0" style="z-index:200;"><i class="fa fa-fw fa-arrow-left"></i></button>
+        <button class="demo-scroll-right" jsref="demo-scroll-right" tabindex="0" style="z-index:200;"><i class="fa fa-fw fa-arrow-right"></i></button>
+        <div class="demo-scroll-wrapper" jsref="demo-scroll-wrapper">
+          <div class="demo-scroll">
+            <a href="/gallery/chart/#!rainbow-horizontal-bar">
+              <picture>
+                <source srcset="https://cdn.zingchart.io/assets/demos/demo-thumb1.webp" type="image/webp">
+                <img src="https://cdn.zingchart.io/assets/demos/demo-thumb1.jpeg" alt="A colorful horizontal bar JavaScript chart">
+              </picture>
+            </a>
+            <a href="/gallery/chart/#!dark-area-bar-chart">
+              <picture>
+                <source srcset="https://cdn.zingchart.io/assets/demos/demo-thumb2.webp" type="image/webp">
+                <img src="https://cdn.zingchart.io/assets/demos/demo-thumb2.jpeg" alt="A monochrome stock JavaScript chart">
+              </picture>
+            </a>
+            <a href="/gallery/chart/#!econ-growth-bar-chart">
+              <picture>
+                <source srcset="https://cdn.zingchart.io/assets/demos/demo-thumb3.webp" type="image/webp">
+                <img src="https://cdn.zingchart.io/assets/demos/demo-thumb3.png" alt="A red and blue vertical bar JavaScript chart">
+              </picture>
+            </a>
+            <a href="/gallery/chart/#!colorful-pie-chart">
+              <picture>
+                <source srcset="https://cdn.zingchart.io/assets/demos/demo-thumb4.webp" type="image/webp">
+                <img src="https://cdn.zingchart.io/assets/demos/demo-thumb4.jpeg" alt="A colorful animated pie JavaScript chart">
+              </picture>
+            </a>
+            <a href="/gallery/chart/#!dashboard-custom-tokens">
+              <picture>
+                <source srcset="https://cdn.zingchart.io/assets/demos/demo-thumb5.webp" type="image/webp">
+                <img src="https://cdn.zingchart.io/assets/demos/demo-thumb5.jpeg" alt="A colorful sales JavaScript dashboard chart">
+              </picture>
+            </a>
+            <a href="/gallery/chart/#!material-design-range-bar">
+              <picture>
+                <source srcset="https://cdn.zingchart.io/assets/demos/demo-thumb6.webp" type="image/webp">
+                <img src="https://cdn.zingchart.io/assets/demos/demo-thumb6.jpeg" alt="A blue and yellow weather JavaScript chart">
+              </picture>
+            </a>
+            <a href="/gallery/chart" class="demo-cta">
+              <span zc-button="8">More Charts in the Gallery <i class="fa fa-caret-right"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- FEEDS -->
+    <section section="feeds light">
+      <div class="inner">
+        <h2 hidden>Feeds</h2>
+
+        <div zc-row callout>
+
+          <!-- ZingChart Version -->
+          <div zc-col class="card">
+            <div class="card-inner">
+              <h3 class="h2"><a href="/download">Current Version: <span class="version">2.8.5</span> <i class="fa fa-download color-alt1" aria-hidden="true"></i></a></h3>
+              <small class="tagline color-alt2">Released January 28, 2019</small>
+              <p>ZingChart version 2.8.5 includes several new &amp; updated features, bug fixes, and documentation updates.</p>
+              <ul>
+                <li>New OrgCharts.</li>
+                <li>Introduced ability to hide specific goals for bubble charts.</li>
+                <li>Reduced the limits of zoom to minimum 2 scale steps and 10x10 pixels.</li>
+                <li>Allow pagescroll mobile context menu item to be disabled.</li>
+                <li>Standard behaviors can be overridden by gui settings set for each graph.</li>
+                <li>Mobile touch scroll zooming will now scroll on nodes.</li>
+              </ul>
+            </div>  
+            <a href="/docs/change-log">View full changelog <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+          </div>
+
+          <!-- Blog -->
+          <div zc-col class="card">
+            <div class="card-inner">
+              <h3 class="h2"><a href="https://blog.zingchart.com/" target="_blank" rel="noopener">Recent Blog Posts <i class="fa fa-rss-square" aria-hidden="true" style="color:orange;"></i></a></h3>
+              <ul class="blog-feed">
+                <li>
+                  <a href="https://blog.zingchart.com/2019/01/28/zingchart-2-8-5/" target="_blank" rel="noopener" class="blog-link">
+                    <span class="blog-image" style="background-image:url(https://blog.zingchart.com/content/images/2019/01/285pic1.png)"></span>
+                    <span class="blog-info">
+                      <span class="blog-title">ZingChart 2.8.5</span>
+                      <small class="blog-meta">by Norman &nbsp;·&nbsp; Mon, 28 Jan 2019</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://blog.zingchart.com/2018/12/11/zingchart-2-8-4/" target="_blank" rel="noopener" class="blog-link">
+                    <span class="blog-image" style="background-image:url(https://blog.zingchart.com/content/images/2018/12/zc284.png)"></span>
+                    <span class="blog-info">
+                      <span class="blog-title">ZingChart 2.8.4</span>
+                      <small class="blog-meta">by Norman &nbsp;·&nbsp; Tue, 11 Dec 2018</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://blog.zingchart.com/2018/10/25/zingchart-2-8-3/" target="_blank" rel="noopener" class="blog-link">
+                    <span class="blog-image" style="background-image:url(https://blog.zingchart.com/content/images/2018/10/zc283.png)"></span>
+                    <span class="blog-info">
+                      <span class="blog-title">ZingChart 2.8.3</span>
+                      <small class="blog-meta">by Norman &nbsp;·&nbsp; Thu, 25 Oct 2018</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://blog.zingchart.com/2018/10/25/zingchart-2-8-2/" target="_blank" rel="noopener" class="blog-link">
+                    <span class="blog-image" style="background-image:url(https://blog.zingchart.com/content/images/2018/10/282png.png)"></span>
+                    <span class="blog-info">
+                      <span class="blog-title">ZingChart 2.8.2</span>
+                      <small class="blog-meta">by Norman &nbsp;·&nbsp; Wed, 03 Oct 2018</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://blog.zingchart.com/2018/10/25/zingchart-2-8-1/" target="_blank" rel="noopener" class="blog-link">
+                    <span class="blog-image" style="background-image:url(https://blog.zingchart.com/content/images/2018/09/zingchart281.png)"></span>
+                    <span class="blog-info">
+                      <span class="blog-title">ZingChart 2.8.1</span>
+                      <small class="blog-meta">by Norman &nbsp;·&nbsp; Tue, 25 Sep 2018</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://blog.zingchart.com/2018/10/25/zingchart-2-8-0/" target="_blank" rel="noopener" class="blog-link">
+                    <span class="blog-image" style="background-image:url(https://blog.zingchart.com/content/images/2018/08/zc-280.png)"></span>
+                    <span class="blog-info">
+                      <span class="blog-title">ZingChart 2.8.0</span>
+                      <small class="blog-meta">by Norman &nbsp;·&nbsp; Wed, 22 Aug 2018</small>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <a href="https://blog.zingchart.com/" target="_blank" rel="noopener">View More <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+          </div>
+
+          <!-- Twitter -->
+          <div zc-col js-ref="twitter" class="card">
+            <div class="card-inner">
+              <h3 class="h2"><a href="https://twitter.com/zingchart" target="_blank" rel="nofollow,noopener,noreferrer">Recent Tweets</a> <a href="https://twitter.com/zingchart" target="_blank" data-zc-right=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a></h3>
+              <small class="tagline">by <a href="https://twitter.com/zingchart">@ZingChart</a></small>
+              <div class="twitter-feed">
+                <a href="https://twitter.com/ZingChart?ref_src=twsrc%5Etfw" class="twitter-timeline" data-chrome="noheader nofooter">
+                  <svg width="20" height="20" class="anim-loading"><use xlink:href="/img/shared-icons.svg#loading"></use></svg>
+                </a>
+              </div>
+            </div>
+            <a href="https://twitter.com/zingchart" target="_blank" rel="nofollow,noopener,noreferrer">View on Twitter <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CUSTOMERS -->
+    <section section="customers">
+      <div class="inner">
+        <h2>Customers</h2>
+      </div>
+      <picture>
+        <source srcset="https://cdn.zingchart.io/assets/000/000/041/526.webp" media="(min-width: 1280px)" type="image/webp">
+        <source srcset="https://cdn.zingchart.io/assets/000/000/040/636.png" media="(min-width: 1280px)" type="image/png">
+        <source srcset="https://cdn.zingchart.io/assets/000/000/041/527.webp" media="(max-width: 1280px)" type="image/webp">
+        <source srcset="https://cdn.zingchart.io/assets/000/000/040/647.png" media="(max-width: 1280px)" type="image/png">
+        <img src="https://cdn.zingchart.io/assets/000/000/040/647.png" alt="ZingChart's customers include Apple, Boeing, Adobe, Microsoft, Cisco, Nasdaq, Google, Arrow, and many more">
+      </picture>
+    </section>
+
+
+    <!-- MAP -->
+    <section section="map">
+      <div class="inner">
+        <div zc-row callout>
+          <div zc-col="1">
+            <h2>
+              Made with 
+              <i class="fa fa-heart" aria-hidden="true"></i> 
+              in 
+              <a href="https://darksky.net/32.7978,-117.2403" target="_blank" rel="nofollow,noopener,noreferrer" class="weather">sunny</a> 
+              San Diego
+            </h2>        
+            <p>We created ZingChart because other JavaScript charting libraries didn’t suit our needs. ZingChart is a fast, interactive, &amp; stylish solution made to run big data. </p>
+            <a href="/about" class="homepage-link">More about ZingChart <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div zc-col="2">
+            <div id="jsref-mapChart" style="height: 300px;">
+            </div>
+          </div>
+        </div>
+        
       </div>
     </section>
 
@@ -34,6 +498,74 @@
 
   <!-- FOOTER -->
   <div include="/includes/footer.html"></div>
+
+
+  <!-- SHARED SCRIPTS (ZingChart, etc.) -->
+  <div include="/includes/global-scripts"></div>
+
+  <!-- ZC Integrations -->
+  <script src="/plugin/zc-integration/zc-integration.js" inline></script>
+
+  <!-- ZC Demos Carousel/Scroller -->
+  <script src="/plugin/zc-demo-scroll/zc-demo-scroll.js" inline></script>
+
+  <!-- Twitter Feed -->
+  <script src="https://platform.twitter.com/widgets.js" async></script>
+
+  <!-- ZingChart Map -->
+  <!-- Note: ZingChart loaded in '/includes/global-scripts', so this must run after that include -->
+  <script>
+    zingchart.loadModules('maps,maps-world-continents');
+    var chart = {
+      shapes: [
+        {
+          type: 'zingchart.maps',
+          options: {
+            id: 'pint_location',
+            name: 'world.continents',
+            zooming: false, // turn off scroll and double click zoom
+            panning: false,
+            scrolling: false,
+            style: {
+              controls: {
+                visible: false
+              },
+              label: {
+                visible: false
+              }
+            }
+          }
+        },
+        {
+          type: 'circle',
+          id: 'sd',
+          size: 15,
+          backgroundImage: 'https://cdn.zingchart.io/img/cyan_pulse_long.gif.17350ed',
+          cursor: 'pointer',
+          y: '32.801532lat',
+          x: '-117.231396lon',
+          map: 'pint_location',
+          tooltip: {
+            backgroundColor: '#FFF',
+            backgroundFit: 'xy',
+            backgroundPosition: '50% 50%',
+            backgroundRepeat: 'no-repeat',
+            borderColor: '#333',
+            borderRadius: 4,
+            fontSize: 16,
+            text: 'We\'re located right in San Diego!'
+          }
+        }
+      ]
+    }
+
+    zingchart.render({
+      id: 'jsref-mapChart',
+      data: chart,
+      height: 300,
+      width: '100%'
+    });
+  </script>
 
 </body>
 </html>

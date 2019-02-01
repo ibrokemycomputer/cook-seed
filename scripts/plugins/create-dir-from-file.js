@@ -22,10 +22,16 @@ async function createDirFromFile({$, fileExt, fileName, allowType, disallowType,
   // Early Exit: File type not allowed
   const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
   if (!allowed) return;
-
+  
   // Get file extension
   const fileNameSplit = fileName.split('.');
   const filePath = fileNameSplit[0];
+  // Get file name
+  const nameSplit = filePath.split('/')
+  const name = nameSplit[nameSplit.length-1];
+  
+  // Early Exit: Do not create directory if current file is an index.html page
+  if (name === 'index') return;
 
   // Early Exit: Path includes excluded pattern
   // For example, we don't want to convert the site index file (homepage)

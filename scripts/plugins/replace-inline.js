@@ -36,16 +36,19 @@ async function replaceInline({$, fileExt, fileName, allowType, disallowType}) {
 // -----------------------------
 
 function replaceLink(group, $, fileName) {
-  let replacePath, replaceSrc;
+  let href, replacePath, replaceSrc;
   group.each((i,el) => {
     // The 'inner' content of the `<style>` tag
-    replacePath = `${distPath}${ $(el).attr('href') }`;
+    href = $(el).attr('href');
+    // Early Exit: Not a relative path to CSS file, likely external
+    if (href.charAt(0) !== '/') return;
+    replacePath = `${distPath}${href}`;
     replaceSrc = fs.readFileSync(replacePath, 'utf-8');
     // Add new `<style>` tag and then delete `<link>`
-    $(el).before(`<style ${utils.attr.inline}>${replaceSrc}</style>`);
+    $(el).before(`<style>${replaceSrc}</style>`);
     $(el).remove();
     // Show terminal message
-    Logger.success(`${fileName} - Replaced link[${utils.attr.inline}]: ${ chalk.green($(el).attr('href')) }`);
+    Logger.success(`${fileName} - Replaced link[${utils.attr.inline}]: ${ chalk.green(href) }`);
   });
 }
 
@@ -55,8 +58,8 @@ function replaceScript(group, $, fileName) {
     // The 'inner' content of the `<style>` tag
     replacePath = `${distPath}/${ $(el).attr('src') }`;
     replaceSrc = fs.readFileSync(replacePath, 'utf-8');
-    // Add new `<style>` tag and then delete `<link>`
-    $(el).before(`<script ${utils.attr.inline}>${replaceSrc}</script>`);
+    // Add new `<script>` tag and then delete old external `<script>`
+    $(el).before(`<script>${replaceSrc}</script>`);
     $(el).remove();
     // Show terminal message
     Logger.success(`${fileName} - Replaced script[${utils.attr.inline}]: ${ chalk.green($(el).attr('src')) }`);

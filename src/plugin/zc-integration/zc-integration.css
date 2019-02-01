@@ -1,0 +1,92 @@
+.wrappers {
+  border: 1px solid #D9D9D9;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* CONTROLS */
+.wrapper-controls { z-index:2; position:relative; display:flex; }
+.wrapper-controls input { display:none; }
+.wrapper-controls label {
+  align-items: center;
+  background-color: #FFFFFF;      
+  border-bottom: 1px solid #D9D9D9;
+  cursor: pointer;
+  display: flex;
+  flex: 1;
+  height: 50px;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
+.wrapper-controls label:after {
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+.wrapper-controls input:checked + label {
+  background: #fff;        
+  cursor: default;
+}
+.wrapper-controls input:checked + label:after {
+  bottom: 0;
+  content: '';
+  height: 2px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+.wrapper-controls .wrapper-icon {
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: cover;
+  height: 30px;
+  margin-right: 10px;
+  width: 30px;
+}
+.webp .wrapper-controls .wrapper-icon {
+  background-image: url(https://cdn.zingchart.io/img/wrapper-icons-v2.webp);
+}
+.no-webp .wrapper-controls .wrapper-icon {
+  background-image: url(https://cdn.zingchart.io/img/wrapper-icons-v2.png);
+}
+
+/* CONTENT BOXES */
+.wrapper-content {
+  background: #FFFFFF;
+  box-sizing: border-box;
+  display: none;
+  opacity: 0.3;
+  padding: 1.5rem;
+  pointer-events: none;
+  position: relative;
+  transform: translateY(-10px);
+  width: 100%;
+  z-index: 1;
+}
+.wrapper-content.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition: 0.3s opacity cubic-bezier(0.4, 0, 0.6, 1.0), 0.3s transform cubic-bezier(0.4, 0, 0.6, 1.0);
+}
+
+label[for="angularjs"] .wrapper-icon {background-position: 100% 0; }
+label[for="backbone"] .wrapper-icon { background-position: 100% -150px; }
+label[for="ember"] .wrapper-icon {background-position: 100% -120px; }
+label[for="jquery"] .wrapper-icon {background-position: 100% -61px; }
+label[for="js"] .wrapper-icon {background-position: 100% -180px; }
+label[for="php"] .wrapper-icon {background-position: 100% -30px; }
+label[for="react"] .wrapper-icon {background-position: 100% -90px; }
+
+#angularjs:checked + label:after { background-color: rgb(224, 22, 0); }    
+#backbone:checked + label:after { background-color: rgb(0, 111, 183); }
+#ember:checked + label:after { background-color: rgb(230, 101, 76); }       
+#jquery:checked + label:after { background-color: rgb(0, 103, 175); }        
+#js:checked + label:after { background-color: rgb(240, 219, 79); }
+#php:checked + label:after { background-color: rgb(95, 129, 189); }       
+#react:checked + label:after { background-color: rgb(90, 218, 253); }        
