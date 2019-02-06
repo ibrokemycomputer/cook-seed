@@ -37,22 +37,36 @@ zcIntegration.$tabBox = zcIntegration.$ref.querySelector('[jsref~="zc-integratio
 // Create and append the tabs
 zcIntegration.createControls = function() {
   zcIntegration.$refPanels.forEach((panel,index) => {
-    zcIntegration.tab = panel.cloneNode(true);
+    zcIntegration.tab = panel.querySelector('[zc-integration="tab"]').cloneNode(true);
     // Add Click Event
-    console.log('zcIntegration.tab', zcIntegration.tab)
     zcIntegration.tab.addEventListener('click', function(e) {
+      zcIntegration.tabs = zcIntegration.$tabBox.children;
+      if (!zcIntegration.tabs) return;
       // Unset previous active tab
-      zcIntegration.$tabBox.forEach(tab => tab.removeAttribute(zcIntegration.activeAttr));
-      this.setAttribute(zcIntegration.activeAttr,'');
+      [...zcIntegration.tabs].forEach(tab => tab.removeAttribute(zcIntegration.activeAttr));
+      // Set current tab to 'active'
+      zcIntegration.$tabBox.children[index].setAttribute(zcIntegration.activeAttr,'');
+      // Unset previous active panel
+      zcIntegration.$refPanels.forEach(panel => panel.removeAttribute(zcIntegration.activeAttr));
+      // Set current tab to 'active'
+      panel.setAttribute(zcIntegration.activeAttr,'');
     });
     // Append tab to DOM
     zcIntegration.$tabBox.appendChild(zcIntegration.tab);
 
   });
-},
+};
+// Show starting integration on load
+zcIntegration.initStartingIntegration = function() {
+  // Set first tab to active on load
+  zcIntegration.$tabBox.children[0].setAttribute(zcIntegration.activeAttr,'');
+  // Show first panel on load
+  zcIntegration.$refPanels[0].setAttribute(zcIntegration.activeAttr,'');
+};
 // Consolidate processes into init method
 zcIntegration.init = function() {
   zcIntegration.createControls();
+  zcIntegration.initStartingIntegration();
 }
 // Init
 zcIntegration.init();

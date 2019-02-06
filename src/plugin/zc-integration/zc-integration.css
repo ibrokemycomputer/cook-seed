@@ -5,36 +5,27 @@
   position: relative;
 }
 
-/* CONTROLS */
+/* TABS */
 [zc-integration~="controls"] { 
-  z-index:2; 
-  position:relative; 
-  display:flex; 
-  height: 50px;
-}
-[zc-integration~="controls"] input { display:none; }
-[zc-integration~="controls"] label {
-  align-items: center;
-  background-color: #FFFFFF;      
   border-bottom: 1px solid #D9D9D9;
+  display: flex; 
+  flex-wrap: wrap;
+  position: relative; 
+  min-height: 50px;
+  z-index: 2; 
+}
+[zc-integration~="tab"] {
+  align-items: center;
+  background-color: #FFFFFF;
   cursor: pointer;
+  display: flex;
   flex: 1;
   justify-content: center;
   position: relative;
   text-align: center;
+  user-select: none;
 }
-[zc-integration~="controls"] label:after {
-  bottom: 0;
-  content: '';
-  left: 0;
-  position: absolute;
-  width: 100%;
-}
-[zc-integration~="controls"] input:checked + label {
-  background: #fff;        
-  cursor: default;
-}
-[zc-integration~="controls"] input:checked + label:after {
+[zc-integration~="tab"]:after {
   bottom: 0;
   content: '';
   height: 2px;
@@ -42,13 +33,13 @@
   position: absolute;
   width: 100%;
 }
-[zc-integration="controls"] [value~="angularjs-tab"]:checked + label:after { background-color: rgb(224, 22, 0); }    
-[zc-integration="controls"] [value~="backbone-tab"]:checked + label:after { background-color: rgb(0, 111, 183); }
-[zc-integration="controls"] [value~="ember-tab"]:checked + label:after { background-color: rgb(230, 101, 76); }       
-[zc-integration="controls"] [value~="jquery-tab"]:checked + label:after { background-color: rgb(0, 103, 175); }        
-[zc-integration="controls"] [value~="js-tab"]:checked + label:after { background-color: rgb(240, 219, 79); }
-[zc-integration="controls"] [value~="php-tab"]:checked + label:after { background-color: rgb(95, 129, 189); }       
-[zc-integration="controls"] [value~="react-tab"]:checked + label:after { background-color: rgb(90, 218, 253); }   
+[zc-integration="tab"][type~="angularjs"][active]:after { background-color: rgb(224, 22, 0); }
+[zc-integration="tab"][type~="backbone"][active]:after { background-color: rgb(0, 111, 183); }
+[zc-integration="tab"][type~="ember"][active]:after { background-color: rgb(230, 101, 76); }
+[zc-integration="tab"][type~="jquery"][active]:after { background-color: rgb(0, 103, 175); }
+[zc-integration="tab"][type~="javascript"][active]:after { background-color: rgb(240, 219, 79); }
+[zc-integration="tab"][type~="php"][active]:after { background-color: rgb(95, 129, 189); }
+[zc-integration="tab"][type~="react"][active]:after { background-color: rgb(90, 218, 253); }
 
 /* FRAMEWORK ICONS */
 [zc-integration~="icon"] {
@@ -66,14 +57,13 @@
 .no-webp [zc-integration~="icon"] {
   background-image: url(https://cdn.zingchart.io/img/wrapper-icons-v2.png);
 }
-label[for] { display:flex; align-items:center; }
-label[for="angularjs"] [zc-integration~="icon"] {background-position: 100% 0; }
-label[for="backbone"] [zc-integration~="icon"] { background-position: 100% -150px; }
-label[for="ember"] [zc-integration~="icon"] {background-position: 100% -120px; }
-label[for="jquery"] [zc-integration~="icon"] {background-position: 100% -61px; }
-label[for="js"] [zc-integration~="icon"] {background-position: 100% -180px; }
-label[for="php"] [zc-integration~="icon"] {background-position: 100% -30px; }
-label[for="react"] [zc-integration~="icon"] {background-position: 100% -90px; }
+[zc-integration="tab"][type~="angularjs"] [zc-integration~="icon"] {background-position: 100% 0; }
+[zc-integration="tab"][type~="backbone"] [zc-integration~="icon"] { background-position: 100% -150px; }
+[zc-integration="tab"][type~="ember"] [zc-integration~="icon"] {background-position: 100% -120px; }
+[zc-integration="tab"][type~="jquery"] [zc-integration~="icon"] {background-position: 100% -61px; }
+[zc-integration="tab"][type~="javascript"] [zc-integration~="icon"] {background-position: 100% -180px; }
+[zc-integration="tab"][type~="php"] [zc-integration~="icon"] {background-position: 100% -30px; }
+[zc-integration="tab"][type~="react"] [zc-integration~="icon"] {background-position: 100% -90px; }
 
 /* CONTENT BOXES */
 [zc-integration~="panel"] {
@@ -85,16 +75,12 @@ label[for="react"] [zc-integration~="icon"] {background-position: 100% -90px; }
   width: 100%;
   z-index: 1;
 }
-.js [zc-integration~="panel"][active] {
-  transform: translateY(-10px);
+.js [zc-integration~="panel"] {
+  display: none;
 }
-[zc-integration~="panel"][active] {
+.js [zc-integration~="panel"][active] {
   display: block;
-  opacity: 1;
-  pointer-events: auto;
-  transform: none;
-  transition: 0.3s opacity cubic-bezier(0.4, 0, 0.6, 1.0), 0.3s transform cubic-bezier(0.4, 0, 0.6, 1.0);
-}     
-
-[zc-integration~="panel"] label[for] { margin-bottom:20px; }
-.js [zc-integration~="panel"] label[for] { display:none; }
+}
+.js [zc-integration~="panel"] [zc-integration~="tab"] {
+  display:none;
+}
