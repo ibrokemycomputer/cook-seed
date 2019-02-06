@@ -29,114 +29,350 @@
       <div class="inner">
         <h2 class="homepage-h2-gray">Easily Integrate ZingChart With Your Development Stack</h2>
           
-          <div class="wrappers" callout>
+        <!-- Load icons if no js support -->
+        <noscript>
+          <style>
+            [zc-integration~="icon"] {
+              background-image: url(https://cdn.zingchart.io/img/wrapper-icons-v2.png);
+            }
+          </style>
+        </noscript>
 
-            <div class="wrapper-controls">
-                <input type="radio" name="wrapper" value="js-tab" id="js" checked>
-                <label for="js"><span class="wrapper-icon"></span>JavaScript</label>
-                
-                <input type="radio" name="wrapper" value="angularjs-tab" id="angularjs">
-                <label for="angularjs"><span class="wrapper-icon"></span>AngularJS</label>
-        
-                <input type="radio" name="wrapper" value="react-tab" id="react" >
-                <label for="react"><span class="wrapper-icon"></span>React</label>
-                
-                <input type="radio" name="wrapper" value="php-tab" id="php" >
-                <label for="php"><span class="wrapper-icon"></span>PHP</label>
-                
-                <input type="radio" name="wrapper" value="jquery-tab" id="jquery" >
-                <label for="jquery"><span class="wrapper-icon"></span>jQuery</label>
-                
-                <input type="radio" name="wrapper" value="ember-tab" id="ember" >
-                <label for="ember"><span class="wrapper-icon"></span>Ember</label>
-                
-                <input type="radio" name="wrapper" value="backbone-tab" id="backbone" >
-                <label for="backbone"><span class="wrapper-icon"></span>Backbone</label>
-            </div>
+        <div zc-integration="container" jsref="zc-integration-container" callout>
+
+          <div zc-integration="controls" jsref="zc-integration-controls"></div>
+
+          <div zc-integration="panel" jsref="integration-panel">
+            <!-- No-JS Label -->
+            <span zc-integration="tab" type="javascript"><span zc-integration="icon"></span><span>JavaScript</span></span>
+            <h3>ZingChart is dependency free and pure JavaScript.</h3>
+            <ol>
+              <li>
+                Install via NPM or Bower:<br>
+                <pre><code class="lang-javascript">
+npm install zingchart
+                </code></pre>
+                <p alt><strong>OR</strong></p>
+                Use the <a href="https://cdn.zingchart.com/">ZingChart CDN</a>:<br>
+                <pre><code class="lang-html">
+&lt;script src="https://cdn.zingchart.com/zingchart.min.js"&gt;&lt;/script&gt;
+                </code></pre>
+              </li>
+
+              <li>
+                Include the library in your HTML document
+                <pre><code class="lang-javascript">
+// Just before the closing body tag is best
+&lt;script src="path/to/zingchart.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+                </code></pre>
+              </li>
               
-            <div class="wrapper-content active" id="js-tab">
-              <h3>ZingChart is dependency free and pure JavaScript.</h3>
-              <ol>
-                  <li>
-                      Install via NPM or Bower:<br>
-                      <pre><code class="lang-javascript">npm install zingchart</code></pre>
-                      
-                      <p alt><strong>OR</strong></p>
-                      
-                      Use the <a href="https://cdn.zingchart.com/">ZingChart CDN</a>:<br>
-                      <pre><code class="lang-javascript"><span>&lt;</span>script src="https://cdn.zingchart.com/zingchart.min.js"&gt;&lt;/script&gt;</code></pre>
-                  </li>
-                  
-                  <li>
-                      Include the library in your HTML document:<br>
-                      <!-- <code class="lang-javascript">
-                          // Just before the closing body tag is best<br>
-                          <span>&lt;</span>script src="path/to/zingchart.min.js"&gt;&lt;/script&gt;<br>
-                        <span>&lt;</span>/body&gt;
-                      </code> -->
-                  </li>
-                  
-                  <li>
-                      Create your chart element.
-                      <!-- <pre class="prettyprint">&lt;div id="myChart"&gt;&lt;/div&gt;</pre> -->
-                  </li>
-                  
-                  <li>
-                      Render your chart!
-                      <!-- <pre class="prettyprint">&lt;script&gt;
-                        zingchart.render({
-                          id: 'myChart',
-                          data: {
-                            type: 'line',
-                            series: [{
-                              values: [54,23,34,23,43],
-                            }, {
-                              values: [10,15,16,20,40]
-                            }]
-                          }
-                        });
-                      &lt;/script&gt;</pre> -->
-                  </li>
-              </ol>
-              <p class="no-bottom centered">
-                <a target="_blank" href="https://github.com/zingchart/ZingChart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>&nbsp;&nbsp;
-              </p>
-            </div>
-
+              <li>
+                Create your chart element.
+                <pre><code class="lang-html">
+&lt;div id="myChart"&gt;&lt;/div&gt;
+                </code></pre>
+              </li>
+              
+              <li>
+                Render your chart!
+                <pre><code class="lang-javascript">
+zingchart.render({
+id: 'myChart',
+data: {
+  type: 'line',
+  series: [{
+    values: [54,23,34,23,43],
+  }, {
+    values: [10,15,16,20,40]
+  }]
+}
+});
+&lt;/script&gt;
+                </code></pre>
+              </li>                        
+            </ol>
+            <p class="no-bottom centered">
+              <a target="_blank" href="https://github.com/zingchart/ZingChart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>&nbsp;&nbsp;<!-- <a href="/?nodeId=39266" data-zc-button="6 small">Get Started<i class="fa fa-fw fa-caret-right"></i></a> -->
+            </p>
           </div>
+          
+          <div zc-integration="panel" jsref="integration-panel">
+            <!-- No-JS Label -->
+            <span zc-integration="tab" type="javascript"><span zc-integration="icon"></span><span>React</span></span>
+            <h3>Quickly create dynamic JavaScript charts with ZingChart and React</h3>
+            <ol>
+              <li>
+                Install via NPM
+                <pre><code class="lang-javascript">
+npm install zingchart-react
+                </code></pre>
+              </li>
+              
+              <li>
+                Add your chart element to
+                <pre><code class="lang-html">
+&lt;div id="myContainer"&gt;&lt;/div&gt;
+                </code></pre>
+              </li>
+              
+              <li>
+                Require the ZingChart com
+                <pre><code class="lang-javascript">
+var ZingChart = require('zingchart-react').core;
+                </code></pre>
+              </li>
+              
+              <li>
+                Create and render your chart
+                <pre><code class="lang-javascript">
+var myConfig = {
+  type: 'bar',
+  series : [
+    { values : [35,42,67,89,25,34,67,85] }
+  ]
+};
+
+React.render(
+  &lt;ZingChart id="myChart" height="300" width="600" data={myConfig} /&gt;,
+  document.getElementById('myContainer')
+);
+                </code></pre>
+              </li>
+            </ol>
+            
+            <p class="no-bottom centered">
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-React" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+            </p>
+          </div>
+          
+          <div zc-integration="panel" jsref="integration-panel">
+            <!-- No-JS Label -->
+            <span zc-integration="tab" type="javascript"><span zc-integration="icon"></span><span>AngularJS</span></span>
+            <h3>ZingChart's AngularJS wrapper helps you create JavaScript charts with two-way data binding.</h3>
+            <ol>
+              <li>
+                Install via NPM or Bower
+                <pre><code class="lang-javascript">
+npm install zingchart-angularjs
+                </code></pre>
+              </li>
+              
+              <li>
+                Inject the directive into your application
+                <pre><code class="lang-javascript">
+angular.module('myApp', ['zingchart-angularjs']);
+                </code></pre>
+              </li>
+              
+              <li>
+                Configure your chart through a scope variable
+                <pre><code class="lang-javascript">
+$scope.myJson = {
+type : 'line',
+series : [
+  { values : [54,23,34,23,43] },
+  { values : [10,15,16,20,40] }
+]
+};
+                </code></pre>
+              </li>
+              
+              <li>
+                Insert the ZingChart-AngularJS directive into your application
+                <pre><code class="lang-html">
+&lt;zingchart id="myChart" zc-json="myJson" zc-height=500 zc-width=600&gt;&lt;/zingchart&gt;
+                </code></pre>
+              </li>
+            </ol>
+            <p class="no-bottom centered">
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-AngularJS" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+            </p>
+          </div>
+            
+          <div zc-integration="panel" jsref="integration-panel">
+            <!-- No-JS Label -->
+            <span zc-integration="tab" type="javascript"><span zc-integration="icon"></span><span>JQuery</span></span>
+            <h3>Easily create and modify JavaScript charts with ZingChart's jQuery wrapper</h3>
+            <ol>
+              <li>
+                Include jQuery, ZingChart, and the jQuery wrapper
+                <pre><code class="lang-javascript">
+&lt;script src="https://code.jquery.com/jquery-1.11.2.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.zingchart.com/zingchart.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.zingchart.com/zingchart.jquery.min.js"&gt;&lt;/script&gt;
+                </code></pre>
+              </li>
+              
+              <li>
+                Create a <code>&lt;div&gt;</code> with an ID
+                <pre><code class="lang-html">
+&lt;div id="myChart"&gt;&lt;/div&gt;
+                </code></pre>
+              </li>            
+              
+              <li>
+                Create your chart inside the <code>$(document).ready()</code> function
+                <pre><code class="lang-javascript">
+$(document).ready(function() {
+  $("#myChart").zingchart({
+    data:{
+      type: 'line',
+      series: [
+        { values: [1,2,5,3,9,4] }
+      ]
+    }
+  });
+})
+                </code></pre>
+              </li>
+            </ol>
+            <p class="no-bottom centered">
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-jQuery" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+            </p>
+          </div>
+
+          <div zc-integration="panel" jsref="integration-panel">
+            <!-- No-JS Label -->
+            <span zc-integration="tab" type="javascript"><span zc-integration="icon"></span><span>Ember</span></span>
+            <h3>Generate interactive JavaScript charts with ZingChart's custom Ember component</h3>
+            <ol>
+              <li>
+                Install the ZingChart Ember component
+                <pre><code class="lang-javascript">
+npm install --save ember-zingchart
+ember g ember-zingchart
+                </code></pre>
+              </li>
+              
+              <li>
+                Create a handlebars template where you want your chart to render 
+                <pre><code class="lang-javascript">
+{{ember-zingchart renderOptions=myRenderOptions}}
+                </code></pre>
+              </li>
+              
+              <li>
+                Set the render options in the controller
+                <pre><code class="lang-javascript">
+import Ember from 'ember';
+
+let _renderOptions = {
+  height: 400,
+  width: '100%',  
+  data: {
+    type: 'bar',
+    series : [
+      { values : [35,42,67,89,25,34,67,85] }
+    ]
+  }
+}
+
+export default Ember.Controller.extend({
+  myRenderOptions: _renderOptions
+});
+                </code></pre>
+              </li>
+            </ol>
+        
+            <p class="no-bottom centered">
+              <a target="_blank" href="https://github.com/zingchart/ember-zingchart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+            </p>
+          </div>
+  
+          <div zc-integration="panel" jsref="integration-panel">
+            <!-- No-JS Label -->
+            <span zc-integration="tab" type="javascript"><span zc-integration="icon"></span><span>Backbone</span></span>
+            <h3>Turn simple Models and Views into snazzy JavaScript charts with ZingChart's Backbone wrapper</h3> 
+            <ol>
+              <li>
+                Include the ZingChart library and this wrapper
+                <pre><code class="lang-html">
+&lt;script src="cdn.zingchart.com/zingchart.min.js"&gt;&lt;/script&gt;
+&lt;script src="cdn.zingchart.com/backbone/backbone.zingchart.min.js"&gt;&lt;/script&gt;
+                </code></pre>
+              </li>
+              
+              <li>
+                Create the target element in the DOM
+                <pre><code class="lang-html">
+&lt;div id="chartDiv"&gt;&lt;/div&gt;
+                </code></pre>
+              </li>
+              
+              <li>
+                Create your data Model
+                <pre><code class="lang-javascript">
+var chartData = new ZingChart.ZingChartModel({
+  data: [[3,2,3,3,9], [1,2,3,4,5]],
+  charttype: 'bar',
+  width: 500,
+  height: 400
+});
+                </code></pre>
+              </li>
+                
+              <li>
+                Create your chart View
+                <pre><code class="lang-javascript">
+var chartView = new ZingChart.ZingChartView({
+  model: chartData,
+  el: $('#chartDiv')
+});
+                </code></pre>
+              </li>
+              
+              <li>
+                Render your chart
+                <pre><code class="lang-javascript">
+chartView.render();
+                </code></pre>
+              </li>
+            </ol>
+            
+            <p class="no-bottom centered">
+              <a target="_blank" href="https://github.com/zingchart/backbone-zingchart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+            </p>
+          </div>
+            
+          <div zc-integration="panel" jsref="integration-panel">
+            <!-- No-JS Label -->
+            <span zc-integration="tab" type="javascript"><span zc-integration="icon"></span><span>PHP</span></span>
+            <h3>Create interactive JavaScript charts all in PHP with ZingChart's PHP wrapper.</h3>
+            <ol>
+                <li>
+                  Install via Composer
+                  <pre><code class="lang-javascript">
+composer req uire zingchart/php_wrapper
+                  </code></pre>
+                </li>
+                
+                <li>
+                  Include the library
+                  <pre><code class="lang-javascript">
+require __ DIR__ . '/vendor/autoload.php;
+                  </code></pre>
+                </li>
+                
+                <li>
+                  Render your chart
+                  <pre><code class="lang-javascript">
+$zc = new ZC("myChart");
+$zc-&gt;setChartType("bar");
+$zc-&gt;setSeriesData([1,4,2,6,3]);
+$zc-&gt;render();
+                  </code></pre>
+                </li>                      
+            </ol>
+            <p class="no-bottom centered">
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-PHP" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+            </p>
+          </div>
+        
+        </div>
       </div>
     </section>
-    
-    <script>
-      // $('[data-boilerplate]').click(function () {
-      //   var boilerplate = $(this).data('boilerplate');
-      //   ga('send', 'event', 'Boilerplate', 'click', boilerplate);
-      // });
-  
-      // var tabControls = document.querySelectorAll('.wrapper-controls input');
-      // var toggleTab = function () {
-      //   var previousTab = document.querySelector('.wrapper-content.active');
-      //   if (previousTab) {
-      //     previousTab.classList.remove('active');
-      //     previousTab.style.display = 'none';
-      //   }
-      //   var targetTab = document.getElementById(this.value);
-      //   if (targetTab) {
-      //     targetTab.style.display = 'block';
-      //     // Since the display has changed, we need to let the styles take hold
-      //     // in order for the animation to take effect. We use rAF to wait a
-      //     // frame for the display to change then add the animation class.
-      //     requestAnimationFrame(function () {
-      //       targetTab.classList.add('active')
-      //     });
-      //   } else {
-      //     console.warn('No tab with id', this.value);
-      //   }                         
-      // }
-      // for (var i = 0; i < tabControls.length; i++) {
-      //   tabControls[i].addEventListener('change', toggleTab);
-      // }
-    </script>
 
       
     <!-- CHART TYPES -->

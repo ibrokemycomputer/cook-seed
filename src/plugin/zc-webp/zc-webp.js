@@ -1,6 +1,6 @@
 /**
  * TEST WEBP SUPPORT
- * @description Add body class if webp supported or not
+ * @description Add CSS class to <html> if webp supported or not
  */
 zcWebp = window.zcWebp || {
   webpClass: 'webp',
@@ -23,7 +23,7 @@ zcWebp = window.zcWebp || {
     }
   },
   init: function() {
-    zcWebp.testWebP(document.body);
+    zcWebp.testWebP(document.documentElement);
   }
 };
 // Init
