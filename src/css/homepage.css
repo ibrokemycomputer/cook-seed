@@ -4,11 +4,23 @@
 h2 { font-size: 1.75rem; }
 .tagline { margin:0; display:block; transform: translateY(-16px); }
 
+/* Intro/Lead-In Section */
+[section~="lead-in"] {
+  --inner-y-padding: 65px;
+  background: linear-gradient(to bottom, #003849 58%, #fff 42%);
+  border-bottom: 1px solid var(--border-color);
+  min-height: 930px;
+}
+[section~="lead-in"] h1 { margin:0 0 15px; color:#fff; font-size:3rem; line-height:1.2; text-align:center; }
+[section~="lead-in"] h2 { margin:0 0 40px; color:#fff; font-size:1rem; line-height:1.7; }
+
 /* Chart Types */
-[section~="chart-types"] .card { margin-bottom:15px; padding:4px 10px; display:flex; align-items:center; font-weight:500; font-size:.9rem; line-height:1.3; transition:transform .2s; }
-[section~="chart-types"] .card:hover { color:var(--color-secondary); box-shadow:2px 2px 5px #d9d9d9; transform:translate(-2px,-2px); }
-[section~="chart-types"] [zc-chart-icon] { margin-right:7px; }
+[section~="chart-types"] { --chart-type-margin: 2%; }
+[section~="chart-types"] .card { margin:0 0 7px var(--chart-type-margin); padding:4px 10px; display:flex; align-items:center; color:var(--color-secondary); font-weight:500; font-size:.9rem; line-height:1.2; transition:color .2s, transform .2s; }
+[section~="chart-types"] .card:hover { color:var(--color-primary); box-shadow:2px 2px 5px var(--border-color); transform:translate(-2px,-2px); }
+[section~="chart-types"] [zc-chart-icon] { margin-right:12px; }
 [section~="chart-types"] [zc-chart-icon] + span { flex:1; }
+[section~="chart-types"] [zc-row] { transform: translateX(calc(-1 * (var(--chart-type-margin) / 2))); }
 
 /* Demos */
 [section~="demos"] [zc-button] { display: inline-block;padding: 15px 20px;font-size: 20px;line-height: 20px;border: none;border-radius: 5px;transition: background-color 0.15s ease-in-out; background-color: #EF8535;color:#fff;transform:translateY(160px);}
@@ -41,7 +53,7 @@ h2 { font-size: 1.75rem; }
 .twitter-feed { margin-bottom:1rem; height:475px; overflow:auto; }
 .twitter-feed > a { display:block; transform:translate(13px,10px); }
 
-/* Made in SD/Map */
+/* Customers */
 [section~="customers"] img { margin:0 auto; display:block; }
 [section~="customers"] .inner { padding-bottom:1rem; }
 
@@ -54,15 +66,14 @@ h2 { font-size: 1.75rem; }
 /* MIN
 --------------------------- */
 
+/* TABLET: PORTRAIT+ */
+@media screen and (min-width:768px) {
+  /* Chart Types */
+  [section~="chart-types"] .card { margin-bottom:15px; }
+}
+
 /* TABLET: LANDSCAPE+ */
 @media screen and (min-width:1024px) {
-  :root {
-    --chart-types-offset: 1%;
-  }
-  /* Chart Types */
-  [section~="chart-types"] [zc-row] { justify-content:flex-start; flex-wrap:wrap; transform:translateX(calc(-1 * var(--chart-types-offset))); }
-  [section~="chart-types"] [zc-row] a { margin-left:var(--chart-types-offset); width:16.5%; }
-
   /* Feeds */
   [section~="feeds"] [zc-col] { flex-basis:32%; }
 

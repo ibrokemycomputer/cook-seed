@@ -34,7 +34,7 @@ async function build() {
 
   // PLUGIN: Copy `/src` to `/dist`
   await copySrc();
-
+  
   // Get valid project files to manipulate (this method makes it so we only need to read/write the file once)
   await getSrcFiles(async files => {
     // Run tasks on matched files
@@ -42,6 +42,10 @@ async function build() {
       
       // Open file and store file info for use in plugins (file source, extension, cheerio dom object, etc.)
       let {$,fileExt,fileSource} = await getSrcConfig({fileName});
+
+      if (fileName === 'dist/plugin/zc-obfuscate/zc-obfuscate.js') {
+        console.log('hi', $('body').html())
+      }
       
       // PLUGIN: Replace all `[include]` in file
       replaceIncludes({$, fileExt, fileName, allowType: ['.html']});

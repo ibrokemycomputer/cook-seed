@@ -1,0 +1,346 @@
+/* ROWS
+--------------------------- */
+[zc-row] { display:flex; flex:1 0 auto; flex-wrap:wrap; }
+[zc-row] + [zc-row] { margin-top:var(--section-margin); }
+/* Force Block */
+[zc-row~="block"] { display:block; }
+/* Align Items */
+[zc-row~="align-baseline"] { align-items: baseline; }
+[zc-row~="align-center"] { align-items: center; }
+[zc-row~="align-end"] { align-items: flex-end; }
+[zc-row~="align-start"] { align-items: flex-start; }
+[zc-row~="align-stretch"] { align-items: stretch; }
+/* Direction */
+[zc-row~="direction-column"] { flex-direction: column; }
+[zc-row~="direction-row"] { flex-direction: row; }
+/* Grow */
+[zc-row~="grow-0"] { flex-grow: 0; }
+[zc-row~="grow-1"] { flex-grow: 1; }
+/* Inline child w/ margins */
+[zc-row~="inline"] > * + * { margin-left: var(--row-justify-margin-left); }
+/* Justify Content */
+[zc-row~="justify-around"] { justify-content: space-around; }
+[zc-row~="justify-between"] { justify-content: space-between; }
+[zc-row~="justify-between"] > * { margin-left: 0; }
+[zc-row~="justify-center"] { justify-content: center; }
+[zc-row~="justify-end"] { justify-content: flex-end; }
+[zc-row~="justify-evenly"] { justify-content: space-evenly; }
+[zc-row~="justify-start"] { justify-content: flex-start; }
+[zc-row~="justify-stretch"] { justify-content: stretch; }
+/* Grow */
+[zc-row~="shrink-0"] { flex-shrink: 0; }
+[zc-row~="shrink-1"] { flex-shrink: 1; }
+/* Grow */
+[zc-row~="wrap-nowrap"] { flex-wrap: nowrap; }
+[zc-row~="wrap-wrap"] { flex-wrap: wrap; }
+[zc-row~="wrap-wrap-reverse"] { flex-wrap: wrap-reverse; }
+
+/* Set all child columns (mobile+) */
+[zc-row~="100%"] > *, [zc-row~="mobile-100%"] > * { flex-basis:100%; max-width:100%; }
+[zc-row~="1of2"] > *, [zc-row~="mobile-1of2"] > * { flex-basis:48%; max-width:48%; }
+[zc-row~="1of3"] > *, [zc-row~="mobile-1of3"] > * { flex-basis:31%; max-width:31%; }
+[zc-row~="1of4"] > *, [zc-row~="mobile-1of4"] > * { flex-basis:23%; max-width:23%; }
+[zc-row~="1of5"] > *, [zc-row~="mobile-1of5"] > * { flex-basis:18%; max-width:18%; }
+[zc-row~="1of6"] > *, [zc-row~="mobile-1of6"] > * { flex-basis:14.667%; max-width:14.667%; }
+
+
+/* COLUMNS
+--------------------------- */
+/*
+  NOTE: [zc-col] needs to be defined after [zc-row]. 
+  Adding width keywords to zc-column as an attribute value will override 
+  the parent [zc-row]'s column widths attribute value.
+  Ex: Parent set as `[zc-row~="1of6"]`, sets all child columns from the parent.
+  You can override individual columns via `[zc-col="tabletP-1of3"]`
+*/
+[zc-col] { margin-left:auto; margin-right:auto; box-sizing:border-box; }
+[zc-col] + [zc-col] { margin-top:20px; }
+[zc-col~="left"], [zc-col].left { margin-left:0; }
+[zc-col~="flex-1"], [zc-col~="mobile-flex-1"] { width:auto; flex:1; }
+[zc-row] > [zc-col] { margin-left:0; margin-right:0; }
+[zc-col] > :last-child { margin-bottom:0; }
+/* Columns */
+[zc-col~="1of2"], [zc-col~="mobile-1of2"] { flex-basis:48%; max-width:48%; }
+[zc-col~="1of3"], [zc-col~="mobile-1of3"] { flex-basis:31%; max-width:31%; }
+[zc-col~="1of4"], [zc-col~="mobile-1of4"] { flex-basis:23%; max-width:23%; }
+[zc-col~="1of5"], [zc-col~="mobile-1of5"] { flex-basis:18%; max-width:18%; }
+[zc-col~="1of6"], [zc-col~="mobile-1of6"] { flex-basis:14.667%; max-width:14.667%; }
+/* Max Width */
+[zc-col~="50%"], [zc-col~="mobile-50%"] { flex-basis: 50%; max-width: 50%; }
+[zc-col~="60%"], [zc-col~="mobile-60%"] { flex-basis: 60%; max-width: 60%; }
+[zc-col~="70%"], [zc-col~="mobile-70%"] { flex-basis: 70%; max-width: 70%; }
+[zc-col~="80%"], [zc-col~="mobile-80%"] { flex-basis: 80%; max-width: 80%; }
+[zc-col~="90%"], [zc-col~="mobile-90%"] { flex-basis: 90%; max-width: 90%; }
+[zc-col~="100%"], [zc-col~="mobile-100%"] { flex-basis: 100%; max-width: 100%; }
+
+
+/* MEDIA QUERIES (MIN)
+---------------------------------------------- */
+
+/* TABLET: PORTRAIT */
+@media screen and (min-width:768px) {
+
+  /* ROWS */
+  [zc-row] { justify-content: space-between; }
+  /* Misc */
+  [zc-row~="tabletP-block"] { display:block; }
+  /* Align Items */
+  [zc-row~="tabletP-align-baseline"] { align-items: baseline; }
+  [zc-row~="tabletP-align-center"] { align-items: center; }
+  [zc-row~="tabletP-align-end"] { align-items: flex-end; }
+  [zc-row~="tabletP-align-start"] { align-items: flex-start; }
+  [zc-row~="tabletP-align-stretch"] { align-items: stretch; }
+  /* Direction */
+  [zc-row~="tabletP-direction-column"] { flex-direction: column; }
+  [zc-row~="tabletP-direction-row"] { flex-direction: row; }
+  /* Grow */
+  [zc-row~="tabletP-grow-0"] { flex-grow: 0; }
+  [zc-row~="tabletP-grow-1"] { flex-grow: 1; }
+  /* Justify Content */
+  [zc-row~="tabletP-justify-around"] { justify-content: space-around; }
+  [zc-row~="tabletP-justify-between"] { justify-content: space-between; }
+  [zc-row~="tabletP-justify-between"] > * { margin-left: 0; }
+  [zc-row~="tabletP-justify-center"] { justify-content: center; }
+  [zc-row~="tabletP-justify-end"] { justify-content: flex-end; }
+  [zc-row~="tabletP-justify-evenly"] { justify-content: space-evenly; }
+  [zc-row~="tabletP-justify-start"] { justify-content: flex-start; }
+  [zc-row~="tabletP-justify-stretch"] { justify-content: stretch; }
+  /* Grow */
+  [zc-row~="tabletP-shrink-0"] { flex-shrink: 0; }
+  [zc-row~="tabletP-shrink-1"] { flex-shrink: 1; }
+  /* Grow */
+  [zc-row~="tabletP-wrap-nowrap"] { flex-wrap: nowrap; }
+  [zc-row~="tabletP-wrap-wrap"] { flex-wrap: wrap; }
+  [zc-row~="tabletP-wrap-wrap-reverse"] { flex-wrap: wrap-reverse; }
+
+  /* Set all child columns (Tablet-Portrait+) */
+  [zc-row~="tabletP-100%"] > * { flex-basis:100%; max-width:100%; }
+  [zc-row~="tabletP-1of2"] > * { flex-basis:48%; max-width:48%; }
+  [zc-row~="tabletP-1of3"] > * { flex-basis:31%; max-width:31%; }
+  [zc-row~="tabletP-1of4"] > * { flex-basis:23%; max-width:23%; }
+  [zc-row~="tabletP-1of5"] > * { flex-basis:18%; max-width:18%; }
+  [zc-row~="tabletP-1of6"] > * { flex-basis:14.667%; max-width:14.667%; }
+
+  /* COLUMNS */
+  [zc-col] + [zc-col] { margin-top:0; }
+  /* Columns (Tablet-Portrait+) */
+  [zc-col~="tabletP-1of2"] { flex-basis:48%; max-width:48%; }
+  [zc-col~="tabletP-1of3"] { flex-basis:31%; max-width:31%; }
+  [zc-col~="tabletP-1of4"] { flex-basis:23%; max-width:23%; }
+  [zc-col~="tabletP-1of5"] { flex-basis:18%; max-width:18%; }
+  [zc-col~="tabletP-1of6"] { flex-basis:14.667%; max-width:14.667%; }
+  /* Max-Width (Tablet-Portrait+) */
+  [zc-col~="tabletP-30%"] { flex-basis: 30%; max-width: 30%; }
+  [zc-col~="tabletP-50%"] { flex-basis: 50%; max-width: 50%; }
+  [zc-col~="tabletP-60%"] { flex-basis: 60%; max-width: 60%; }
+  [zc-col~="tabletP-70%"] { flex-basis: 70%; max-width: 70%; }
+  [zc-col~="tabletP-80%"] { flex-basis: 80%; max-width: 80%; }
+  [zc-col~="tabletP-90%"] { flex-basis: 90%; max-width: 90%; }
+  [zc-col~="tabletP-100%"] { flex-basis: 100%; max-width: 100%; }
+
+}
+
+
+/* TABLET: LANDSCAPE */
+@media screen and (min-width: 1024px) {
+
+  /* ROWS */
+  /* Misc */
+  [zc-row~="tabletL-block"] { display:block; }
+  /* Align Items */
+  [zc-row~="tabletL-align-baseline"] { align-items: baseline; }
+  [zc-row~="tabletL-align-center"] { align-items: center; }
+  [zc-row~="tabletL-align-end"] { align-items: flex-end; }
+  [zc-row~="tabletL-align-start"] { align-items: flex-start; }
+  [zc-row~="tabletL-align-stretch"] { align-items: stretch; }
+  /* Direction */
+  [zc-row~="tabletL-direction-column"] { flex-direction: column; }
+  [zc-row~="tabletL-direction-row"] { flex-direction: row; }
+  /* Grow */
+  [zc-row~="tabletL-grow-0"] { flex-grow: 0; }
+  [zc-row~="tabletL-grow-1"] { flex-grow: 1; }
+  /* Inline child w/ margins */
+  [zc-row~="tabletL-inline"] > * + * { margin-left: var(--row-justify-margin-left); }
+  /* Justify Content */
+  [zc-row~="tabletL-justify-around"] { justify-content: space-around; }
+  [zc-row~="tabletL-justify-between"] { justify-content: space-between; }
+  [zc-row~="tabletL-justify-between"] > * { margin-left: 0; }
+  [zc-row~="tabletL-justify-center"] { justify-content: center; }
+  [zc-row~="tabletL-justify-end"] { justify-content: flex-end; }
+  [zc-row~="tabletL-justify-evenly"] { justify-content: space-evenly; }
+  [zc-row~="tabletL-justify-start"] { justify-content: flex-start; }
+  [zc-row~="tabletL-justify-stretch"] { justify-content: stretch; }
+  /* Grow */
+  [zc-row~="tabletL-shrink-0"] { flex-shrink: 0; }
+  [zc-row~="tabletL-shrink-1"] { flex-shrink: 1; }
+  /* Grow */
+  [zc-row~="tabletL-wrap-nowrap"] { flex-wrap: nowrap; }
+  [zc-row~="tabletL-wrap-wrap"] { flex-wrap: wrap; }
+  [zc-row~="tabletL-wrap-wrap-reverse"] { flex-wrap: wrap-reverse; }
+
+  /* Set all child columns (Tablet-Landscape+) */
+  [zc-row~="tabletL-100%"] > * { flex-basis:100%; max-width:100%; }
+  [zc-row~="tabletL-1of2"] > * { flex-basis:48%; max-width:48%; }
+  [zc-row~="tabletL-1of3"] > * { flex-basis:31%; max-width:31%; }
+  [zc-row~="tabletL-1of4"] > * { flex-basis:23%; max-width:23%; }
+  [zc-row~="tabletL-1of5"] > * { flex-basis:18%; max-width:18%; }
+  [zc-row~="tabletL-1of6"] > * { flex-basis:14.667%; max-width:14.667%; }
+
+  /* COLUMNS */
+  /* Columns (Tablet-Lanscape+) */
+  [zc-col~="tabletL-1of2"] { flex-basis:48%; max-width:48%; }
+  [zc-col~="tabletL-1of3"] { flex-basis:31%; max-width:31%; }
+  [zc-col~="tabletL-1of4"] { flex-basis:23%; max-width:23%; }
+  [zc-col~="tabletL-1of5"] { flex-basis:18%; max-width:18%; }
+  [zc-col~="tabletL-1of6"] { flex-basis:14.667%; max-width:14.667%; }
+  /* Max-Width (Tablet-Lanscape+) */
+  [zc-col~="tabletL-50%"] { flex-basis: 50%; max-width: 50%; }
+  [zc-col~="tabletL-60%"] { flex-basis: 60%; max-width: 60%; }
+  [zc-col~="tabletL-70%"] { flex-basis: 70%; max-width: 70%; }
+  [zc-col~="tabletL-80%"] { flex-basis: 80%; max-width: 80%; }
+  [zc-col~="tabletL-90%"] { flex-basis: 90%; max-width: 90%; }
+  [zc-col~="tabletL-100%"] { flex-basis: 100%; max-width: 100%; }
+
+}
+
+
+/* DESKTOP */
+@media screen and (min-width: 1400px) {
+
+  /* ROWS */
+  /* Misc */
+  [zc-row~="desktop-block"] { display:block; }
+  /* Align Items */
+  [zc-row~="desktop-align-baseline"] { align-items: baseline; }
+  [zc-row~="desktop-align-center"] { align-items: center; }
+  [zc-row~="desktop-align-end"] { align-items: flex-end; }
+  [zc-row~="desktop-align-start"] { align-items: flex-start; }
+  [zc-row~="desktop-align-stretch"] { align-items: stretch; }
+  /* Direction */
+  [zc-row~="desktop-direction-column"] { flex-direction: column; }
+  [zc-row~="desktop-direction-row"] { flex-direction: row; }
+  /* Grow */
+  [zc-row~="desktop-grow-0"] { flex-grow: 0; }
+  [zc-row~="desktop-grow-1"] { flex-grow: 1; }
+  /* Inline child w/ margins */
+  [zc-row~="desktop-inline"] > * + * { margin-left: var(--row-justify-margin-left); }
+  /* Justify Content */
+  [zc-row~="desktop-justify-around"] { justify-content: space-around; }
+  [zc-row~="desktop-justify-between"] { justify-content: space-between; }
+  [zc-row~="desktop-justify-between"] > * { margin-left: 0; }
+  [zc-row~="desktop-justify-center"] { justify-content: center; }
+  [zc-row~="desktop-justify-end"] { justify-content: flex-end; }
+  [zc-row~="desktop-justify-evenly"] { justify-content: space-evenly; }
+  [zc-row~="desktop-justify-start"] { justify-content: flex-start; }
+  [zc-row~="desktop-justify-stretch"] { justify-content: stretch; }
+  /* Grow */
+  [zc-row~="desktop-shrink-0"] { flex-shrink: 0; }
+  [zc-row~="desktop-shrink-1"] { flex-shrink: 1; }
+  /* Grow */
+  [zc-row~="desktop-wrap-nowrap"] { flex-wrap: nowrap; }
+  [zc-row~="desktop-wrap-wrap"] { flex-wrap: wrap; }
+  [zc-row~="desktop-wrap-wrap-reverse"] { flex-wrap: wrap-reverse; }
+
+  /* Set all child columns (Desktop+) */
+  [zc-row~="desktop-100%"] > * { flex-basis:100%; max-width:100%; }
+  [zc-row~="desktop-1of2"] > * { flex-basis:48%; max-width:48%; }
+  [zc-row~="desktop-1of3"] > * { flex-basis:31%; max-width:31%; }
+  [zc-row~="desktop-1of4"] > * { flex-basis:23%; max-width:23%; }
+  [zc-row~="desktop-1of5"] > * { flex-basis:18%; max-width:18%; }
+  [zc-row~="desktop-1of6"] > * { flex-basis:14.667%; max-width:14.667%; }
+
+  /* COLUMNS */
+  /* Columns (Desktop+) */
+  [zc-col~="desktop-1of2"] { flex-basis:48%; max-width:48%; }
+  [zc-col~="desktop-1of3"] { flex-basis:31%; max-width:31%; }
+  [zc-col~="desktop-1of4"] { flex-basis:23%; max-width:23%; }
+  [zc-col~="desktop-1of5"] { flex-basis:18%; max-width:18%; }
+  [zc-col~="desktop-1of6"] { flex-basis:14.667%; max-width:14.667%; }
+  /* Max-Width (Desktop+) */
+  [zc-col~="desktop-50%"] { flex-basis: 50%; max-width: 50%; }
+  [zc-col~="desktop-60%"] { flex-basis: 60%; max-width: 60%; }
+  [zc-col~="desktop-70%"] { flex-basis: 70%; max-width: 70%; }
+  [zc-col~="desktop-80%"] { flex-basis: 80%; max-width: 80%; }
+  [zc-col~="desktop-90%"] { flex-basis: 90%; max-width: 90%; }
+  [zc-col~="desktop-100%"] { flex-basis: 100%; max-width: 100%; }
+
+}
+
+
+/* DESKTOP MAX */
+@media screen and (min-width: 1650px) {
+
+  /* ROWS */
+  /* Misc */
+  [zc-row~="desktopL-block"] { display:block; }
+  /* Align Items */
+  [zc-row~="desktopL-align-baseline"] { align-items: baseline; }
+  [zc-row~="desktopL-align-center"] { align-items: center; }
+  [zc-row~="desktopL-align-end"] { align-items: flex-end; }
+  [zc-row~="desktopL-align-start"] { align-items: flex-start; }
+  [zc-row~="desktopL-align-stretch"] { align-items: stretch; }
+  /* Direction */
+  [zc-row~="desktopL-direction-column"] { flex-direction: column; }
+  [zc-row~="desktopL-direction-row"] { flex-direction: row; }
+  /* Grow */
+  [zc-row~="desktopL-grow-0"] { flex-grow: 0; }
+  [zc-row~="desktopL-grow-1"] { flex-grow: 1; }
+  /* Inline child w/ margins */
+  [zc-row~="desktopL-inline"] > * + * { margin-left: var(--row-justify-margin-left); }
+  /* Justify Content */
+  [zc-row~="desktopL-justify-around"] { justify-content: space-around; }
+  [zc-row~="desktopL-justify-between"] { justify-content: space-between; }
+  [zc-row~="desktopL-justify-between"] > * { margin-left: 0; }
+  [zc-row~="desktopL-justify-center"] { justify-content: center; }
+  [zc-row~="desktopL-justify-end"] { justify-content: flex-end; }
+  [zc-row~="desktopL-justify-evenly"] { justify-content: space-evenly; }
+  [zc-row~="desktopL-justify-start"] { justify-content: flex-start; }
+  [zc-row~="desktopL-justify-stretch"] { justify-content: stretch; }
+  /* Grow */
+  [zc-row~="desktopL-shrink-0"] { flex-shrink: 0; }
+  [zc-row~="desktopL-shrink-1"] { flex-shrink: 1; }
+  /* Grow */
+  [zc-row~="desktopL-wrap-nowrap"] { flex-wrap: nowrap; }
+  [zc-row~="desktopL-wrap-wrap"] { flex-wrap: wrap; }
+  [zc-row~="desktopL-wrap-wrap-reverse"] { flex-wrap: wrap-reverse; }
+
+  /* Set all child columns (desktopM+) */
+  [zc-row~="desktopL-100%"] > * { flex-basis:100%; max-width:100%; }
+  [zc-row~="desktopL-1of2"] > * { flex-basis:48%; max-width:48%; }
+  [zc-row~="desktopL-1of3"] > * { flex-basis:31%; max-width:31%; }
+  [zc-row~="desktopL-1of4"] > * { flex-basis:23%; max-width:23%; }
+  [zc-row~="desktopL-1of5"] > * { flex-basis:18%; max-width:18%; }
+  [zc-row~="desktopL-1of6"] > * { flex-basis:14.667%; max-width:14.667%; }
+
+  /* COLUMNS */
+  /* Columns (Desktop+) */
+  [zc-col~="desktopL-1of2"] { flex-basis:48%; max-width:48%; }
+  [zc-col~="desktopL-1of3"] { flex-basis:31%; max-width:31%; }
+  [zc-col~="desktopL-1of4"] { flex-basis:23%; max-width:23%; }
+  [zc-col~="desktopL-1of5"] { flex-basis:18%; max-width:18%; }
+  [zc-col~="desktopL-1of6"] { flex-basis:14.667%; max-width:14.667%; }
+  /* Max-Width (Desktop+) */
+  [zc-col~="desktopL-50%"] { flex-basis: 50%; max-width: 50%; }
+  [zc-col~="desktopL-60%"] { flex-basis: 60%; max-width: 60%; }
+  [zc-col~="desktopL-70%"] { flex-basis: 70%; max-width: 70%; }
+  [zc-col~="desktopL-80%"] { flex-basis: 80%; max-width: 80%; }
+  [zc-col~="desktopL-90%"] { flex-basis: 90%; max-width: 90%; }
+  [zc-col~="desktopL-100%"] { flex-basis: 100%; max-width: 100%; }
+
+}
+
+
+/* MEDIA QUERIES (MAX)
+---------------------------------------------- */
+
+/* MOBILE (Only) */
+@media screen and (max-width: 767px) {
+
+  /* ROWS */
+  /* Force Block (Mobile Only) */
+  [data-row~="mobile-only-block"] { display:block; }
+
+  /* COLUMNS */
+  [data-col] { width:100%; }
+
+}

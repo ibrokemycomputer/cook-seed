@@ -1,0 +1,285 @@
+/* MAIN WRAPPER
+--------------------------- */
+[zc-demo-lesson="container"] {
+  --demo-lesson-height: 500px;
+
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  max-height: var(--demo-lesson-height); 
+}
+
+/* COLUMNS
+--------------------------- */
+[zc-demo-lesson="col"] { position:relative; }
+[zc-demo-lesson="col"]:first-of-type { border-radius: var(--border-radius) 0 0 0; }
+[zc-demo-lesson="col"]:last-of-type { border-radius: 0 0 0 var(--border-radius); }
+
+
+/* EDITOR CODE PANEL
+--------------------------- */
+[zc-demo-lesson="editor"] {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius) 0 0 0;
+  height: 100%;
+  min-height: var(--demo-lesson-height);
+  overflow: hidden;
+}
+[zc-demo-lesson="editor"] pre {
+  background: none;
+  border: none;
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 20px;
+}
+[zc-demo-lesson="export"] {
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+
+/* CHART PANEL
+--------------------------- */
+[zc-demo-lession-chart] { 
+  border: 1px solid var(--border-color);
+  border-radius: 0 var(--border-radius) 0 0;
+  height:100%; 
+  margin-left: -1px;
+}
+
+
+/* CONTROLS
+--------------------------- */
+[zc-demo-lesson="controls"] { 
+  background: var(--color-light);
+  border: 1px solid var(--border-color);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-sizing: border-box;
+  padding: 1rem;
+}
+[zc-demo-lesson="controls"] > * {
+  background: #fff;
+  border: 1px solid #e1e1e8;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) -1px 1px 2px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 5px;
+  padding: 8px 10px;
+  display: inline-block;
+  transition: all .2s;
+}
+[zc-demo-lesson="controls"] > *:hover,
+[zc-demo-lesson="controls"] > [active] {
+  background: #64d3ff;
+  border-color: #00baf0;
+  color: #fff;
+}
+
+#toggle-chart-top {
+  position: relative;
+}
+
+/* Tooltip */
+[zc-demo-lesson~="tooltip"] {
+  background-color: #FF9545;
+  position: absolute;
+  left: 54px;
+  top: -23px;
+  padding: 4px;
+  width: 220px;
+  color: #FFF;
+  border-radius: 5px;
+  z-index: 2;
+  text-align: center;
+  font-weight: 600;
+  height: 32px;
+  /* fallback for odd browsers */
+  visibility: hidden;
+}
+[zc-demo-lesson~="tooltip"]::before {
+  content: "";
+  border-style: solid;
+  border-width: 11px 11px 0px 11px;
+  border-color: #FF9545 transparent transparent transparent;
+  position: absolute;
+  left: 102px;
+  bottom: -11px;
+}
+
+.chart-toggle {
+  height: 480px;
+  margin-bottom: 18px;
+}
+
+.homepage-chart-controls {
+  margin: 0;
+  height: 100%;
+}
+
+.homepage-chart-controls label {
+  margin: 0;
+}
+
+.homepage-chart-controls [name="homepage-chart-toggle"] {
+  display: none;
+}
+
+.mobile-chart-switcher {
+  display: none;
+}
+
+
+
+.arrow-container {
+  height: 100%;
+  position: relative;
+}
+
+#arrow {
+  border-left: 30px solid #e1e1e8;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  position: absolute;
+  top: 210px;
+  z-index: 200;
+}
+
+#arrow:after {
+  content: '';
+  position: absolute;
+  border-left: 30px solid #FFF;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  top: -30px;
+  left: -31px;
+  z-index: -1;
+}
+
+#homepage-chart-ctas {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+
+
+
+@keyframes PULSE {
+  0% { background: #fff; }
+  50% { background: #fff03c; }
+  100% { background: #fff; }
+}
+.chart-editor {
+  animation: PULSE 3s infinite;
+  border-bottom: 1px dotted rgb(255, 193, 7);
+  color: #06e;
+  cursor: pointer;
+  position: relative;
+}
+.chart-editor:hover {
+  border-color: #03C;
+  color: #09F;
+}
+.chart-editor__input {
+  border: none;
+  display: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+}
+/* 
+input.chart-editor__input {
+  border: none;
+  height: auto;
+  height: initial;
+  padding: 0;
+} */
+
+/* select.chart-editor__input {
+  width: auto;
+  width: initial;
+} */
+
+.chart-editor__input.short {
+  padding: 0 5px;
+}
+
+.chart-editor__input:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.chart-editor__content {
+  display: inline;
+  display: initial;
+}
+
+.chart-editor__content span {
+  color: #06E;
+}
+
+.chart-editor__tooltip {
+  background: #FFF;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px;
+  display: none;
+  padding: 2px 6px;
+  position: absolute;
+  top: -7px;
+}
+
+.chart-editor__tooltip:before {
+  background: #D9D9D9;
+  content: '';
+  height: 8px;
+  left: -5px;
+  position: absolute;
+  top: 8px;
+  transform: rotate(45deg);
+  width: 8px;
+}
+
+.chart-editor__tooltip:after {
+  background: #FFFFFF;
+  content: '';
+  height: 8px;
+  left: -3px;
+  position: absolute;
+  top: 8px;
+  transform: rotate(45deg);
+  width: 8px;
+}
+
+.chart-editor [type='range'],
+.chart-editor [type='color'] {
+  background: none;
+  height: 13px;
+}
+
+.chart-editor select {
+  background: none;
+  line-height: inherit;
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+  -ms-appearance: menulist;
+}
+
+.chart-editor.active .chart-editor__input {
+  display: inline;
+  display: initial;
+}
+
+.chart-editor.active .chart-editor__tooltip {
+  display: initial;
+}
+
+.chart-editor.active .chart-editor__content {
+  display: none;
+}

@@ -34,6 +34,9 @@ async function getSrcConfig({fileName}) {
   
   // Load file content into Cheerio for dom traversal
   let $;
+  if (fileName === 'dist/plugin/zc-obfuscate/zc-obfuscate.js') {
+    console.log('fileSource', fileSource)
+  }
   if (ext === 'html') $ = cheerio.load(fileSource, utils.cheerioConfig);
   else $ = cheerio.load(fileSource, utils.cheerioConfigDecode);
 

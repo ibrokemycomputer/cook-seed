@@ -19,6 +19,10 @@ header {
   width: 100%;
   z-index: 10;
 }
+[html-nav-active] header {
+  padding: 0;
+  transform: none;
+}
 /* Inner Wrappers */
 header .inner {
   --inner-y-padding: 0;
