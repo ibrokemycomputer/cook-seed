@@ -2,7 +2,6 @@
 // -----------------------------
 const cwd = process.cwd();
 const chalk = require('chalk');
-const cheerio = require('cheerio');
 const fs = require('fs');
 const utils = require(`${cwd}/scripts/utils/util.js`);
 
@@ -21,7 +20,8 @@ const setActiveLinks = require('./plugins/set-active-links.js');
 const {convertPageToDirectory} = require(`${cwd}/config/main.js`);
 
 // GET SOURCE
-const {getSrcConfig,getSrcFiles,rebindCheerio} = require('./utils/get-src');
+const {getSrcConfig,getSrcFiles} = require('./utils/get-src');
+
 
 // BUILD
 // -----------------------------
@@ -40,38 +40,34 @@ async function build() {
     // Run tasks on matched files
     await files.forEach(async fileName => {
       
-      // Open file and store file info for use in plugins (file source, extension, cheerio dom object, etc.)
-      let {$,fileExt,fileSource} = await getSrcConfig({fileName});
-
-      if (fileName === 'dist/plugin/zc-obfuscate/zc-obfuscate.js') {
-        console.log('hi', $('body').html())
-      }
+      // Open file and store file info for use in plugins
+      // We'll pass around the source string between the plugins
+      // Then write back the updated/modified source to the file at the end
+      let file = await getSrcConfig({fileName});
       
       // PLUGIN: Replace all `[include]` in file
-      replaceIncludes({$, fileExt, fileName, allowType: ['.html']});
-      
+      replaceIncludes({file, allowType: ['.html']});
+
       // PLUGIN: Inline all external `<link>` and `<script>` tags with `[inline]`
-      replaceInline({$, fileExt, fileName, allowType: ['.html']});
+      replaceInline({file, allowType: ['.html']});
       // PLUGIN: `/src` is needed for `@import url()` calls when inlining source
       // Since we don't inline in 'development' mode, we need to remove `/src` paths
       // since `/src` doesn't exist in `/dist`
-      replaceSrcPathForDev({$, fileExt, fileName, allowType: ['.css']});
-
+      replaceSrcPathForDev({file, allowType: ['.css','.html']});
+      
       // PLUGIN: Find `<a>` tags whose [href] value matches the current page (link active state)
-      setActiveLinks({$, fileExt, fileName, allowType: ['.html']});
+      setActiveLinks({file, allowType: ['.html']});
 
       // PLUGIN: Minify Source
-      const minifiedSrc = minifySrc({$, fileExt, fileName});
-      // Need to replace the Cheerio var with the new minfied source
-      if (minifiedSrc) $ = await rebindCheerio({fileName, src: minifiedSrc});
+      minifySrc({file});
 
-      // utils.testSrc({fileName, src: utils.getSrc({$, fileExt})});
+      // utils.testSrc({file});
 
       // PLUGIN: Create directory from .html file
-      if (convertPageToDirectory) createDirFromFile({$, fileExt, fileName, allowType: ['.html'], excludePath: ['dist/index']});
+      if (convertPageToDirectory) createDirFromFile({file, allowType: ['.html'], excludePath: ['dist/index']});
       
-      // Write new, modified code back to the file
-      fs.writeFileSync(fileName, utils.getSrc({$, fileExt}));
+      // Write new, modified source back to the file
+      fs.writeFileSync(file.path, file.src);
     });
   });
 };

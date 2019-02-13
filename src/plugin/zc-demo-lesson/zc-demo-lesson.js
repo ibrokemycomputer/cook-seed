@@ -460,11 +460,11 @@ var $code = editor.querySelector('pre');
 // Store code-block tooltip element
 var $tooltip = document.querySelector('[jsref="demo-lesson-tooltip"]');
 // Listen for code block scrolling
-var currScroll;
+var currScroll, scrollAttr = 'scrolling';
 $code.addEventListener('scroll', function(e) {
   currScroll = e.target.scrollTop;
-  if (currScroll && currScroll > 10) $tooltip.removeAttribute(scrollAttr)
-  console.log('scrolling', e.target.scrollTop)
+  if (currScroll && currScroll > 10) $tooltip.setAttribute(scrollAttr,'');
+  else $tooltip.removeAttribute(scrollAttr);
 });
 
 

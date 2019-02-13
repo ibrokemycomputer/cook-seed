@@ -7,7 +7,6 @@
 // -----------------------------
 const cwd = process.cwd();
 const chalk = require('chalk');
-const cheerio = require('cheerio');
 const fs = require('fs');
 const utils = require(`${cwd}/scripts/utils/util.js`);
 const Logger = require(`${cwd}/scripts/utils/logger.js`);
@@ -16,7 +15,15 @@ const Logger = require(`${cwd}/scripts/utils/logger.js`);
 const {excludePaths,distPath,srcPath} = require(`${cwd}/config/main.js`);
 
 
-// HELPER METHODS
+// EXPORT
+// -----------------------------
+module.exports = {
+  getSrcConfig,
+  getSrcFiles,
+};
+
+
+// PUBLIC METHODS
 // -----------------------------
 
 /**
@@ -27,21 +34,27 @@ const {excludePaths,distPath,srcPath} = require(`${cwd}/config/main.js`);
  * @private
  */
 async function getSrcConfig({fileName}) {
-  // Store filename parts
-  const {ext,name} = utils.getFileParts(fileName);
-  // Get file source
-  const fileSource = fs.readFileSync(fileName, 'utf-8');
+  // Init obj
+  let file = {};
   
-  // Load file content into Cheerio for dom traversal
-  let $;
-  if (fileName === 'dist/plugin/zc-obfuscate/zc-obfuscate.js') {
-    console.log('fileSource', fileSource)
-  }
-  if (ext === 'html') $ = cheerio.load(fileSource, utils.cheerioConfig);
-  else $ = cheerio.load(fileSource, utils.cheerioConfigDecode);
+  // Store filename parts
+  let {ext,name} = utils.getFileParts(fileName);
+  file.ext = ext;
+  file.name = name;
+  file.path = fileName;
+  
+  // Get file source
+  file.src = fs.readFileSync(fileName, 'utf-8');
+  // Sanitize comments that have non-closing html elements in them. JSDOM will try to close it in the DOM
+  // but since there is no starting tag (it's in the comment) it will break the dom
+  file.src = removeCommentTags(file.src);
+  
+  // Get JSDOM parts
+  // const document = utils.jsdom.dom({fileSource}).window.document;
 
   // Return config object
-  return { $, fileSource, fileExt: ext };
+  // return { document, fileSource, fileExt: ext };
+  return file;
 }
 
 /**
@@ -68,24 +81,24 @@ async function getSrcFiles(cb) {
   if (cb) cb(files);
 }
 
+
+// HELPER METHODS
+// -----------------------------
+
 /**
- * @description - Rebind Cheerio with newly modified source instead of the starting file source
- * @param {Object} Opts - Argument object
- * @property {String} fileName - The filename of the targeted file 
- * @property {String} src - The new source
- * @returns {Object}
- * @private
+ * @description Remove < and > from comments since non-closed tags
+ * will have the matching end tag added
  */
-async function rebindCheerio({fileName,src}) {
-  // Store filename parts
-  const {ext,name} = utils.getFileParts(fileName);
-  // Load file content into Cheerio for dom traversal
-  let $;
-  // Don't decode .html page code, but do .css and .js
-  if (ext === 'html') $ = cheerio.load(src, utils.cheerioConfig);
-  else $ = cheerio.load(src, utils.cheerioConfigDecode);
-  // Return config object
-  return $;
+function removeCommentTags(src) {
+  const commentsRegex = /\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm;
+  const matches = src.match(commentsRegex); 
+  if (!matches) return src;
+  let replaces;
+  matches.forEach(m => {
+    replaces = m.replace('<', '').replace('>', '');
+    src = src.replace(m, replaces);
+  })
+  return src;
 }
 
 // HELPER METHODS
@@ -106,12 +119,3 @@ function validatePaths(paths) {
   // Return an array with either valid user regex(es) or an empty array
   return pathArr;
 }
-
-
-// EXPORT
-// -----------------------------
-module.exports = {
-  getSrcConfig,
-  getSrcFiles,
-  rebindCheerio,
-};

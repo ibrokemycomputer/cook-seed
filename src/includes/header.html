@@ -13,8 +13,8 @@
           <div zc-nav-content="primary">
             <nav nav-primary tabindex="0" aria-label="Primary Navigation">
               <div nav-primary-group="1">
-                <a href="/features">Features</a>
-                <a href="/gallery">Gallery</a>
+                <a href="/features/">Features</a>
+                <a href="/gallery/">Gallery</a>
                 <a href="/docs">Docs</a>
                 <a href="/support">Support</a>
                 <a href="/pricing">Pricing</a>
@@ -77,180 +77,26 @@
       </span>
       
       <!-- Primary Nav Mask (Mobile) -->
-      <div js-ref="nav-mask" nav-mask></div>
+      <div jsref="nav-mask" nav-mask></div>
 
 
       <!-- ZingGrid Dropdown CTA -->
-      <style>
-        [zc-drop-cta="box"] {
-          background: var(--color-secondary);
-          transform: translateY(-100%);
-          transition: transform .4s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        [zc-drop-cta="box"][run] {
-          transform: translateY(0);
-        }
-        [zc-drop-cta="box"] .inner {
-          align-items: center;
-          color: #fff;
-          display: flex;
-          font-size: 95%;
-          justify-content: center;
-          padding-bottom: 3px;
-          padding-top: 3px;
-        }
-        [zc-drop-cta="link"] { color:#fff; }
-        [zc-drop-cta="link"]:hover { color:#fff; }
-        [zc-drop-cta="close"] {
-          cursor: pointer;
-          position: absolute;
-          right: var(--inner-x-padding);
-          top: 50%;
-          transform: translateY(-50%);
-        }
-        [zc-drop-cta="close"] svg {
-          height: 100%;
-          width: 100%;
-        }
-        #zinggrid-cta-1 {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: var(--header-height);
-        }
-      </style>
-      <template id="zinggrid-cta">
+      <link rel="stylesheet" href="/plugin/zc-drop-cta/zc-drop-cta.css" inline>
+      <template jsref="zc-drop-cta">
         <div zc-drop-cta="box">
           <div class="inner">
             <a href="https://www.zinggrid.com" target="_blank" zc-drop-cta="link">Visit ZingGrid.com to learn more about our new JavaScript library for data grids & data tables</a>
-            <svg zc-drop-cta="close" width="18" height="18"><use xlink:href="/img/shared-icons.svg#close2"></use></svg>
+            <svg jsref="zc-drop-cta-close" zc-drop-cta="close" width="18" height="18"><use xlink:href="/img/shared-icons.svg#close2"></use></svg>
           </div>
         </div>
       </template>
       
-      <script>
-        /**
-         * NAV DROPDOWNS
-         * @description Mobile Nav Trigger and Mask actions
-         */
-        var zcNav = {
-          activeAttr: 'html-nav-active',
-          resizeTO: null,
-          resizeMatch: null,
-          triggerIndex: null,
-          triggerLen: null,
-          $html: document.documentElement,
-          $trigger: null,
-          $triggers: document.querySelectorAll('[nav-trigger]'),
-          $mask: document.querySelector('[js-ref="nav-mask"]')
-        };
-        // Mask click to close
-        zcNav.maskClick = function(e) {
-          zcNav.$html.removeAttribute(zcNav.activeAttr);
-        };
-        // Window resize
-        zcNav.resize = function(e) {
-          // Debounce code
-          clearTimeout(zcNav.resizeTO);
-          zcNav.resizeTO = setTimeout(function() {
-            zcNav.resizeMatch = window.innerWidth > 1023 && zcNav.$html.hasAttribute(zcNav.activeAttr);
-            // Remove attribute only if present
-            if (zcNav.resizeMatch) zcNav.$html.removeAttribute(zcNav.activeAttr);
-          }, 500);
-        };
-        // Mobile trigger button click
-        zcNav.triggerClick = function(target) {
-          var type = target.getAttribute('nav-trigger');
-          if (zcNav.$html.hasAttribute(zcNav.activeAttr)) zcNav.$html.removeAttribute(zcNav.activeAttr);
-          else zcNav.$html.setAttribute(zcNav.activeAttr, type);
-        };
-        // Add init items
-        zcNav.init = function() {
-          // Toggle <body> class to show/hide dropdown in mobile
-          zcNav.triggerLen = zcNav.$triggers.length;
-          for (zcNav.triggerIndex = 0; zcNav.triggerIndex<zcNav.triggerLen; zcNav.triggerIndex++) {
-            zcNav.$trigger = zcNav.$triggers[zcNav.triggerIndex];
-            zcNav.$trigger.addEventListener('click', function(e) { zcNav.triggerClick(zcNav.$trigger) });
-          }
-          // Close nav on mask click
-          zcNav.$mask.addEventListener('click', zcNav.maskClick);
-          // Remove <body> attribute when not in mobile
-          window.addEventListener('resize', zcNav.resize, {passive:true});
-        }
-        // Init
-        zcNav.init();
-      </script>
-
-      <script>
-        /**
-         * SECONDARY NAV
-         * @description Copy secondary nav items (<a>) to designated area in primary nav (for mobile ui)
-         */
-        var zcSecondaryNav = {
-          $items: document.querySelectorAll('[nav-secondary] a'),
-          $target: document.querySelector('[nav-primary-group="2"]'),
-          init: function() {
-            var i, clone, items = zcSecondaryNav.$items;
-            for (i = 0; i<items.length; i++) {
-              clone = items[i].cloneNode(true);
-              zcSecondaryNav.$target.appendChild(clone);
-            }
-          }
-        };
-        // Init
-        zcSecondaryNav.init();
-      </script>
-
-      <script>
-        /**
-         * ZINGGRID DROP CTA
-         * @description Show dismissable x-promotion with ZingGrid
-         */
-        var zcDropCTA = {
-          $source: document.querySelector('#zinggrid-cta'),
-          $appendTarget: document.querySelector('header'),
-          hiddenAttr: 'hidden',
-          closeSelector: '[zc-drop-cta="close"]',
-          instanceId: 'zinggrid-cta-1',
-          init: function() {
-            const optOut = zcDropCTA.isOptOut();
-            if (optOut) return;
-            zcDropCTA.addToDOM();
-            zcDropCTA.attachEvents();
-          },
-          addToDOM: function() {
-            const {instanceId,$source,$appendTarget} = zcDropCTA;
-            const cloneFrag = document.importNode($source.content, true);
-            const clone = cloneFrag.children[0];
-            clone.id = instanceId;
-            $appendTarget.insertAdjacentElement('afterend', clone);
-          },
-          attachEvents: function() {
-            const {localStorage} = window;
-            const {closeSelector,hiddenAttr,instanceId,localStorageKey} = zcDropCTA;
-            const cta = document.querySelector(`#${instanceId}`);
-            const close = cta.querySelector(closeSelector);
-            close.addEventListener('click', e => {
-              // Hide element in DOM
-              cta.setAttribute(hiddenAttr,'');
-              // Add localStorage var to not show on repeat visits
-              localStorage.setItem(localStorageKey,true);
-            });
-            // Add [run] to start CSS animation
-            setTimeout(() => cta.setAttribute('run',''), 1000);
-          },
-          isOptOut: function() {
-            const {localStorage} = window;
-            const {localStorageKey} = zcDropCTA;
-            const getLocalStorage = localStorage.getItem(localStorageKey);
-            return getLocalStorage !== null;
-          },
-        };
-        // StorageKey
-        zcDropCTA.localStorageKey = `${zcDropCTA.instanceId}-dismiss`;
-        // Init
-        zcDropCTA.init();
-      </script>
+      <!-- Plugin: Primary Nav -->
+      <script src="/plugin/zc-nav/zc-nav.js" inline></script>
+      <!-- Plugin: Secondary Nav -->
+      <script src="/plugin/zc-secondary-nav/zc-secondary-nav.js" inline></script>
+      <!-- Plugin: Dropdown CTA -->
+      <script src="/plugin/zc-drop-cta/zc-drop-cta.js" inline></script>
 
     </div>
   </div>

@@ -17,24 +17,42 @@ const {distPath} = require(`${cwd}/config/main.js`);
 
 // DEFINE
 // -----------------------------
-async function setActiveLinks({$, fileExt, fileName, allowType, disallowType}) {
+async function setActiveLinks({file, allowType, disallowType}) {
   // Early Exit: File type not allowed
-  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  const allowed = utils.isAllowedType({file,allowType,disallowType});
   if (!allowed) return;
-  
-  const $links = $('a');
-  $links.each((i,link) => setActive({$, fileName, link}));
+
+  // Make source traversable with JSDOM
+  let dom = utils.jsdom.dom({src: file.src});
+
+  // Find <a> tags and add active state 
+  // if their [href] matches the current page url
+  const $links = dom.window.document.querySelectorAll('a');
+  $links.forEach((link,i) => setActive({file, link}));
+
+  // Store updated file source
+  file.src = utils.setSrc({dom});
 }
 
 // HELPER METHODS
 // -----------------------------
 
-function setActive({$, fileName, link}) {
-  let file = fileName.split('/');
-  file = file[file.length-1].split('.')[0];
-  let href = link.attribs.href.split('/');
+/**
+ * @description Set <a> tags to 'active' state if their [href] value file name matches the current file's name
+ * @param {Object} opts - The arguments object
+ * @property {Object} file - The current file's props (ext,name,path,name)
+ * @property {Object} link - The current <a> tag being evaluated
+ * @private
+ */
+function setActive({file, link}) {
+  // Current page file name
+  let matchPath = file.path.split('/');
+  matchPath = matchPath[matchPath.length-1].split('.')[0];
+  // Current <a> tag link's [href] path file name
+  let href = link.href.split(`${utils.jsdom.baseUrl}/`);
   href = href[href.length-1].split('.')[0];
-  if (href === file) $(link).attr('active','');
+  // If they match, set the <a> to its active state
+  if (href === matchPath) link.setAttribute('active','');
 }
 
 // EXPORT

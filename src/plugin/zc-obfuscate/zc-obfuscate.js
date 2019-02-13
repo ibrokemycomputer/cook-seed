@@ -1,5 +1,4 @@
 /**
- * <a>
  * OBFUSCATE EMAIL
  * @description Create email link with Javascript to fool(?) bots
  */

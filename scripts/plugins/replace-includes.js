@@ -18,17 +18,23 @@ const {srcPath} = require(`${cwd}/config/main.js`);
 
 // DEFINE
 // -----------------------------
-async function replaceIncludes({$, fileExt, fileName, allowType, disallowType}) {
+async function replaceIncludes({file, allowType, disallowType}) {
   // Early Exit: File type not allowed
-  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  const allowed = utils.isAllowedType({file,allowType,disallowType});
   if (!allowed) return;
   
   let errorLabel, errorPath, hasInclude, includePath;
-  const includeItems = $(`[${utils.attr.include}]`);
+  let dom = utils.jsdom.dom({src: file.src});
+  const includeItems = dom.window.document.querySelectorAll(`[${utils.attr.include}]`);
+
+  // Early Exit: No includes
+  if (!includeItems) return;
+
   // Loop through each found include call
-  includeItems.each((i,el) => {
+  includeItems.forEach((el,i) => {
+
     // If attribute found and it has a path
-    hasInclude = $(el).attr(utils.attr.include);
+    hasInclude = el.getAttribute(utils.attr.include);
     if (hasInclude && hasInclude.length) {
       try {
         includePath = path.resolve(`${srcPath}/${hasInclude}`);
@@ -42,22 +48,27 @@ async function replaceIncludes({$, fileExt, fileName, allowType, disallowType}) 
         // Get contents of target include file
         const content = fs.readFileSync(includePath, 'utf-8');
         // Add included content in DOM before placeholder element
-        $(el).before(content);
+        el.insertAdjacentHTML('beforebegin', content);
         // Remove placeholder element from DOM
-        $(el).remove();
+        el.remove();
         // Show terminal message
-        Logger.success(`${fileName} - Replaced [${utils.attr.include}]: ${ chalk.green(hasInclude) }`);
+        Logger.success(`${file.path} - Replaced [${utils.attr.include}]: ${ chalk.green(hasInclude) }`);
       }
       catch (error) {
-        errorLabel = `Invalid include path in '${fileName}`;
+        errorLabel = `Invalid include path in '${file.path}`;
         errorPath = error.path.split(cwd)[1];
         Logger.error(`${errorPath}\n${ chalk.red(errorLabel) }`);
       }
     }
   });
+
+  // Store updated file source
+  file.src = utils.setSrc({dom});
+  
   // Query again for includes. If sub-includes found, run again
-  const newSubIncludes = $(`[${utils.attr.include}]`);
-  if (newSubIncludes.length) replaceIncludes({$, fileExt, fileName, fileSource, allowType, disallowType});
+  dom = utils.jsdom.dom({src: file.src});
+  const newSubIncludes = dom.window.document.querySelectorAll(`[${utils.attr.include}]`);
+  if (newSubIncludes.length) replaceIncludes({file, allowType, disallowType});
 }
 
 

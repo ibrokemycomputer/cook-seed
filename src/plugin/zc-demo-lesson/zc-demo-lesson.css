@@ -9,7 +9,7 @@
 
 /* COLUMNS
 --------------------------- */
-[zc-demo-lesson="col"] { position:relative; }
+[zc-demo-lesson="col"] { position:relative; background:#fff; }
 [zc-demo-lesson="col"]:first-of-type { border-radius: var(--border-radius) 0 0 0; }
 [zc-demo-lesson="col"]:last-of-type { border-radius: 0 0 0 var(--border-radius); }
 
@@ -50,6 +50,38 @@
 }
 
 
+/* TOOLTIP
+--------------------------- */
+[zc-demo-lesson~="tooltip"] {
+  background-color: #ff9545;
+  position: absolute;
+  left: 54px;
+  top: -23px;
+  padding: 4px;
+  width: 220px;
+  color: #fff;
+  border-radius: 5px;
+  z-index: 2;
+  text-align: center;
+  font-weight: 600;
+  height: 32px;
+  /* fallback for odd browsers */
+  visibility: visible;
+}
+[zc-demo-lesson~="tooltip"][scrolling] {
+  visibility: hidden;
+}
+[zc-demo-lesson~="tooltip"]::before {
+  content: "";
+  border-style: solid;
+  border-width: 11px 11px 0px 11px;
+  border-color: #ff9545 transparent transparent transparent;
+  position: absolute;
+  left: 102px;
+  bottom: -11px;
+}
+
+
 /* CONTROLS
 --------------------------- */
 [zc-demo-lesson="controls"] { 
@@ -64,51 +96,22 @@
   border: 1px solid #e1e1e8;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) -1px 1px 2px;
+  color: var(--color-secondary);
   cursor: pointer;
   font-size: 14px;
   font-weight: normal;
-  margin-bottom: 5px;
   padding: 8px 10px;
   display: inline-block;
   transition: all .2s;
 }
 [zc-demo-lesson="controls"] > *:hover,
 [zc-demo-lesson="controls"] > [active] {
-  background: #64d3ff;
-  border-color: #00baf0;
-  color: #fff;
+  /* background: #64d3ff;
+  border-color: #00baf0; */
+  color: var(--color-primary);
+  transform: translate(-2px,-2px);
 }
 
-#toggle-chart-top {
-  position: relative;
-}
-
-/* Tooltip */
-[zc-demo-lesson~="tooltip"] {
-  background-color: #FF9545;
-  position: absolute;
-  left: 54px;
-  top: -23px;
-  padding: 4px;
-  width: 220px;
-  color: #FFF;
-  border-radius: 5px;
-  z-index: 2;
-  text-align: center;
-  font-weight: 600;
-  height: 32px;
-  /* fallback for odd browsers */
-  visibility: hidden;
-}
-[zc-demo-lesson~="tooltip"]::before {
-  content: "";
-  border-style: solid;
-  border-width: 11px 11px 0px 11px;
-  border-color: #FF9545 transparent transparent transparent;
-  position: absolute;
-  left: 102px;
-  bottom: -11px;
-}
 
 .chart-toggle {
   height: 480px;
@@ -282,4 +285,20 @@ input.chart-editor__input {
 
 .chart-editor.active .chart-editor__content {
   display: none;
+}
+
+
+/* MIN MEDIA QUERIES
+--------------------------- */
+
+/* MAX MEDIA QUERIES
+--------------------------- */
+
+/* MOBILE MAX */
+@media screen and (max-width:767px) {
+  /* CONTROLS
+  --------------------------- */
+  [zc-demo-lesson="controls"] > * {
+    margin-bottom: 5px;
+  }
 }

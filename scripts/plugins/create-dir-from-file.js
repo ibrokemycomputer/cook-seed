@@ -18,34 +18,30 @@ const {distPath} = require(`${cwd}/config/main.js`);
 
 // DEFINE
 // -----------------------------
-async function createDirFromFile({$, fileExt, fileName, allowType, disallowType, excludePath}) {
+async function createDirFromFile({file, allowType, disallowType, excludePath}) {
   // Early Exit: File type not allowed
-  const allowed = utils.isAllowedType({fileExt,allowType,disallowType});
+  const allowed = utils.isAllowedType({file,allowType,disallowType});
   if (!allowed) return;
-  
-  // Get file extension
-  const fileNameSplit = fileName.split('.');
-  const filePath = fileNameSplit[0];
-  // Get file name
-  const nameSplit = filePath.split('/')
-  const name = nameSplit[nameSplit.length-1];
+
+  // Get file path without extension
+  const filePath = file.path.split('.')[0];
   
   // Early Exit: Do not create directory if current file is an index.html page
-  if (name === 'index') return;
+  if (file.name === 'index') return;
 
   // Early Exit: Path includes excluded pattern
   // For example, we don't want to convert the site index file (homepage)
-  const isExcludeMatch = excludePath.filter(str => filePath.includes(str));
+  const isExcludeMatch = excludePath.filter(str => file.path.includes(str));
   if (excludePath && isExcludeMatch.length) return;
 
   // Create new directory in `/dist`
   fs.mkdirSync(filePath);
 
   // Create new .html file in newly created directory
-  fs.writeFileSync(`${filePath}/index.html`, utils.getSrc({$, fileExt}));
+  fs.writeFileSync(`${filePath}/index.html`, file.src);
 
   // Show terminal message: Done
-  Logger.success(`${fileName} - Added [directory]: ${ chalk.green(filePath + '/index.html' ) }`);
+  Logger.success(`${file.path} - Added [directory]: ${ chalk.green(filePath + '/index.html' ) }`);
 }
 
 // EXPORT

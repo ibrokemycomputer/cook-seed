@@ -1,11 +1,25 @@
 // REQUIRE
 // ----------------------------------
 const cwd = process.cwd();
+const chalk = require('chalk');
 const fs = require('fs');
+
+// JSDOM
+const jsdomLib = require('jsdom');
+const { JSDOM } = jsdomLib;
 
 // Config
 const {includeAttr,inlineAttr} = require(`${cwd}/config/main.js`);
 
+
+// JSDOM CONFIG
+// ----------------------------------
+// https://github.com/jsdom/jsdom
+const jsdom = {
+  baseUrl: 'https://localhost',
+  dom: newJSDOM,
+  frag: newFrag,
+}
 
 // STATIC CONFIG
 // ----------------------------------
@@ -15,21 +29,48 @@ const attr = {
   inline: inlineAttr || 'inline',
 }
 
-// Config for Cheerio
-const cheerioConfig = {
-  // Don't convert html entities (won't parse correctly otherwise)
-  // Note: By commenting this out, we have to decode entities in inlined css and js (`entities.decode()`)
-  // decodeEntities: false,
-  // Don't wrap fragment `.html` files with `<html>`, `<body>`, etc.
-  // xmlMode: true,
-  recognizeSelfClosing: true,
-}
-// Add decode option
-const cheerioConfigDecode = Object.assign({}, cheerioConfig, { decodeEntities: false });
 
-
-// PUBLIC METHODS
+// EXPORT
 // ----------------------------------
+module.exports = {
+  attr,
+  convertExternalLinks,
+  getFileParts,
+  getPaths,
+  isAllowedType,
+  isExtension,
+  jsdom,
+  setSrc,
+  testSrc,
+};
+
+
+// METHODS AND CONSTS
+// ----------------------------------
+
+/**
+ * @description Get a new JSDOM document/object from the passed in string source
+ * @docs https://github.com/jsdom/jsdom
+ * @param {Object} opts - The arguments object
+ * @property {String} fileSource - The source to make a traversable document from
+ * @property {Object} [options] - Optional JSDOM options config object
+ * @returns {Object}
+ */
+function newJSDOM({src,options}) {
+  const opts = options || { url: jsdom.baseUrl };
+  return new JSDOM(src, opts);
+}
+
+/**
+ * @description Get a new JSDOM fragment from the passed in string source
+ * @docs https://github.com/jsdom/jsdom
+ * @param {Object} opts - The arguments object
+ * @property {String} fileSource - The source to make a traversable document from
+ * @returns {Object}
+ */
+function newFrag({src}) {
+  return JSDOM.fragment(src);
+}
 
 /**
  * @description Find all href="www.xxxx.com" links and add http:// protocol. 
@@ -52,20 +93,6 @@ function getFileParts(path) {
   const fileSplit = path.split('/');
   const fileName = fileSplit[fileSplit.length - 1].split('.');
   return { name: fileName[0], ext: fileName[1] };
-}
-
-/**
- * @description Return traversable cheerio 'dom' object with updated changes.
- * @param {Object} Opts - Argument object
- * @property {Object} $ - The traversable cheerio file source
- * @property {String} fileExt - The target file extension
- * @return {Object}
- * @private
- */
-function getSrc({$, fileExt}) {
-  // NOTE: Using `$('body').html()` instead of `$.html()` for non-html files, 
-  // since the latter wraps the source in full dom tree (html,head,body,etc.)
-  return fileExt === 'html' ? $.html() : $('body').html();
 }
 
 /**
@@ -121,12 +148,13 @@ function getPaths(originalPath, path, ignorePattern, paths = []) {
  * @returns {Boolean}
  * @private
  */
-function isAllowedType({fileExt,allowType,disallowType}) {
-  fileExt = fileExt.charAt(0) === '.' ? fileExt : `.${fileExt}`;
+function isAllowedType({file,allowType,disallowType}) {
+  let {ext} = file;
+  ext = ext.charAt(0) === '.' ? ext : `.${ext}`;
   // If file extension NOT in allowed array, return false
-  if (allowType && allowType.indexOf(fileExt) === -1) return false;
+  if (allowType && allowType.indexOf(ext) === -1) return false;
   // If file extension IS in disallowed array, return false
-  if (disallowType && disallowType.indexOf(fileExt) > -1) return false;
+  if (disallowType && disallowType.indexOf(ext) > -1) return false;
   return true;
 }
 
@@ -143,24 +171,29 @@ function isExtension(fileName, target) {
   else return target.indexOf(ext) > -1;
 }
 
-function testSrc({fileName,src}) {
-  const test = ['dist/plugin/zc-obfuscate/zc-obfuscate.js','dist/test.html','dist/css/variables.css'];
-  if (test.indexOf(fileName) > -1) {
-    console.log('\n----------------------\n\n', src)
-  }
+/**
+ * @description Get the correct DOM nodes as a string
+ * @param {*} param0 
+ */
+function setSrc({dom}) {
+  const document = dom.window.document;
+  const isBodyFrag = document.head.children.length < 1;
+  const isHeadFrag = document.body.children.length < 1;
+  // Is a fragment .html file (likely include) that <head> is empty
+  if (isBodyFrag) return document.body.innerHTML;
+  // Is a fragment .html file (likely include) that <body> is empty
+  else if (isHeadFrag) return document.head.innerHTML;
+  // Is a full DOM .html page w/ doctype, <html>, etc. Just return the whole thing
+  else return dom.serialize();
 }
 
-// EXPORT
-// ----------------------------------
-module.exports = {
-  attr,
-  cheerioConfig,
-  cheerioConfigDecode,
-  convertExternalLinks,
-  getFileParts,
-  getPaths,
-  getSrc,
-  isAllowedType,
-  isExtension,
-  testSrc,
-};
+/**
+ * @description Output source for only a few pages for testing
+ * @example utils.testSrc({file});
+ * @param {Object} opts - The arguments object 
+ * @property {Object} file - The current file's info (ext,name,path,src)
+ */
+function testSrc({file}) {
+  const test = ['dist/plugin/zc-obfuscate/zc-obfuscate.js','dist/index.html','dist/includes/global-head.html','dist/css/main.css'];
+  if (test.indexOf(file.path) > -1) console.log(`\n----------------------\n\n${chalk.blue(file.path)}\n\n${file.src}\n`);
+}
