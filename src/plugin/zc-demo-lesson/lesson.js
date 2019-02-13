@@ -276,8 +276,8 @@ Lesson.prototype.addListeners = function () {
       data: _this.parseUpdatedJSON()
     });
       
-    if (_paq) {
-        _paq.push(['trackEvent', 'homepage', 'guided editor', this.name, this.value]);
+    if (window._paq) {
+      window._paq.push(['trackEvent', 'homepage', 'guided editor', this.name, this.value]);
     }
   };
 

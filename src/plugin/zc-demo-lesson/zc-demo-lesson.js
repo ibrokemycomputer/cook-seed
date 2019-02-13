@@ -1,6 +1,10 @@
-// Namespace
+// NAMESPACE
+// -----------------------------
 var zcDemoLesson = window.zcDemoLesson || {};
 
+
+// LESSON DATA
+// -----------------------------
 // Store lessons data object
 zcDemoLesson.lessons = {
   'basics': {
@@ -444,6 +448,9 @@ zcDemoLesson.lessons = {
   },
 }
 
+
+// INIT
+// -----------------------------
 // Instantiate new lesson instance
 zcDemoLesson.lesson = new Lesson({
   chartID: 'jsref-homepage-chart',
@@ -453,42 +460,55 @@ zcDemoLesson.lesson = new Lesson({
   fields: zcDemoLesson.lessons.basics.fields
 });
 zcDemoLesson.lesson.MONOSPACE_HEIGHT = 14;
+zcDemoLesson.lesson.render();
+// prettyPrint();
 
+
+// EDITOR PANEL
+// -----------------------------
 // Store `editor` column code block
-var editor = document.querySelector('[zc-demo-lesson="editor"]');
-var $code = editor.querySelector('pre');
+var $editor = document.querySelector('[jsref="zc-demo-lesson-editor"');
+var $code = $editor.querySelector('pre');
 // Store code-block tooltip element
 var $tooltip = document.querySelector('[jsref="demo-lesson-tooltip"]');
+// Hide Tooltip on chart fields click
+$editor.addEventListener('click', function(e) {
+  if (e.target.classList.contains('chart-editor__content') && $tooltip) $tooltip.remove();
+});
 // Listen for code block scrolling
-var currScroll, scrollAttr = 'scrolling';
+var currScroll;
 $code.addEventListener('scroll', function(e) {
   currScroll = e.target.scrollTop;
-  if (currScroll && currScroll > 10) $tooltip.setAttribute(scrollAttr,'');
-  else $tooltip.removeAttribute(scrollAttr);
+  if (currScroll && currScroll > 10) toggleTooltip(false);
+  else toggleTooltip(true);
 });
+function toggleTooltip(state) {
+  if (state) $tooltip.removeAttribute('hidden');
+  else $tooltip.setAttribute('hidden','');
+}
 
 
+// CONTROL BUTTONS / SELECT DROPDOWN EVENTS
+// ------------------------------------------
+var buttons = document.querySelectorAll('[zc-demo-lesson="controls"] > *');
+var mobileSelector = document.querySelector('[jsref="zc-demo-lesson-select"]');
 
-var switchTab = function () {
-  var target = this.value;
-  zcDemoLesson.lesson.chart = zcDemoLesson.lessons[this.value].chart;
-  zcDemoLesson.lesson.fields = zcDemoLesson.lessons[this.value].fields;
+buttons.forEach(function(el,i) {
+  el.addEventListener('click', switchTab);
+});
+mobileSelector.addEventListener('change', switchTab);
+
+function switchTab(e) {
+  const isClick = e.type === 'click';
+  const type = isClick ? this.getAttribute('type') : e.target.value;
+  zcDemoLesson.lesson.chart = zcDemoLesson.lessons[type].chart;
+  zcDemoLesson.lesson.fields = zcDemoLesson.lessons[type].fields;
   zcDemoLesson.lesson.render();
   // prettyPrint();
 }
 
-zcDemoLesson.lesson.render();
-// prettyPrint();
-
-var inputs = document.querySelectorAll('[name="homepage-chart-toggle"]');
-var mobileSelector = document.querySelector('.mobile-chart-switcher');
-
-for (var i = 0; i < inputs.length; i++) {
-  inputs[i].addEventListener('change', switchTab);
-}
-
-mobileSelector.addEventListener('change', switchTab);
-
+// EXPORT TO CODEPEN
+// ------------------------------------------
 
 // Listen for form submission
 var exportTrigger = document.querySelector('[jsref="zc-demo-export"]');
@@ -522,55 +542,3 @@ exportTrigger.addEventListener('click', function () {
   // Submit the form
   exportToCodepen.submit();
 });
-
-var clickMeTooltip = document.querySelector('#interact-with-me');
-var codeOutputSelector = document.querySelector('#code-output');
-var firstChartEditor = document.querySelector('span.chart-editor');
-var chartEditorControls = document.querySelectorAll('div.split-card__content.split-card__bottom.split-card__content--gray label');
-var removeTooltipEvent = function () {
-  if (clickMeTooltip) {
-    // if parent remove element. Else hide it
-    if (clickMeTooltip.parentElement) {
-      clickMeTooltip.parentElement.removeChild(clickMeTooltip);
-    } else {
-      clickMeTooltip.style.visibility = 'hidden';
-    }
-  }
-};
-// hide tooltip on scroll
-if (codeOutputSelector) {
-  codeOutputSelector.addEventListener('scroll', function (e) {
-    if (e.target && e.target.scrollTop < 16) {
-      if (clickMeTooltip)
-        clickMeTooltip.style.visibility = 'visible';
-    } else {
-      if (clickMeTooltip)
-        clickMeTooltip.style.visibility = 'hidden';
-    }
-  });
-}
-// hide tooltip on click
-if (firstChartEditor) {
-  firstChartEditor.click();
-  firstChartEditor.addEventListener('click', removeTooltipEvent);
-}
-
-// hide tooltip when clicking on labels
-if (chartEditorControls) {
-  for (var i = 0; i < chartEditorControls.length; i++) {
-    if (chartEditorControls[i]) {
-      chartEditorControls[i].addEventListener('click', function (e) {
-        if (e.target) {
-          if (clickMeTooltip)
-            removeTooltipEvent();
-        }
-      });
-    }
-  }
-}
-// hide tooltip after 25 seconds
-setTimeout(function () {
-  // if window loaded correctly
-  if (clickMeTooltip)
-    removeTooltipEvent();
-}, 25500);

@@ -37,6 +37,16 @@ async function setActiveLinks({file, allowType, disallowType}) {
 // HELPER METHODS
 // -----------------------------
 
+function getComparisonPart(path) {
+  let splitOnSlash = path.split('/');
+  splitOnSlash = splitOnSlash.filter(s => s !== '');
+  let lastPart = splitOnSlash[splitOnSlash.length-1];
+  let fileName = lastPart.split('.')[0];
+  if (fileName === 'index') fileName = splitOnSlash[splitOnSlash.length-2];
+  if (fileName === distPath) fileName = '/';
+  return fileName;
+}
+
 /**
  * @description Set <a> tags to 'active' state if their [href] value file name matches the current file's name
  * @param {Object} opts - The arguments object
@@ -45,14 +55,9 @@ async function setActiveLinks({file, allowType, disallowType}) {
  * @private
  */
 function setActive({file, link}) {
-  // Current page file name
-  let matchPath = file.path.split('/');
-  matchPath = matchPath[matchPath.length-1].split('.')[0];
-  // Current <a> tag link's [href] path file name
-  let href = link.href.split(`${utils.jsdom.baseUrl}/`);
-  href = href[href.length-1].split('.')[0];
-  // If they match, set the <a> to its active state
-  if (href === matchPath) link.setAttribute('active','');
+  const currPath = getComparisonPart(file.path);
+  const linkPath = getComparisonPart(link.href);
+  if (linkPath === currPath) link.setAttribute('active','');
 }
 
 // EXPORT

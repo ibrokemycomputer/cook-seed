@@ -14,6 +14,12 @@
 [zc-demo-lesson="col"]:last-of-type { border-radius: 0 0 0 var(--border-radius); }
 
 
+/* MOBILE SELECT DROPDOWN
+--------------------------- */
+[zc-demo-lesson="select"] {
+  display:none;
+}
+
 /* EDITOR CODE PANEL
 --------------------------- */
 [zc-demo-lesson="editor"] {
@@ -27,15 +33,17 @@
 [zc-demo-lesson="editor"] pre {
   background: none;
   border: none;
+  box-sizing: border-box;
   height: 100%;
+  line-height: 1.3;
   margin: 0;
   overflow-y: scroll;
-  padding: 20px;
+  padding: 15px;
 }
 [zc-demo-lesson="export"] {
   cursor: pointer;
   position: absolute;
-  right: 5px;
+  right: 17px;
   top: 5px;
 }
 
@@ -53,24 +61,24 @@
 /* TOOLTIP
 --------------------------- */
 [zc-demo-lesson~="tooltip"] {
+  align-items: center;
   background-color: #ff9545;
-  position: absolute;
-  left: 54px;
-  top: -23px;
-  padding: 4px;
-  width: 220px;
-  color: #fff;
   border-radius: 5px;
-  z-index: 2;
-  text-align: center;
+  color: #fff;
   font-weight: 600;
+  display: flex;
   height: 32px;
-  /* fallback for odd browsers */
+  justify-content: center;
+  left: 30px;
+  padding: 4px;
+  position: absolute;
+  text-align: center;
+  top: -25px;
   visibility: visible;
+  width: 220px;
+  z-index: 2;
 }
-[zc-demo-lesson~="tooltip"][scrolling] {
-  visibility: hidden;
-}
+[zc-demo-lesson~="tooltip"][hidden] { display:none; }
 [zc-demo-lesson~="tooltip"]::before {
   content: "";
   border-style: solid;
@@ -85,13 +93,26 @@
 /* CONTROLS
 --------------------------- */
 [zc-demo-lesson="controls"] { 
+  align-items: center;
   background: var(--color-light);
   border: 1px solid var(--border-color);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
   box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
   padding: 1rem;
 }
-[zc-demo-lesson="controls"] > * {
+[zc-demo-lesson="controls"] button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  padding: 0 3px 0 0;
+}
+[zc-demo-lesson="controls"] button + button {
+  padding-left: 3px;
+}
+[zc-demo-lesson="controls"] span {
   background: #fff;
   border: 1px solid #e1e1e8;
   border-radius: 6px;
@@ -100,14 +121,14 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: normal;
-  padding: 8px 10px;
+  padding: 10px;
   display: inline-block;
   transition: all .2s;
+  user-select: none;
 }
-[zc-demo-lesson="controls"] > *:hover,
-[zc-demo-lesson="controls"] > [active] {
-  /* background: #64d3ff;
-  border-color: #00baf0; */
+[zc-demo-lesson="controls"] button:hover span,
+[zc-demo-lesson="controls"] button:focus span,
+[zc-demo-lesson="controls"] [active] span {
   color: var(--color-primary);
   transform: translate(-2px,-2px);
 }
@@ -291,14 +312,28 @@ input.chart-editor__input {
 /* MIN MEDIA QUERIES
 --------------------------- */
 
+
 /* MAX MEDIA QUERIES
 --------------------------- */
 
 /* MOBILE MAX */
 @media screen and (max-width:767px) {
+  /* COLUMNS
+  --------------------------- */
+  [zc-demo-lesson="col"]:first-of-type { display:none; }
+  [zc-demo-lesson="col"]:last-of-type { width:100%; border-radius: var(--border-radius); }
+  [zc-demo-lession-chart] { width:100%; height:500px; border-radius: var(--border-radius); }
+
+  /* MOBILE SELECT DROPDOWN
+  --------------------------- */
+  [zc-demo-lesson="select"] {
+    display: block;
+    height: 30px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
   /* CONTROLS
   --------------------------- */
-  [zc-demo-lesson="controls"] > * { 
-    margin-bottom: 5px;
-  }
+  [zc-demo-lesson="controls"] { display:none; }
 }

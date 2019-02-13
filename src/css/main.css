@@ -108,9 +108,9 @@ h3, .h3 {
 [zc-cta] { margin-top:20px; display:flex; align-items:center; justify-content:center; }
 
 /* Sections */
-[section~="base-to-light"] { background: linear-gradient(#fff, var(--color-light)); }
-[section~="light"] { background: var(--color-light); }
-[section~="light-to-base"] { background: linear-gradient(var(--color-light), #fff); }
+[type~="base-to-light"] { background: linear-gradient(#fff, var(--color-light)); }
+[type~="light"] { background: var(--color-light); }
+[type~="light-to-base"] { background: linear-gradient(var(--color-light), #fff); }
 
 
 /* PRISM.JS OVERRIDE

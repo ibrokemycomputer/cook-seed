@@ -26,10 +26,21 @@
   <main aria-label="App Content">
 
     <!-- LEAD IN -->
-    <section section="lead-in">
+    <section type="lead-in">
       <div class="inner">
         <h1>JavaScript Charts</h1>
         <h2>The developer's solution for visualizing data in web apps.</h2>
+
+        <select zc-demo-lesson="select" jsref="zc-demo-lesson-select">
+          <option value="3d">3D</option>
+          <option value="animation">Animation</option>
+          <option value="basics">Basics</option>
+          <option value="labels">Labels</option>
+          <option value="markers">Markers</option>
+          <option value="mixed">Mixed </option>
+          <option value="scales">Scales</option>
+          <option value="zooming">Zooming</option>
+        </select>
 
         <div 
           zc-demo-lesson="container" 
@@ -40,21 +51,12 @@
           <!-- Select / Code View -->
           <div zc-demo-lesson="col" zc-col="tabletP-50%">
             
-            <select class="mobile-chart-switcher cyan">
-              <option value="basics">Basics</option>
-              <option value="zooming">Zooming</option>
-              <option value="scales">Scales</option>
-              <option value="labels">Labels</option>
-              <option value="mixed">Mixed</option>
-              <option value="markers">Markers</option>
-            </select>
-
-            <div zc-demo-lesson="editor">
-              <span jsref="demo-lesson-tooltip" zc-demo-lesson="tooltip">Click highlights to edit chart</span>
+            <div zc-demo-lesson="editor" jsref="zc-demo-lesson-editor">
+              <span zc-demo-lesson="tooltip" jsref="demo-lesson-tooltip">Click highlights to edit chart</span>
               <pre id="code-output" class="line-numbers"><code class="lang-javascript"></code></pre>
             </div>
 
-            <button type="button" jsref="zc-demo-export" zc-demo-lesson="export" zc-button="1 small"><i class="fa fa-codepen"></i> Export</button>  
+            <button type="button" zc-demo-lesson="export" zc-button="1 small" jsref="zc-demo-export"><i class="fa fa-codepen"></i> Export</button>  
           </div>
 
           <!-- Render View -->
@@ -65,68 +67,30 @@
         </div>
 
         <div zc-demo-lesson="controls" callout>
-          <span>Basics</span>
-          <span>Animation</span>
-          <span>3D</span>
-          <span>Zooming</span>
-          <span>Scales</span>
-          <span>Markers</span>
-          <span>Labels</span>
-          <span>Mixed Chart</span>
-        </div>
-        
-        
-        
-        <div class="split-card">
-        
-          
-            
-          <div class="split-card__content split-card__bottom split-card__content--gray">
-            <div class="col _1_of_8 homepage-chart-controls">
-                
-                <input type="radio" name="homepage-chart-toggle" value="basics" id="basics" checked>
-                <label for="basics">Basics</label>
-                
-                <input type="radio" name="homepage-chart-toggle" value="animation" id="animation">
-                <label for="animation">Animation</label>
-                
-                <input type="radio" name="homepage-chart-toggle" value="3d" id="3d">
-                <label for="3d">3D</label>
-                
-                <input type="radio" name="homepage-chart-toggle" value="zooming" id="zooming">
-                <label for="zooming">Zooming</label>            
-      
-                <input type="radio" name="homepage-chart-toggle" value="scales" id="scales">
-                <label for="scales">Scales</label>
-                
-                <input type="radio" name="homepage-chart-toggle" value="markers" id="markers">
-                <label for="markers">Markers</label>
-      
-                <input type="radio" name="homepage-chart-toggle" value="labels" id="labels">
-                <label for="labels">Labels</label>
-                
-                <input type="radio" name="homepage-chart-toggle" value="mixed" id="mixed">
-                <label for="mixed">Mixed Chart</label>
-      
-            </div>
-          </div>
-            
+          <button type="3d" tabindex="0"><span>3D</span></button>
+          <button type="animation" tabindex="0"><span>Animation</span></button>
+          <button type="basics" tabindex="0"><span>Basics</span></button>
+          <button type="labels" tabindex="0"><span>Labels</span></button>
+          <button type="markers" tabindex="0"><span>Markers</span></button>
+          <button type="mixed" tabindex="0"><span>Mixed Chart</span></button>
+          <button type="scales" tabindex="0"><span>Scales</span></button>
+          <button type="zooming" tabindex="0"><span>Zooming</span></button>
         </div>
         
         <form action="https://codepen.io/pen/define" method="POST" target="_blank" jsref="zc-demo-export-form" style="display:none;">
           <input type="hidden" name="data" value="" jsref="zc-demo-export-input">
         </form>
         
-        <p class="centered" style="margin-top:20px;">
-          <a href="/?nodeId=19707" data-zc-button="8 large">View Demos</a>
-        </p>
+        <div zc-cta callout>
+          <a href="/gallery" zc-button="1 small"><i class="fa fa-pie-chart"></i> View Demos</a>
+        </div>
 
       </div>
     </section>
 
       
     <!-- INTEGRATION -->
-    <section section="integration">
+    <section type="integration">
       <div class="inner">
         <h2>Easily Integrate ZingChart With Your Development Stack</h2>
           
@@ -192,7 +156,7 @@ npm install zingchart
               </li>                     
             </ol>
             <p zc-integration="panel-cta">
-              <a target="_blank" href="https://github.com/zingchart/ZingChart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>&nbsp;&nbsp;<!-- <a href="/?nodeId=39266" data-zc-button="6 small">Get Started<i class="fa fa-fw fa-caret-right"></i></a> -->
+              <a target="_blank" href="https://github.com/zingchart/ZingChart" zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
             </p>
           </div>
           
@@ -241,7 +205,7 @@ React.render(
             </ol>
             
             <p zc-integration="panel-cta">
-              <a target="_blank" href="https://github.com/zingchart/ZingChart-React" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-React" zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
             </p>
           </div>
           
@@ -285,7 +249,7 @@ $scope.myJson = {
               </li>
             </ol>
             <p zc-integration="panel-cta">
-              <a target="_blank" href="https://github.com/zingchart/ZingChart-AngularJS" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-AngularJS" zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
             </p>
           </div>
             
@@ -327,7 +291,7 @@ $(document).ready(function() {
               </li>
             </ol>
             <p zc-integration="panel-cta">
-              <a target="_blank" href="https://github.com/zingchart/ZingChart-jQuery" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-jQuery" zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
             </p>
           </div>
 
@@ -375,7 +339,7 @@ export default Ember.Controller.extend({
             </ol>
         
             <p zc-integration="panel-cta">
-              <a target="_blank" href="https://github.com/zingchart/ember-zingchart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+              <a target="_blank" href="https://github.com/zingchart/ember-zingchart" zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
             </p>
           </div>
   
@@ -430,7 +394,7 @@ chartView.render();
             </ol>
             
             <p zc-integration="panel-cta">
-              <a target="_blank" href="https://github.com/zingchart/backbone-zingchart" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+              <a target="_blank" href="https://github.com/zingchart/backbone-zingchart" zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
             </p>
           </div>
             
@@ -464,7 +428,7 @@ $zc-&gt;render();
                 </li>                      
             </ol>
             <p zc-integration="panel-cta">
-              <a target="_blank" href="https://github.com/zingchart/ZingChart-PHP" data-zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
+              <a target="_blank" href="https://github.com/zingchart/ZingChart-PHP" zc-button="1 small"><i class="fa fa-fw fa-github"></i>View on GitHub</a>
             </p>
           </div>
         
@@ -474,7 +438,7 @@ $zc-&gt;render();
 
       
     <!-- CHART TYPES -->
-    <section section="chart-types light">
+    <section type="chart-types light">
       <div class="inner">
 
         <noscript>
@@ -635,7 +599,7 @@ $zc-&gt;render();
 
     
     <!-- DEMOS -->
-    <section section="demos">
+    <section type="demos">
       <h2 hidden>Demos</h2>
       <div class="demo-scroll" jsref="demo-scroll">
         <button class="demo-scroll-left" jsref="demo-scroll-left" tabindex="0" style="z-index:200;"><i class="fa fa-fw fa-arrow-left"></i></button>
@@ -688,7 +652,7 @@ $zc-&gt;render();
     
 
     <!-- FEEDS -->
-    <section section="feeds light">
+    <section type="feeds light">
       <div class="inner">
         <h2 hidden>Feeds</h2>
 
@@ -797,7 +761,7 @@ $zc-&gt;render();
 
 
     <!-- CUSTOMERS -->
-    <section section="customers">
+    <section type="customers">
       <div class="inner">
         <h2>Customers</h2>
       </div>
@@ -812,7 +776,7 @@ $zc-&gt;render();
 
 
     <!-- MAP -->
-    <section section="map">
+    <section type="map">
       <div class="inner">
         <div zc-row callout>
           <div zc-col="1">

@@ -54,7 +54,6 @@
   You can override individual columns via `[zc-col="tabletP-1of3"]`
 */
 [zc-col] { margin-left:auto; margin-right:auto; box-sizing:border-box; }
-[zc-col] + [zc-col] { margin-top:20px; }
 [zc-col~="left"], [zc-col].left { margin-left:0; }
 [zc-col~="flex-1"], [zc-col~="mobile-flex-1"] { width:auto; flex:1; }
 [zc-row] > [zc-col] { margin-left:0; margin-right:0; }
@@ -341,6 +340,6 @@
   [data-row~="mobile-only-block"] { display:block; }
 
   /* COLUMNS */
-  [data-col] { width:100%; }
-
+  [zc-col] + [zc-col] { margin-bottom:20px; }
+  [zc-row] > [zc-col]:last-child { margin-bottom:0; }
 }
