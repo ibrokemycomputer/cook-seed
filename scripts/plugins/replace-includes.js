@@ -13,7 +13,7 @@ const utils = require(`${cwd}/scripts/utils/util.js`);
 const Logger = require(`${cwd}/scripts/utils/logger.js`);
 
 // Config
-const {srcPath} = require(`${cwd}/config/main.js`);
+const {distPath,srcPath} = require(`${cwd}/config/main.js`);
 
 
 // DEFINE
@@ -37,13 +37,13 @@ async function replaceIncludes({file, allowType, disallowType}) {
     hasInclude = el.getAttribute(utils.attr.include);
     if (hasInclude && hasInclude.length) {
       try {
-        includePath = path.resolve(`${srcPath}/${hasInclude}`);
+        includePath = path.resolve(`${distPath}/${hasInclude}`);
         // If you are pointing to an include w/o the `.html` extension
         // We'll add it since the directory-replacement only occurs in /dist (See `createDirFromFile()` in build.js)
         // Example: `<div include="/includes/header"></div>`
         //   In /dist, the build process creates `/dist/includes/header/index.html`
         //   But, in /src, we only have `/src/includes/header.html`, hence this check
-        const hasExtension = includePath.split('.').length === 2;
+        const hasExtension = utils.hasExtension(includePath);
         includePath = hasExtension ? includePath : `${includePath}.html`;
         // Get contents of target include file
         const content = fs.readFileSync(includePath, 'utf-8');

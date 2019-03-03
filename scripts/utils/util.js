@@ -37,6 +37,7 @@ module.exports = {
   convertExternalLinks,
   getFileParts,
   getPaths,
+  hasExtension,
   isAllowedType,
   isExtension,
   jsdom,
@@ -137,6 +138,19 @@ function getPaths(originalPath, path, ignorePattern, paths = []) {
   } catch (error) {
     throw error;
   }
+}
+
+/**
+ * @description Check if path string has extension. Protects against directory names with `.` characters
+ * @property {String} str - Path string to test
+ * @returns {Boolean}
+ * @private
+ */
+function hasExtension(str) {
+  const is2LengthExt = str[str.length - 3] === '.';
+  const is3LengthExt = str[str.length - 4] === '.';
+  const is4LengthExt = str[str.length - 5] === '.';
+  return is2LengthExt || is3LengthExt || is4LengthExt;
 }
 
 /**
