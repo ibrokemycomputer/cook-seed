@@ -4,15 +4,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node scripts/build.js",
-    "dev": "NODE_ENV=development npm run build && node scripts/dev.js",
+    "build": "node node_modules/static-build/scripts/build.js",
+    "dev": "NODE_ENV=development npm run build && node node_modules/static-build/scripts/dev.js",
     "dev:prod": "NODE_ENV=production npm run build && http-server ./dist -p $npm_package_config_devPort",
-    "reset": "rm -rf node_modules && rm -rf dist && npm install"
+    "reset": "rm -rf node_modules && rm -rf dist && npm install",
+    "reset:all": "rm -rf node_modules && rm -rf dist"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not ie <= 8"
+    "not ie <= 10"
   ],
   "config": {
     "devPort": 3000
@@ -27,6 +28,7 @@
     "http-server": "^0.11.1",
     "jsdom": "^13.2.0",
     "rimraf": "^2.6.2",
-    "uglify-es": "^3.3.9"
+    "uglify-es": "^3.3.9",
+    "static-build": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#1.0.0"
   }
 }
