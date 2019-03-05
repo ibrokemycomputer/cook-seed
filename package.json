@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "netlify-cli": "^2.8.2",
-    "static-build": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#1.0.0"
+    "static-build": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev"
   }
 }

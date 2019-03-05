@@ -7,7 +7,7 @@ a { text-decoration: none; }
 body > header { background: #67A2B9; }
 header .inner { display: flex; justify-content: space-between; align-items: center }
 header nav a { color: white; font-size: 20px; font-weight: bold; margin-left: 1rem; }
-header a[active] { border-bottom: 2px solid white; }
+header a[data-active] { border-bottom: 2px solid white; }
 
 .logo { fill: white; height: 33px; width: 135px; }
 
