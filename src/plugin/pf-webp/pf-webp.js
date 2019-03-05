@@ -2,7 +2,7 @@
  * TEST WEBP SUPPORT
  * @description Add CSS class to <html> if webp supported or not
  */
-zcWebp = window.zcWebp || {
+pfWebp = window.pfWebp || {
   webpClass: 'webp',
   noWebpClass: 'no-webp',
   testWebP: function(target) {
@@ -18,13 +18,13 @@ zcWebp = window.zcWebp || {
     }
     function notify(supported) {
       // Add css class to <body>
-      const web_css_class = supported ? zcWebp.webpClass : zcWebp.noWebpClass;
+      const web_css_class = supported ? pfWebp.webpClass : pfWebp.noWebpClass;
       target.classList.add(web_css_class);
     }
   },
   init: function() {
-    zcWebp.testWebP(document.documentElement);
+    pfWebp.testWebP(document.documentElement);
   }
 };
 // Init
-zcWebp.init();
+pfWebp.init();

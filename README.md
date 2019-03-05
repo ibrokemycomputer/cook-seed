@@ -1,6 +1,6 @@
 # A Static Build PoC
 
-```
+```shell
 npm install
 npm run dev
 ```
@@ -19,7 +19,6 @@ npm run dev
 
 Many build settings can be set in `config/main.js` instead of trying to find them in the various build plugin files.
 
-
 ## View/Run the site code
 
 For both the `dev` mode (liveReload) and `production` (http-server), the localhost port should be the same. Check the current port value,
@@ -29,10 +28,10 @@ but by default it should be 3000: `localhost:3000`
 
 To view your codebase locally, run `npm run dev`.
 
-2. This first runs `/scripts/build.js`, which copies the `/src` files to `/dist` and then modifies them per the build plugins
-1. Then runs `/scripts/dev.js`, which starts the liveReload server
+1. This first runs `/scripts/build.js`, which copies the `/src` files to `/dist` and then modifies them per the build plugins
+2. Then runs `/scripts/dev.js`, which starts the liveReload server
 
-_[Note]:_ By default, files are not minified and link/script elements marked `[inline]` are not inlined (retain external file call). 
+_[Note]:_ By default, files are not minified and link/script elements marked `[inline]` are not inlined (retain external file call).  
 This way, when using dev tools to inspect in `localhost`, you see the correct line numbers, etc.
 
 _[Note]:_ To facilitate this, in `package.json`, we set a node environment var to designate development-mode: `NODE_ENV=development npm run build && node scripts/dev.js`.
@@ -53,3 +52,6 @@ To just build the `/dist` directory only, run `npm run build`. This just runs th
 ## TODO
 
 * Currently, when making a change, all files are checked/updated. Instead, need to only update `/dist` with delta changes.
+* SEO (titles, description)
+* Add image optimization plugin
+* Custom plugins
