@@ -6,12 +6,10 @@ deploy:master:
   stage: deploy
   only:
     - master
-  when: manual
+  # when: manual
   environment:
     name: Production
     url: https://ibrokemy.app/
-  variables:
-    BUILD_DIRECTORY: .
   script:
     - npm install
     - npm run build
