@@ -1,5 +1,7 @@
 # A Static Build PoC
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3940ba98-f07f-49dd-babf-5122295d9b61/deploy-status)](https://app.netlify.com/sites/ibmc/deploys)
+
 ```shell
 npm install
 npm run dev
@@ -12,9 +14,9 @@ npm run dev
 * Builds `/dist`
 * Copies `/src` to `/dist`
 * Replaces file content with plugin actions:
-  - Inline 'external' file calls (link, script, etc.)
-  - Replace/inline include files (`[include]`)
-  - Set `<a>` tags whose `[href]` matches the current page as 'active' (`[active]`)
+  * Inline 'external' file calls (link, script, etc.)
+  * Replace/inline include files (`[include]`)
+  * Set `<a>` tags whose `[href]` matches the current page as 'active' (`[active]`)
 * Minifies code in `/dist`
 
 Many build settings can be set in `config/main.js` instead of trying to find them in the various build plugin files.
@@ -48,10 +50,11 @@ injecting the 2 scripts liveReload adds and emulates how the site should look an
 
 To just build the `/dist` directory only, run `npm run build`. This just runs the build process directly: `node scripts/build.js`.
 
-
 ## TODO
 
 * Currently, when making a change, all files are checked/updated. Instead, need to only update `/dist` with delta changes.
 * SEO (titles, description)
 * Add image optimization plugin
 * Custom plugins
+* Fix nested-page extensions and/or remove 'auto-generate folder + `index.html`' feature
+  * Both pages resolve/load, which will cause analytics issues

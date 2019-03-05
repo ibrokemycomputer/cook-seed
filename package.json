@@ -16,7 +16,7 @@
     "not ie <= 10"
   ],
   "config": {
-    "devPort": 3000
+    "devPort": 3001
   },
   "dependencies": {},
   "devDependencies": {
