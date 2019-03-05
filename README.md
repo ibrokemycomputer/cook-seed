@@ -58,3 +58,4 @@ To just build the `/dist` directory only, run `npm run build`. This just runs th
 * Custom plugins
 * Fix nested-page extensions and/or remove 'auto-generate folder + `index.html`' feature
   * Both pages resolve/load, which will cause analytics issues
+* Add opt-in to set active state on parent of nested pages
