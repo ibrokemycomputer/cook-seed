@@ -13,10 +13,9 @@ deploy:master:
   variables:
     BUILD_DIRECTORY: .
   script:
-    - curl -sL https://cli.netlify.com/download/latest/linux | tar xz
     - npm install
     - npm run build
     - cd dist
-    - ./netlifyctl -A "$YOUR_ACCESS_TOKEN" deploy
+    - netlify -A "$YOUR_ACCESS_TOKEN" deploy
 ...
 # vim: syntax=yaml et ts=2 sts=2 sw=2
