@@ -13,7 +13,7 @@ deploy:master:
   variables:
     BUILD_DIRECTORY: .
   script:
-    - wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
+    - curl -sL https://cli.netlify.com/download/latest/linux | tar xz
     - npm install
     - npm run build
     - cd dist
