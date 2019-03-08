@@ -14,5 +14,10 @@ module.exports = {
       dt: "A third one!", 
       dd: "I always though the curly ones were the parenthesis" 
     }
-  ]
+  ],
+  someArray: ['One', 'Two', 'Three'],
+  someHtmlArray: ['<li>One</li>', '<li>Two</li>', '<li>Three</li>'],
+  testFunction: function(item) {
+    return `<li>${item}</li>`
+  }
 };

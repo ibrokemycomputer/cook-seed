@@ -28,6 +28,14 @@
             <dd>${f.dd}</dd>
           `).join('')}
         </dl>
+        <p>${someArray.map(i => 
+              testFunction(i)
+           ).join('')}</p>
+        <ul>
+          ${someHtmlArray.map((item, i) => `
+            ${`<li>${i}</li>` + item}
+          `).join('')}
+        </ul>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In animi quaerat magnam? Unde quidem pariatur voluptatem, animi eaque dolores. Et asperiores error reprehenderit deserunt qui animi iure autem placeat veniam!</p>
         <img src="/img/rick-morty-ship.jpg" alt="Rick and Morty Poster">
       </div>
