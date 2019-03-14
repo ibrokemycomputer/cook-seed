@@ -27,4 +27,6 @@ module.exports = {
   watch: [
     //'/css/*.css',
   ],
+  // Add per-site plugins to use during build process
+  plugins: ['getPrismicData', 'testLogger']
 };

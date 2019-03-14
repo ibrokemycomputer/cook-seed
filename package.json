@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "netlify-cli": "^2.8.2",
+    "prismic-javascript": "^2.0.1",
     "static-build": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev"
   }
 }
