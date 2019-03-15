@@ -1,4 +1,10 @@
 ---
+image: node:10.15.3
+
+cache:
+  paths:
+  - node_modules/
+
 stages:
   - deploy
 
@@ -10,17 +16,10 @@ deploy:master:
   environment:
     name: Production
     url: https://ibrokemy.app/
-  before_script:
-    - export NVM_DIR="$HOME/.nvm"
-    - [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    - [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    - source ~/.bashrc
   script:
-    - nvm install 10.15.3
-    - nvm use 10.15.3
     - npm install
+    - npm install netlify-cli
     - npm run build
-    - cd dist
-    - netlify -A "$YOUR_ACCESS_TOKEN" deploy
+    - ./node_modules/.bin/netlify -A "$YOUR_ACCESS_TOKEN" deploy --dir=dist -p
 ...
 # vim: syntax=yaml et ts=2 sts=2 sw=2
