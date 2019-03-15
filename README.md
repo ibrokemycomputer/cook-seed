@@ -15,8 +15,8 @@ npm run dev
 * Copies `/src` to `/dist`
 * Replaces file content with plugin actions:
   * Inline 'external' file calls (link, script, etc.)
-  * Replace/inline include files (`[include]`)
-  * Set `<a>` tags whose `[href]` matches the current page as 'active' (`[active]`)
+  * Replace/inline include files (`[data-include]`)
+  * Set `<a>` tags whose `[href]` matches the current page as 'active' (`[data-active]`)
 * Minifies code in `/dist`
 
 Many build settings can be set in `config/main.js` instead of trying to find them in the various build plugin files.
@@ -33,7 +33,7 @@ To view your codebase locally, run `npm run dev`.
 1. This first runs `/scripts/build.js`, which copies the `/src` files to `/dist` and then modifies them per the build plugins
 2. Then runs `/scripts/dev.js`, which starts the liveReload server
 
-_[Note]:_ By default, files are not minified and link/script elements marked `[inline]` are not inlined (retain external file call).  
+_[Note]:_ By default, files are not minified and link/script elements marked `[data-inline]` are not inlined (retain external file call).  
 This way, when using dev tools to inspect in `localhost`, you see the correct line numbers, etc.
 
 _[Note]:_ To facilitate this, in `package.json`, we set a node environment var to designate development-mode: `NODE_ENV=development npm run build && node scripts/dev.js`.
@@ -58,3 +58,6 @@ To just build the `/dist` directory only, run `npm run build`. This just runs th
 * Custom plugins
 * Fix nested-page extensions and/or remove 'auto-generate folder + `index.html`' feature
   * Both pages resolve/load, which will cause analytics issues
+* Add opt-in to set active state on parent of nested pages
+* Move siteConfig.json to config/main.js with fallback in package.json
+* Add some file type checking/error handling to the template string replacement
