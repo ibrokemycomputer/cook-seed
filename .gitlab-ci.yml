@@ -1,4 +1,6 @@
 ---
+image: node:10.15.3
+
 cache:
   paths:
   - node_modules/
