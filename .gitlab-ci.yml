@@ -16,6 +16,8 @@ deploy:master:
   environment:
     name: Production
     url: https://ibrokemy.app/
+  before_script:
+    - git config --global url."https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev".insteadOf git@gitlab.pint.com/pathfinder/build.git
   script:
     - npm install
     - npm install netlify-cli
