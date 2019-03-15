@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>${'Home' + siteTitleSeperator + siteTitle}</title>
   <meta name="description" content="">
-  <meta include="/includes/global-head">
+  <meta data-include="/includes/global-head">
   <!-- Homepage CSS -->
-  <link rel="stylesheet" href="/css/homepage.css" inline>
+  <link rel="stylesheet" href="/css/homepage.css" data-inline>
 </head>
 
 <body>
     
   <!-- HEADER -->
-  <div include="/includes/header.html"></div>
+  <div data-include="/includes/header.html"></div>
 
 
   <!-- MAIN CONTENT -->
@@ -22,6 +22,23 @@
     <section>
       <div class="inner">
         <h1>Home</h1>
+        <dl>
+          ${loopable.map(f => `
+            <dt>${f.dt}</dt>
+            <dd>${f.dd}</dd>
+          `).join('')}
+        </dl>
+        <p>${someArray.map(i => 
+              testFunction(i)
+           ).join('')}</p>
+        <ul>
+          ${someHtmlArray.map((item, i) => `
+            ${`<li>${i}</li>` + item}
+          `).join('')}
+        </ul>
+        ${prismic.map(item => `
+          <p>${item.data.title}<br>${item.data.date}</p>
+        `).join('')}
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In animi quaerat magnam? Unde quidem pariatur voluptatem, animi eaque dolores. Et asperiores error reprehenderit deserunt qui animi iure autem placeat veniam!</p>
         <img src="/img/rick-morty-ship.jpg" alt="Rick and Morty Poster">
       </div>
@@ -30,11 +47,11 @@
 
 
   <!-- FOOTER -->
-  <div include="/includes/footer.html"></div>
+  <div data-include="/includes/footer.html"></div>
 
 
   <!-- SHARED SCRIPTS (ZingChart, etc.) -->
-  <div include="/includes/global-scripts"></div>
+  <div data-include="/includes/global-scripts"></div>
 
 </body>
 </html>
