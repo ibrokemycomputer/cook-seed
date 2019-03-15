@@ -1,6 +1,4 @@
 ---
-image: node:10.15.3
-
 cache:
   paths:
   - node_modules/
@@ -16,9 +14,8 @@ deploy:master:
   environment:
     name: Production
     url: https://ibrokemy.app/
-  before_script:
-    - git config --global url."https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev".insteadOf git@gitlab.pint.com/pathfinder/build.git
   script:
+    - $NVM_DIR/nvm.sh && nvm install 10.15.3 && nvm use 10.15.3
     - npm install
     - npm install netlify-cli
     - npm run build
