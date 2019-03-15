@@ -1,7 +1,3 @@
-// REQUIRE
-// -----------------------------
-const packageJSON = require('../package.json');
-
 // EXPORT
 // -----------------------------
 module.exports = {
@@ -28,5 +24,8 @@ module.exports = {
     //'/css/*.css',
   ],
   // Add per-site plugins to use during build process
-  plugins: ['getPrismicData']
+  plugins: ['getPrismicData'],
+  customData: {
+    replaceTemplateStrings: "plugins/getPrismicData.js"
+  }
 };
