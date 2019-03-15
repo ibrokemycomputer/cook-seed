@@ -20,6 +20,6 @@ deploy:master:
     - npm install
     - npm install netlify-cli
     - npm run build
-    - ./node_modules/.bin/netlify -A "$YOUR_ACCESS_TOKEN" deploy --dir=dist -p
+    - ./node_modules/.bin/netlify deploy --dir=dist -p
 ...
 # vim: syntax=yaml et ts=2 sts=2 sw=2
