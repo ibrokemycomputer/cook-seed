@@ -53,11 +53,9 @@ To just build the `/dist` directory only, run `npm run build`. This just runs th
 ## TODO
 
 * Currently, when making a change, all files are checked/updated. Instead, need to only update `/dist` with delta changes.
-* SEO (titles, description)
-* Add image optimization plugin
-* Custom plugins
 * Fix nested-page extensions and/or remove 'auto-generate folder + `index.html`' feature
   * Both pages resolve/load, which will cause analytics issues
 * Add opt-in to set active state on parent of nested pages
-* Move siteConfig.json to config/main.js with fallback in package.json
 * Add some file type checking/error handling to the template string replacement
+* Add image optimization plugin
+* SCSS plugin?
