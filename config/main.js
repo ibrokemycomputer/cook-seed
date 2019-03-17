@@ -1,7 +1,3 @@
-// REQUIRE
-// -----------------------------
-const packageJSON = require('../package.json');
-
 // EXPORT
 // -----------------------------
 module.exports = {

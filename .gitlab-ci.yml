@@ -1,4 +1,10 @@
 ---
+image: node:10.15.3
+
+cache:
+  paths:
+  - node_modules/
+
 stages:
   - deploy
 
@@ -6,14 +12,12 @@ deploy:master:
   stage: deploy
   only:
     - master
-  # when: manual
   environment:
     name: Production
     url: https://ibrokemy.app/
   script:
     - npm install
     - npm run build
-    - cd dist
-    - netlify -A "$YOUR_ACCESS_TOKEN" deploy
+    - ./node_modules/.bin/netlify deploy --dir=dist -p
 ...
 # vim: syntax=yaml et ts=2 sts=2 sw=2
