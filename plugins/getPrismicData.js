@@ -2,16 +2,14 @@ const Prismic = require('prismic-javascript');
 const url = "https://pint-crush-test.prismic.io/api/v2";
 const cwd = process.cwd();
 
-let siteData = require(`${cwd}/config/data.js`);
-let tmpData = {...siteData};
-
 customData = new Promise((resolve, reject) => {
+  let tmpData = require(`${cwd}/config/data.js`);
   Prismic.getApi(url).then(api => {
     return api.query('');
   }).then(response => {
-    tmpData.prismic = response.results;
-    resolve(tmpData);
+    tmpData.data = response.results;
     console.log('prismic ran');
+    resolve(tmpData);
   }, err => {
     console.log(`Something went wrong: ${err}`);
     reject(err);

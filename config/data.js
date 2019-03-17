@@ -17,6 +17,5 @@ module.exports = {
       dt: "A third one!", 
       dd: "I always though the curly ones were the parenthesis" 
     }
-  ],
-  prismic: {}
+  ]
 };

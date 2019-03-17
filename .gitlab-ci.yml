@@ -17,7 +17,6 @@ deploy:master:
     url: https://ibrokemy.app/
   script:
     - npm install
-    - npm install netlify-cli
     - npm run build
     - ./node_modules/.bin/netlify deploy --dir=dist -p
 ...
