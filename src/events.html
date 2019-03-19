@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>${'Events' + siteTitleSeperator + siteTitle}</title>
+  <meta name="description" content="">
+  <meta data-include="/includes/global-head">
+  <link rel="stylesheet" href="/css/events.css" data-inline>
+</head>
+
+<body>
+    
+  <!-- HEADER -->
+  <div data-include="/includes/header.html"></div>
+
+
+  <!-- MAIN CONTENT -->
+  <main aria-label="App Content" id="swup" class="transition-fade">
+    <section>
+      <div class="inner">
+        <h1>Events</h1>
+        ${data.map(event => `
+          <table>
+            <tr>
+              <td>
+                <h2>${event.acf.title}</h2>
+                <h5>${event.acf.category}</h5>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>Dates: ${event.acf.start_date} - ${event.acf.end_date}</p>
+                <p>Location: ${event.acf.location}</p>
+                <p>Booth: ${event.acf.booth}</p>
+              </td>
+              <td>
+                <img src="${event.acf.logo}">
+              </td>
+            </tr>
+            <tr>
+              <td><p>Description: ${event.acf.description}</p></td>
+            </tr>
+          </table>
+        `).join('')}
+      </div>
+    </section>
+  </main>
+
+
+  <!-- FOOTER -->
+  <div data-include="/includes/footer.html"></div>
+
+
+  <!-- SHARED SCRIPTS (ZingChart, etc.) -->
+  <div data-include="/includes/global-scripts"></div>
+
+</body>
+</html>

@@ -13,6 +13,8 @@ header a[data-active] { border-bottom: 2px solid white; }
 
 main { flex: 1 0 100%; }
 
+h1 { font-size: 3em }
+
 .inner {
   margin: 0 auto;
   max-width: 90vw;
