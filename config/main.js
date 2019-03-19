@@ -25,5 +25,5 @@ module.exports = {
   ],
   // Add per-site plugins to use during build process
   plugins: ['testLogger'],
-  customData: 'getPrismicData'
+  customData: 'getWordpressData'
 };
