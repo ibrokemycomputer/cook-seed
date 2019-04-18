@@ -19,6 +19,9 @@
     "devPort": 3001
   },
   "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-transform-classes": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
     "https": "^1.0.0",
     "netlify-cli": "^2.8.2",
     "prismic-javascript": "^2.0.1",
