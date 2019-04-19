@@ -1,5 +1,5 @@
 const https = require('https');
-const url = "https://jmartenspint.wpengine.com/wp-json/acf/v3/events";
+const url = "https://jmartenspint.wpengine.com/wp-json/tribe/events/v1/events";
 const cwd = process.cwd();
 
 let siteData = require(`${cwd}/config/data.js`);
@@ -13,7 +13,7 @@ customData = new Promise((resolve, reject) => {
 
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-      tmpData.data = JSON.parse(httpData);
+      tmpData.data = JSON.parse(httpData).events;
       resolve(tmpData);
     });
 

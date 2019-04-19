@@ -7,7 +7,7 @@
   <title>${'Events' + siteTitleSeperator + siteTitle}</title>
   <meta name="description" content="">
   <meta data-include="/includes/global-head">
-  <link rel="stylesheet" href="/css/events.css" data-inline>
+  <link rel="stylesheet" href="/assets/css/events.css" data-inline>
 </head>
 
 <body>
@@ -25,22 +25,21 @@
           <table>
             <tr>
               <td>
-                <h2>${event.acf.title}</h2>
-                <h5>${event.acf.category}</h5>
+                <h2>${event.title}</h2>
+                <h5>${event.categories[0].name}</h5>
               </td>
             </tr>
             <tr>
               <td>
-                <p>Dates: ${event.acf.start_date} - ${event.acf.end_date}</p>
-                <p>Location: ${event.acf.location}</p>
-                <p>Booth: ${event.acf.booth}</p>
+                <p>Dates: ${event.start_date_details.month}/${event.start_date_details.day}/${event.start_date_details.year} - ${event.end_date_details.month}/${event.end_date_details.day}/${event.end_date_details.year}</p>
+                <p>Location: ${event.venue.venue}</p>
               </td>
               <td>
-                <img src="${event.acf.logo}">
+                <img src="${event.image}">
               </td>
             </tr>
             <tr>
-              <td><p>Description: ${event.acf.description}</p></td>
+              <td><p>Description: ${event.description}</p></td>
             </tr>
           </table>
         `).join('')}

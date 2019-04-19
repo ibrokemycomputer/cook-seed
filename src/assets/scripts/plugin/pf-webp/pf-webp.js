@@ -2,7 +2,7 @@
  * TEST WEBP SUPPORT
  * @description Add CSS class to <html> if webp supported or not
  */
-pfWebp = window.pfWebp || {
+const pfWebp = window.pfWebp || {
   webpClass: 'webp',
   noWebpClass: 'no-webp',
   testWebP: function(target) {
