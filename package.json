@@ -10,18 +10,10 @@
     "reset": "rm -rf node_modules && rm -rf dist && npm install",
     "reset:all": "rm -rf node_modules && rm -rf dist"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 10"
-  ],
   "config": {
     "devPort": 3001
   },
   "dependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-transform-classes": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
     "https": "^1.0.0",
     "static-build": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev"
   },

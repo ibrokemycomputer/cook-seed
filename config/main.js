@@ -23,5 +23,19 @@ module.exports = {
   //watch: [ '/css/*.css', ],
   // Add per-site plugins to use during build process
   // plugins: ['testLogger'],
-  customData: 'getWordpressData'
+  customData: 'getWordpressData',
+  // babelOpts: {
+  //   "plugins": ["@babel/plugin-transform-classes"],
+  //   "presets": [
+  //     ["@babel/preset-env", {
+  //       "targets": {
+  //         "browsers": [
+  //           "> 1%",
+  //           "last 2 versions",
+  //           "not ie <= 11"
+  //         ]
+  //       }
+  //     }]
+  //   ]
+  // }
 };

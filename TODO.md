@@ -4,6 +4,13 @@
 
 ## Site
 
+Image optimizer.  
+Some sort of `noscript` warning.  
+A no-css warning/fallback.  
+Do something if user has images disabled.  
+Page transitions/app-shell.  
+
+
 ### Plugins
 
 * Add image optimization plugin
@@ -26,14 +33,6 @@
 
 ## Babel
 
-### Setup
+~~Fix issue of needing to install babel packages in the site repo!~~ (check this on a Mac before removing)
 
-**Fix issue of needing to install babel packages in the site repo!**
-
-### Compiling
-
-1. Babelify `config.customBabelDirs` or something similar?
-
-### Markup
-
-1. Babelify inline scripts?
+1. [HOLD] Babelify inline scripts?
