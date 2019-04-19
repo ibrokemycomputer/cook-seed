@@ -1,5 +1,7 @@
 # TODO
 
+1. **More documentation!**
+
 ## Site
 
 ### Plugins
@@ -12,6 +14,8 @@
 * Add opt-in to set active state on parent of nested pages
 
 ## Build
+
+* Double check all settings (make sure they dont fail if unset, and document defaults/requirements)
 
 * Currently, when making a change, all files are checked/updated. Instead, need to only update `/dist` with delta changes.
 
