@@ -49,13 +49,3 @@ injecting the 2 scripts liveReload adds and emulates how the site should look an
 ### Running pure `production` build
 
 To just build the `/dist` directory only, run `npm run build`. This just runs the build process directly: `node scripts/build.js`.
-
-## TODO
-
-* Currently, when making a change, all files are checked/updated. Instead, need to only update `/dist` with delta changes.
-* Fix nested-page extensions and/or remove 'auto-generate folder + `index.html`' feature
-  * Both pages resolve/load, which will cause analytics issues
-* Add opt-in to set active state on parent of nested pages
-* Add some file type checking/error handling to the template string replacement
-* Add image optimization plugin
-* SCSS plugin?
