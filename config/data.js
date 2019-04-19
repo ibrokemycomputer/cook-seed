@@ -2,7 +2,7 @@ module.exports = {
   siteTitle: "PINT",
   siteTitleSeperator: " | ",
   someArray: ['One', 'Two', 'Three'],
-  someHtmlArray: ['<li>One</li>', '<li>Two</li>', '<li>Three</li>'],
+  someHtmlArray: ['<li>Four</li>', '<li>Five</li>', '<li>Six</li>'],
   testFunction: item => {`<li>${item}</li>`},
   loopable: [
     { 
