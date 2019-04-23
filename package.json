@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "https": "^1.0.0",
-    "pathfinder": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev"
+    "pathfinder": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#1.0.0"
   },
   "readme": "ERROR: No README data found!",
   "_id": "pathfinder@1.0.0"
