@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta data-include="/includes/global-head">
   <!-- Homepage CSS -->
-  <link rel="stylesheet" href="/css/homepage.css" data-inline>
+  <link rel="stylesheet" href="/assets/css/homepage.css" data-inline>
 </head>
 
 <body>
@@ -36,11 +36,9 @@
             ${`<li>${i}</li>` + item}
           `).join('')}
         </ul>
-        ${data.map(item => `
-          <p>${item.data.title}<br>${item.data.date}</p>
-        `).join('')}
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In animi quaerat magnam? Unde quidem pariatur voluptatem, animi eaque dolores. Et asperiores error reprehenderit deserunt qui animi iure autem placeat veniam!</p>
-        <img src="/img/rick-morty-ship.jpg" alt="Rick and Morty Poster">
+        <img src="/assets/img/rick-morty-ship.jpg" alt="Rick and Morty Poster">
+        <img src="/assets/img/rick-morty-ship.jpg" alt="Rick and Morty Poster Unoptimized" data-optimize="ignore">
       </div>
     </section>
   </main>

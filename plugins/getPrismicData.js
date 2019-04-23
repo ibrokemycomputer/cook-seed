@@ -8,7 +8,6 @@ customData = new Promise((resolve, reject) => {
     return api.query('');
   }).then(response => {
     tmpData.data = response.results;
-    console.log('prismic ran');
     resolve(tmpData);
   }, err => {
     console.log(`Something went wrong: ${err}`);
