@@ -10,7 +10,6 @@ A no-css warning/fallback.
 Do something if user has images disabled.  
 Page transitions/app-shell.  
 
-
 ### Plugins
 
 * Add image optimization plugin
