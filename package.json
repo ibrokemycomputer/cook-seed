@@ -1,11 +1,11 @@
 {
-  "name": "pathfinder",
-  "siteName": "Pathfinder",
+  "name": "pathfinder-demo",
+  "siteName": "Pathfinder Starter",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node node_modules/static-build/scripts/build.js",
-    "dev": "NODE_ENV=development npm run build && node node_modules/static-build/scripts/dev.js",
+    "build": "node node_modules/pathfinder/scripts/build.js",
+    "dev": "NODE_ENV=development npm run build && node node_modules/pathfinder/scripts/dev.js",
     "dev:prod": "NODE_ENV=production npm run build && npx http-server ./dist -p $npm_package_config_devPort",
     "reset": "rm -rf node_modules && rm -rf dist && npm install",
     "reset:all": "rm -rf node_modules && rm -rf dist"
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "https": "^1.0.0",
-    "static-build": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev"
+    "pathfinder": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build#dev"
   },
   "readme": "ERROR: No README data found!",
   "_id": "pathfinder@1.0.0"
