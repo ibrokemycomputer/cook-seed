@@ -16,6 +16,9 @@ module.exports = {
   // Change the default [attribute] for includes and inline link/scripts
   //includeAttr: 'include',
   //inlineAttr: 'inline',
+  // By default, external links that start with `www` or `cdn` and don't have a protocol manually set (`http://` or `https://`)
+  // have `http://` added so the build doesn't think they are local links. To skip, or add to, define your own value array.
+  // replaceExternalLinkProtocol: { enabled: true, match: ['cdn'] },
   // The path to the dev source files. This is used for running the local dev livereload server.
   srcPath: 'src',
   // The file to load in `srcPath` if not `index.html`
