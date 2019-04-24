@@ -11,6 +11,8 @@ module.exports = {
   // Can be single regexes: /dist\/path/ or new RegExp(/dist\path/)
   // Or regexes in an array: [/dist\/path/, new RegExp(/dist\path/)]
   //excludePaths: [/dist\/vendors/],
+  // Set custom 'active' state on links whose [href] matches the current window location path (link active state - defaults as `data-active`)
+  // activeAttr: 'zc-active',
   // Change the default [attribute] for includes and inline link/scripts
   //includeAttr: 'include',
   //inlineAttr: 'inline',
