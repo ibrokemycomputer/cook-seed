@@ -23,7 +23,7 @@ module.exports = {
   srcPath: 'src',
   // The file to load in `srcPath` if not `index.html`
   startPath: 'index.html',
-  // Live reload dev browser when these files change (`/assets/css`,`/assets/scripts/plugin` (.css and .js), and all `.html` by default)
+  // Live reload dev browser when these files change (`/assets/css`,`/assets/plugin` (.css and .js), and all `.html` by default)
   // Note: Adding paths here will not 'add' to the defaults, but will instead override them
   //watch: [ '/css/*.css', ],
   // Add per-site plugins to use during build process
