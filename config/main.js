@@ -3,8 +3,11 @@
 module.exports = {
   // REQUIRED (CORE)
   // Convert xxxx.html files to xxxx/index.html
-  // NOTE: If set to `false`, you must add the .html extension in <a href="xxxx.html"> paths
-  convertPageToDirectory: true,
+  // NOTE: If `disabled` set to `true`, you must add the .html extension in <a href="xxxx.html"> paths
+  convertPageToDirectory: {
+    disabled: false,
+    excludePaths: ['dist/404.html']
+  },
   // The name of the compiled, 'public' directory (`dist`, `public`, etc.)
   distPath: 'dist',
   // The path to the dev source files. This is used for running the local dev livereload server.
