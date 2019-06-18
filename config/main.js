@@ -27,6 +27,7 @@ module.exports = {
 
   // Set custom 'active' state on links whose [href] matches the current window location path (link active state - defaults as `data-active`)
   // activeAttr: 'zc-active',
+  // parentActiveAttr: 'zc-parent-active',
 
   // Change the default [attribute] for includes and inline link/scripts
   //includeAttr: 'include',
