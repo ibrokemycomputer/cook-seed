@@ -14,6 +14,9 @@ module.exports = {
   srcPath: 'src',
   // The file to load in `srcPath` if not `index.html`
   startPath: 'index.html',
+  // The URL domain to use for the `sitemap.xml` entries
+  // Note: Enabling this auto-generates `sitemap.xml` in the `/dist` directory
+  // sitemapUrl: 'https://www.domain.com',
 
   // REQUIRED (SITE)
   // Add config items here for your own custom build plugins
