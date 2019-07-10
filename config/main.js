@@ -33,6 +33,9 @@ module.exports = {
   //includeAttr: 'include',
   //inlineAttr: 'inline',
 
+  // Disable `replaceTemplateStrings` build process step
+  // enableTemplateStringReplace: false,
+
   // Live reload dev browser when these files change (`/assets/css`,`/assets/plugin` (.css and .js), and all `.html` by default)
   // Note: Added paths here are *in addition* to the defaults. To replace the defaults, set the `watchReplace` option listed below
   //watch: [ '/docs/css/*.css', ],
