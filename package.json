@@ -3,21 +3,29 @@
   "siteName": "Pathfinder Starter",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
-    "build": "node node_modules/pathfinder/scripts/build.js",
+    "build": "node --max_old_space_size=8192 node_modules/pathfinder/scripts/build.js",
+    "build:dev": "NODE_ENV=development npm run build",
+    "build:stage": "NODE_ENV=stage npm run build",
+    "build:prod": "NODE_ENV=production npm run build",
     "dev": "NODE_ENV=development npm run build && node node_modules/pathfinder/scripts/dev.js",
-    "dev:log": "LOGGER=true npm run dev",
     "dev:prod": "NODE_ENV=production npm run build && npx http-server ./dist -p $npm_package_config_devPort",
+    "dev:bundle": "BUNDLE=true npm run dev",
+    "dev:log": "LOGGER=true npm run dev",
     "reset": "rm -rf node_modules && rm -rf dist && npm install",
-    "reset:all": "rm -rf node_modules && rm -rf dist"
+    "reset:build": "rm -rf node_modules/pathfinder && rm -rf package-lock.json && npm install pathfinder",
+    "reset:only": "rm -rf node_modules && rm -rf dist",
+    "update:check": "ncu",
+    "update:fix": "ncu -u"
   },
   "config": {
     "devPort": 3001
   },
   "dependencies": {
-    "https": "^1.0.0",
+    "npm-check-updates": "^3.1.23",
     "pathfinder": "git+https://gitlab+deploy-token-6:zf-ySSZBfXosTzQ-zn54@gitlab.pint.com/pathfinder/build"
-  },
-  "readme": "ERROR: No README data found!",
-  "_id": "pathfinder@1.0.0"
+  }
 }

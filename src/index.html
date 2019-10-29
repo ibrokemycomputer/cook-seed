@@ -1,13 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js no-i-observer">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>${'Home' + siteTitleSeperator + siteTitle}</title>
+  <title>Home${siteTitleSeperator}${siteTitle}</title>
   <meta name="description" content="">
   <meta data-include="/includes/global-head">
-  <!-- Homepage CSS -->
+  <!-- Page-Specific CSS -->
   <link rel="stylesheet" href="/assets/css/homepage.css" data-inline>
 </head>
 
@@ -18,29 +15,17 @@
 
 
   <!-- MAIN CONTENT -->
-  <main aria-label="App Content" id="swup" class="transition-fade">
+  <main id="swup" class="viewport transition-fade" aria-label="App Content">
+    
     <section>
       <div class="inner">
         <h1>Home</h1>
-        <dl>
-          ${loopable.map(f => `
-            <dt>${f.dt}</dt>
-            <dd>${f.dd}</dd>
-          `).join('')}
-        </dl>
-        <p>${someArray.map(i => 
-              testFunction(i)
-           ).join('')}</p>
-        <ul>
-          ${someHtmlArray.map((item, i) => `
-            ${`<li>${i}</li>` + item}
-          `).join('')}
-        </ul>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In animi quaerat magnam? Unde quidem pariatur voluptatem, animi eaque dolores. Et asperiores error reprehenderit deserunt qui animi iure autem placeat veniam!</p>
         <img src="/assets/img/rick-morty-ship.jpg" alt="Rick and Morty Poster">
         <img src="/assets/img/rick-morty-ship.jpg" alt="Rick and Morty Poster Unoptimized" data-optimize="ignore">
       </div>
     </section>
+
   </main>
 
 
@@ -49,7 +34,7 @@
 
 
   <!-- SHARED SCRIPTS (ZingChart, etc.) -->
-  <div data-include="/includes/global-scripts"></div>
+  <div data-include="/includes/global-body"></div>
 
 </body>
 </html>
