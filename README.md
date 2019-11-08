@@ -116,8 +116,6 @@ Many build settings can be set in the project's `/config/main.js` instead of try
 
 &nbsp;
 
----
-
 ## Deployment
 
 The result of `npm run build` (and its environment variants) creates a static website (by default `/dist`).
@@ -133,8 +131,7 @@ To facilitate Firebase deployment (either manually or via CI), add deployment sc
 "deploy:prod": "npm run build:prod && firebase deploy --project project-name-live --only hosting"
 ```
 
-
----
+&nbsp;
 
 ## NPM Run Scripts
 
