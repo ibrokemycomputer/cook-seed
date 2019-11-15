@@ -52,13 +52,20 @@ module.exports = {
   // OPTIONAL
   // -----------------------------
 
-  // Add regex patterns to exclude files from being modified once copied to the /dist directory
+  // Add regex patterns to include or exclude files from being modified once copied to the /dist directory
+  // For example, /dist\/manifest.json/ will include the manifest.json file, so template strings can be
   // For example, /dist\/vendor/ will exclude files in /dist/vendor 
   // Can be single regexes: /dist\/path/ or new RegExp(/dist\path/)
-  // Or regexes in an array: [/dist\/path/, new RegExp(/dist\path/)]
+  // Or regexes in an array: [/dist\/path1/, new RegExp(/dist\path2/)]
+  // --
+  // INCLUDE
+  // -- Example: Include `/dist/manifest.json`, so template strings can be replaced.
+  // includePaths: [
+  //   /dist\/manifest.json/,
+  // ],
+  // EXCLUDE
   // -- Example: Exclude docs templates directory (/dist/assets/docs/)
   excludePaths: [
-    // Current
     /dist\/assets\/vendor/, 
   ],
   
