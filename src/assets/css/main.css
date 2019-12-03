@@ -41,6 +41,8 @@ body { font-family: sans-serif; }
 /* MISC
 --------------------------- */
 a, .link { cursor:pointer; text-decoration:none; color:#67a2b9; transition:color .3s; }
+.active { opacity:.5; }
+.active-parent { opacity:.5; }
 a:hover, .link:hover { color:rgba(103,162,185,.6); }
 address { font-style:normal; }
 blockquote { margin:0 0 20px; padding:5px 20px; line-height:1.6; background:#ebebeb; border-left:4px solid #67a2b9; }

@@ -69,9 +69,18 @@ module.exports = {
     /dist\/assets\/vendor/, 
   ],
   
-  // Set custom 'active' state on links whose [href] matches the current window location path (link active state - defaults as `data-active`)
-  // activeAttr: 'zg-active',
-  // parentActiveAttr: 'zg-parent-active',
+  // Define the 'active' state for both links whose `[href]` value matches the current page,
+  // as well as links who have part of the current page's url in them (parent-active state)
+  // By default, a `[class]` is added, with default values. The below config is not necessary,
+  // unless you want to change the type (attr|attribute|class), or the values
+  // activeLink: {
+  //   // Default: class
+  //   type: 'class',
+  //   // Default: active
+  //   activeState: 'active',
+  //   // Default: active-parent
+  //   parentState: 'active-parent',
+  // },
   
   // Change the default [attribute] for includes and inline link/scripts
   //includeAttr: 'include',
