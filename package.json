@@ -18,7 +18,7 @@
     "dev:log": "LOGGER=true npm run dev",
     "reset": "rm -rf node_modules && rm -rf dist && npm install",
     "reset:build": "rm -rf node_modules/pathfinder && rm -rf package-lock.json && npm install pathfinder",
-    "reset:clean": "rm -rf node_modules && rm -rf dist",
+    "reset:clean": "rm -rf node_modules && rm -rf package-lock.json && rm -rf dist",
     "update:check": "ncu",
     "update:fix": "ncu -u"
   },
