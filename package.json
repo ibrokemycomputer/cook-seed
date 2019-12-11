@@ -16,7 +16,7 @@
     "dev:bundle": "BUNDLE=true npm run dev",
     "dev:fb": "npm run build:prod && firebase serve --only hosting --port=3000",
     "dev:log": "LOGGER=true npm run dev",
-    "reset": "rm -rf node_modules && rm -rf dist && npm install",
+    "reset": "rm -rf node_modules && rm -rf package-lock.json && rm -rf dist && npm install",
     "reset:build": "rm -rf node_modules/pathfinder && rm -rf package-lock.json && npm install pathfinder",
     "reset:clean": "rm -rf node_modules && rm -rf package-lock.json && rm -rf dist",
     "update:check": "ncu",
