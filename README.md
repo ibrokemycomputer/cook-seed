@@ -116,6 +116,15 @@ Many build settings can be set in the project's `/config/main.js` instead of try
 
 &nbsp;
 
+## Config Options
+
+The build process has built-in, default-configuration settings it uses to know where to build the deployable 'production' site code, 
+where to find the source files, etc.
+
+These are user-configurable via the config file: `/config/main.js`. For more information on how to modify config values, see the [Configuration Readme](/config/README.md) in the config directory.
+
+&nbsp;
+
 ## Deployment
 
 The result of `npm run build` (and its environment variants) creates a static website (by default `/dist`).
