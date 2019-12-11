@@ -102,7 +102,8 @@ Out-of-the-box, no internal build processes use this, but you are welcome to use
   * Adds missing `http://` protocol to external links to avoid them being treated as internal, relative links
   * Replace include placeholders (`[data-include]`) with their target source
   * Replace inline placeholders (`[data-inline]`) with their target external source
-  * Set `<a>` tags whose `[href]` matches the current page as 'active' (`[data-active]`)
+  * Set `<a>` tags whose `[href]` matches the current-page url as 'active' (`class="active"`)
+  * Set `<a>` tags whose `[href]` includes part of the current-page url as 'active' (`class="active-parent"`)
   * Store link/script files marked for bundling (`[bundle]`), and replace their 'old' DOM elements with the new bundled-file call
   * Minify the page source (production environments)
   * ~~Optimizes images (Todo)~~
