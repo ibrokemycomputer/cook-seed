@@ -161,8 +161,8 @@ dev:log        - Shows additional logging in the terminal (page-specific build p
 dev:prod       - Runs the site with a simple, static server (`http-server`)
 
 // Reinstall Node Dependencies
-reset          - Removes `node_modules` and `/dist`, and then runs `npm install`
-reset:clean    - Removes `node_modules` and `/dist`, but does not run `npm install`
+reset          - Removes `/node_modules`, `package-lock.json`, and `/dist`, and then runs `npm install`
+reset:clean    - Removes `/node_modules`, `package-lock.json`, and `/dist`, but does not run `npm install`
 reset:build    - Reinstalls just the Pathfinder Build repo (good for updating version), without installing the rest of the project's packages
 
 // Update Node Dependency Versions
