@@ -10,7 +10,7 @@ report.*
 .vscode/launch.json
 
 # Firebase
-# Excluded since this is only used for e2e testing the build locally
 .firebase
-firebase.json
-deploy.sh
+# Creates firebase.json, deploys, then deletes it so it doesn't persist when pushed to the repo,
+# and we don't have to .gitignore firebase.json, which would persist for the user cloning the repo.
+deploy.js
