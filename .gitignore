@@ -8,3 +8,9 @@ dist
 report.*
 .firebase
 .vscode/launch.json
+
+# Firebase
+# Excluded since this is only used for e2e testing the build locally
+.firebase
+firebase.json
+deploy.sh
