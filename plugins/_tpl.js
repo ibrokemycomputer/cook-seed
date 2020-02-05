@@ -39,7 +39,7 @@ class PluginTemplate {
 
     /*
       UPDATING FILES IN THE FILE LOOP
-      This sequence only viable if plugin run in the `default` plugin location in `/config/main.js`
+      This sequence only viable if plugin runs in the `default` plugin location in `/config/main.js`
       If running in the `before` or `after` config arrays, you will only have access to your `this.data` object in `/config/data.js`
     */
 
@@ -54,7 +54,7 @@ class PluginTemplate {
     // Test querying the DOM
     const h1 = dom.window.document.querySelectorAll('h1');
 
-    // Early Exit: No pre tags
+    // Early Exit: No h1 tags
     if (!h1 || !h1.length) return;
 
     // DO STUFF...
