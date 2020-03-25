@@ -1,5 +1,5 @@
 const https = require('https');
-const url = "https://jmartenspint.wpengine.com/wp-json/tribe/events/v1/events";
+const url = "https://wordpress.endpoint/api";
 const cwd = process.cwd();
 
 let siteData = require(`${cwd}/config/data.js`);

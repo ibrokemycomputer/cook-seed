@@ -1,4 +1,4 @@
 module.exports = {
-  siteTitle: 'PINT',
+  siteTitle: 'ProfPowell',
   siteTitleSeperator: ' | ',
 };

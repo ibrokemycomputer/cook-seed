@@ -1,5 +1,5 @@
 const Prismic = require('prismic-javascript');
-const url = "https://pint-crush-test.prismic.io/api/v2";
+const url = "https://change_me.prismic.io/api/v2";
 const cwd = process.cwd();
 
 customData = new Promise((resolve, reject) => {

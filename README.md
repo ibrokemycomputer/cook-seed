@@ -1,8 +1,6 @@
 # A Static Build PoC
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3940ba98-f07f-49dd-babf-5122295d9b61/deploy-status)](https://app.netlify.com/sites/ibmc/deploys)
-
-This starter repo provides a static-site demo hooked up to the [Pathfinder Build](https://gitlab.pint.com/pathfinder/build) build process.
+This starter repo provides a static-site demo hooked up to the [cook build process](https://github.com/ProfPowell/cook.git).
 
 ## Getting Started
 
@@ -13,7 +11,7 @@ npm install
 npm run dev
 ```
 
-This installs the Pathfinder Build dependency and then builds the site locally, which creates the compiled site in `/dist` and makes it available at `localhost:3000`, using BrowserSync for live reloading.
+This installs the cook Build dependency and then builds the site locally, which creates the compiled site in `/dist` and makes it available at `localhost:3000`, using BrowserSync for live reloading.
 
 ---
 ## View/Run the site code
@@ -25,8 +23,8 @@ There are different modes of viewing the site while working locally.
 
   To view your codebase locally, run `npm run dev`.
 
-  1. This first runs `/node_modules/pathfinder/scripts/build.js`, which copies the `/src` files to `/dist`, and then modifies them per each the active build plugins.
-  2. After the `/dist` folder files are built, `/node_modules/pathfinder/scripts/dev.js` runs, which starts the BrowserSync live-reload server.
+  1. This first runs `/node_modules/cook/scripts/build.js`, which copies the `/src` files to `/dist`, and then modifies them per each the active build plugins.
+  2. After the `/dist` folder files are built, `/node_modules/cook/scripts/dev.js` runs, which starts the BrowserSync live-reload server.
 
   _[Note]:_ By default, files are not minified and link/script elements marked `[data-inline]` are not inlined (retain external file call).  
   This way, when using dev tools to inspect in `localhost`, you see the correct line numbers, etc.
@@ -149,7 +147,7 @@ The site includes 'helper' NPM-style run scripts that abstract the underlying, v
 
 ```
 // Build
-build          - The Pathfinder build process. Use the dev/stage/prod variants, where necessary, to benefit from environment-specific rules.
+build          - The cook build process. Use the dev/stage/prod variants, where necessary, to benefit from environment-specific rules.
 build:dev      - Build with dev rules
 build:stage    - Build with stage rules
 build:prod     - Build with prod rules
@@ -164,7 +162,7 @@ dev:prod       - Runs the site with a simple, static server (`http-server`)
 // Reinstall Node Dependencies
 reset          - Removes `/node_modules`, `package-lock.json`, and `/dist`, and then runs `npm install`
 reset:clean    - Removes `/node_modules`, `package-lock.json`, and `/dist`, but does not run `npm install`
-reset:build    - Reinstalls just the Pathfinder Build repo (good for updating version), without installing the rest of the project's packages
+reset:build    - Reinstalls just the cook Build repo (good for updating version), without installing the rest of the project's packages
 
 // Update Node Dependency Versions
 update:check   - Checks all `package.json` dependencies for updates

@@ -8,13 +8,13 @@
 const cwd = process.cwd();
 const chalk = require('chalk');
 // const fs = require('fs-extra');
-// const Logger = require(`${cwd}/node_modules/pathfinder/scripts/utils/logger/logger.js`);
-// const Spinner = require(`${cwd}/node_modules/pathfinder/scripts/utils/spinner/spinner.js`);
-// const Timer = require(`${cwd}/node_modules/pathfinder/scripts/utils/timer/timer.js`);
-const Util = require(`${cwd}/node_modules/pathfinder/scripts/utils/util/util.js`);
+// const Logger = require(`${cwd}/node_modules/cook/scripts/utils/logger/logger.js`);
+// const Spinner = require(`${cwd}/node_modules/cook/scripts/utils/spinner/spinner.js`);
+// const Timer = require(`${cwd}/node_modules/cook/scripts/utils/timer/timer.js`);
+const Util = require(`${cwd}/node_modules/cook/scripts/utils/util/util.js`);
 
 // CORE CONFIG
-// const {distPath,srcPath} = require(`${cwd}/node_modules/pathfinder/scripts/utils/config/config.js`);
+// const {distPath,srcPath} = require(`${cwd}/node_modules/cook/scripts/utils/config/config.js`);
 // SITE CONFIG
 // const {sitemap} = require(`${cwd}/config/main.js`);
 

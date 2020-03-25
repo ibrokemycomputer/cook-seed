@@ -8,20 +8,20 @@ There are two primary config files the user can modify to tailor the build proce
 
 ## data.js
 
-`data.js` is the 'top-level store' of Pathfinder. Adding data to the exported object makes it available in each build-process step, including the user's custom build plugins.
+`data.js` is the 'top-level store' of cook. Adding data to the exported object makes it available in each build-process step, including the user's custom build plugins.
 
 It is purposely sparse, by default:
 
 ```
 module.exports = {
-  siteTitle: 'PINT',
+  siteTitle: 'ProfPowell',
   siteTitleSeperator: ' | ',
 };
 ```
 
 `siteTitle` and `siteTitleSeperator` are automatically added to each page's `<title>` tag, and may be used in conjunction with manually-added content. For example,
 a page's title tag may look like this: `<title>About Us${siteTitleSeperator}${siteTitle}</title>`.<br>
-When rendered, it will replace the variables with the config data: `<title>About Us | PINT</title>`.
+When rendered, it will replace the variables with the config data: `<title>About Us | ProfPowell</title>`.
 
 *Note:* When creating a user-plugin, the plugin's constructor will have access to the data object: `constructor({file, data}) {...}`. To add a new property, or update existing data, you would just store a reference to it in the plugin and then add data to it; it will pass this new data to the next plugin (either internal or user-created):
 
